@@ -17,11 +17,14 @@ namespace MedicalExamination.API.Controllers
         {
             _customerServices = customerServices;
         }
+
         [HttpGet("api/customers/gets")]
         public async Task<IActionResult> Gets()
         {
             return Ok(await _customerServices.GetS());
         }
+
+
         [HttpGet("api/customers/get/{customerId}")]
         public async Task<IActionResult> GetCustomertById(string customerId)
         {
@@ -33,8 +36,9 @@ namespace MedicalExamination.API.Controllers
         {
             return Ok(await _customerServices.CreateCustomer(request));
         }
-        [HttpPut("api/customer/edit/")]
 
+
+        [HttpPut("api/customer/edit/")]
         public async Task<IActionResult> EditProduct(EditCustomerReq request)
         {
             return Ok(await _customerServices.EditProduct(request));
