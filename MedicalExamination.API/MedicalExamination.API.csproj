@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\LEARNING\MODULE 5\BIGPROJECT\MedicalExamination\MedicalExamination.API\MedicalExamination.API.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MedicalExamination.BAL.Implement\MedicalExamination.BAL.Implement.csproj" />
+    <ProjectReference Include="..\MedicalExamination.BAL.Interface\MedicalExamination.BAL.Interface.csproj" />
+    <ProjectReference Include="..\MedicalExamination.DAL.Implement\MedicalExamination.DAL.Implement.csproj" />
+    <ProjectReference Include="..\MedicalExamination.DAL.Interface\MedicalExamination.DAL.Interface.csproj" />
+    <ProjectReference Include="..\MedicalExamination.Domain\MedicalExamination.Domain.csproj" />
+  </ItemGroup>
+
+
+</Project>

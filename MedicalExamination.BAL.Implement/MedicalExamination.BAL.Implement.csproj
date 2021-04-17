@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MedicalExamination.BAL.Interface\MedicalExamination.BAL.Interface.csproj" />
+    <ProjectReference Include="..\MedicalExamination.DAL.Implement\MedicalExamination.DAL.Implement.csproj" />
+    <ProjectReference Include="..\MedicalExamination.Domain\MedicalExamination.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
