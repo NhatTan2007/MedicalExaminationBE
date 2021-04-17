@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MedicalExamination.Domain.Requests.Customers
 {
-    public class CustomerCreateReq
+    public class CreateCustomerReq
     {
         private string _firstName;
         private string _lastName;

@@ -7,7 +7,7 @@ namespace MedicalExamination.Domain.Entities
 {
     public class Customers
     {
-        private string _ustomerId;
+        private string _customerId;
         private string _firstName;
         private string _lastName;
         private DateTime _dateOfBirth;
@@ -17,7 +17,7 @@ namespace MedicalExamination.Domain.Entities
         private string _identityNumber;
         [Key]
         [MaxLength(50)]
-        public string UstomerId { get => _ustomerId; set => _ustomerId = value; }
+        public string CustomerId { get => _customerId; set => _customerId = value; }
         [Required]
         [MaxLength(30)]
         public string FirstName { get => _firstName; set => _firstName = value; }
