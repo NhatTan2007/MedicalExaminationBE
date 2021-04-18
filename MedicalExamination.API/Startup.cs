@@ -1,4 +1,8 @@
+using MedicalExamination.BAL.Implement;
+using MedicalExamination.BAL.Interface;
+using MedicalExamination.DAL.Implement;
 using MedicalExamination.DAL.Implement.DbContexts;
+using MedicalExamination.DAL.Interface;
 using MedicalExamination.Domain.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -55,8 +59,14 @@ namespace MedicalExamination.API
                     var filePath = Path.Combine(System.AppContext.BaseDirectory, "MedicalExamination.API.xml");
                     c.IncludeXmlComments(filePath);
                 });
+            //services.AddTransient<ICategoryRepository, CategoryRepository>();
+            //services.AddTransient<ICategoryServices, CategoryServices>();
+            services.AddTransient<IOrganizationsRepository, OrganizationsRepository>();
+            services.AddTransient<IOrganizationsServices, OrganizationsServices>();
 
-                services.AddCors();
+
+
+            services.AddCors();
             }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
