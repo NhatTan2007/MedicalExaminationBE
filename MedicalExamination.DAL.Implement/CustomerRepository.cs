@@ -45,7 +45,7 @@ namespace MedicalExamination.DAL.Implement
             }
         }
 
-        public async Task<EditCustomerRes> EditProduct(EditCustomerReq request)
+        public async Task<EditCustomerRes> UpdateCustomer(EditCustomerReq request)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@CustomerId", request.CustomerId);
@@ -57,7 +57,7 @@ namespace MedicalExamination.DAL.Implement
             parameters.Add(name: "@IdentityNumber", request.IdentityNumber);
             parameters.Add(name: "@Email", request.Email);
             parameters.Add(name: "@Message", "", DbType.String, ParameterDirection.Output);
-            using (var result = SqlMapper.QueryFirstOrDefaultAsync<Customers>(
+            using (var result = SqlMapper.QueryFirstOrDefaultAsync<Customer>(
                                                             cnn: connection,
                                                             sql: "sp_UpdateCustomer",
                                                             param: parameters,
@@ -77,11 +77,11 @@ namespace MedicalExamination.DAL.Implement
             }
         }
 
-        public async Task<Customers> GetCustomerById(string customerId)
+        public async Task<Customer> GetCustomerById(string customerId)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@CustomerId", customerId);
-            using (var result = SqlMapper.QueryFirstOrDefaultAsync<Customers>(
+            using (var result = SqlMapper.QueryFirstOrDefaultAsync<Customer>(
                                                 cnn: connection,
                                                 sql: "sp_GetCustomerById",
                                                 param: parameters,
@@ -93,14 +93,14 @@ namespace MedicalExamination.DAL.Implement
                 }
                 catch (Exception ex)
                 {
-                    return new Customers();
+                    return new Customer();
                 }
             }
         }
 
-        public async Task<IEnumerable<Customers>> GetS()
+        public async Task<IEnumerable<Customer>> GetAllCustomer()
         {
-            using (var result = SqlMapper.QueryAsync<Customers>(cnn: connection,
+            using (var result = SqlMapper.QueryAsync<Customer>(cnn: connection,
                                                        sql: "sp_GetAllCustomer",
                                                        commandType: CommandType.StoredProcedure))
             {
@@ -110,9 +110,29 @@ namespace MedicalExamination.DAL.Implement
                 }
                 catch (Exception)
                 {
-                    return new List<Customers>();
+                    return new List<Customer>();
                 }
             }
+        }
+
+        public async Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyWord)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add(name: "@SearchKey", keyWord);
+
+            using (var result = SqlMapper.QueryFirstOrDefaultAsync<Customer>(
+                                              cnn: connection,
+                                              sql: "sp_SearchByNameOrIdentityNumberAscByFirstName",
+                                              param: parameters,
+                                              commandType: CommandType.StoredProcedure))
+                try
+                {
+                    return (IEnumerable<Customer>)await result;
+                }
+                catch (Exception)
+                {
+                    return new List<Customer>();
+                }
         }
     }
 }

@@ -7,7 +7,7 @@ namespace MedicalExamination.Domain.Responses.Customers
 {
     public class EditCustomerRes
     {
-        public Entities.Customers Customer { get; set; }
+        public Customer Customer { get; set; }
         public string Message { get; set; }
         public bool Success => Customer != null;
     }

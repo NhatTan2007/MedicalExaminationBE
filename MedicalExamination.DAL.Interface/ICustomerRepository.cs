@@ -10,9 +10,10 @@ namespace MedicalExamination.DAL.Interface
 {
     public interface ICustomerRepository
     {
-        Task<IEnumerable<Customers>> GetS();
-        Task<Customers> GetCustomerById(string customerId);
+        Task<IEnumerable<Customer>> GetAllCustomer();
+        Task<Customer> GetCustomerById(string customerId);
         Task<CreateCustomerRes> CreateCustomer(CreateCustomerReq request);
-        Task<EditCustomerRes> EditProduct(EditCustomerReq request);
+        Task<EditCustomerRes> UpdateCustomer(EditCustomerReq request);
+        Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyWord);
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MedicalExamination.Domain.Entities
 {
-    public class Customers
+    public class Customer
     {
         private string _customerId;
         private string _firstName;

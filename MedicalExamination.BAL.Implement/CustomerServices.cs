@@ -25,19 +25,24 @@ namespace MedicalExamination.BAL.Implement
             return await _customerRepository.CreateCustomer(request);
         }
 
-        public async Task<EditCustomerRes> EditProduct(EditCustomerReq request)
+        public async Task<EditCustomerRes> UpdateCustomer(EditCustomerReq request)
         {
-            return await _customerRepository.EditProduct(request);
+            return await _customerRepository.UpdateCustomer(request);
         }
 
-        public async Task<Customers> GetCustomerById(string customerId)
+        public async Task<Customer> GetCustomerById(string customerId)
         {
             return await _customerRepository.GetCustomerById(customerId);
         }
 
-        public async Task<IEnumerable<Customers>> GetS()
+        public async Task<IEnumerable<Customer>> GetAllCustomer()
         {
-            return await _customerRepository.GetS();
+            return await _customerRepository.GetAllCustomer();
+        }
+
+        public async Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyWord)
+        {
+            return await _customerRepository.SearchByNameOrIdentityNumberAscByFirstName(keyWord);
         }
     }
 }

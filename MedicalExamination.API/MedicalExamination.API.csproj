@@ -19,10 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MedicalExamination.BAL.Implement\MedicalExamination.BAL.Implement.csproj" />
     <ProjectReference Include="..\MedicalExamination.BAL.Interface\MedicalExamination.BAL.Interface.csproj" />
     <ProjectReference Include="..\MedicalExamination.DAL.Implement\MedicalExamination.DAL.Implement.csproj" />
