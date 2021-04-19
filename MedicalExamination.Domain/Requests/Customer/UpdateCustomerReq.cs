@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MedicalExamination.Domain.Requests.Customers
 {
-    public class EditCustomerReq
+    public class UpdateCustomerReq
     {
         private string _customerId;
         private string _firstName;

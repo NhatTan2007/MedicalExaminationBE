@@ -5,10 +5,10 @@ using System.Text;
 
 namespace MedicalExamination.Domain.Responses.Customers
 {
-    public class EditCustomerRes
+    public class UpdateCustomerRes
     {
-        //public Customers Customer { get; set; }
-        //public string Message { get; set; }
-        //public bool Success => Customer != null;
+        public Customer Customer { get; set; }
+        public string Message { get; set; }
+        public bool Success => Customer != null;
     }
 }
