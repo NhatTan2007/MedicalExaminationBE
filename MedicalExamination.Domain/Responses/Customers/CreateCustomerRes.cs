@@ -4,7 +4,10 @@ using System.Text;
 
 namespace MedicalExamination.Domain.Responses.Customers
 {
-    class CreateCustomerRes
+    public class CreateCustomerRes
     {
+        public string CustomerId { get; set; }
+        public string Message { get; set; }
+        public bool Success => !String.IsNullOrEmpty(CustomerId);
     }
 }

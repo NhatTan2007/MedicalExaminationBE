@@ -4,7 +4,11 @@ using System.Text;
 
 namespace MedicalExamination.Domain.Responses.Customers
 {
-    class DeleteCustomerRes
+    public class DeleteCustomerRes
     {
+        public string CustomerId { get; set; }
+        public string Message { get; set; }
+        public bool Success => !String.IsNullOrEmpty(CustomerId);
+
     }
 }
