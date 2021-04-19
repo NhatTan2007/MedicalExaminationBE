@@ -4,8 +4,9 @@ using System.Text;
 
 namespace MedicalExamination.Domain.Requests.Customers
 {
-    public class CustomerCreateReq
+    public class EditCustomerReq
     {
+        private string _customerId;
         private string _firstName;
         private string _lastName;
         private DateTime _dateOfBirth;
@@ -14,6 +15,7 @@ namespace MedicalExamination.Domain.Requests.Customers
         private string _phoneNumber;
         private string _identityNumber;
 
+        public string CustomerId { get => _customerId; set => _customerId = value; }
         public string FirstName { get => _firstName; set => _firstName = value; }
         public string LastName { get => _lastName; set => _lastName = value; }
         public DateTime DateOfBirth { get => _dateOfBirth; set => _dateOfBirth = value; }
