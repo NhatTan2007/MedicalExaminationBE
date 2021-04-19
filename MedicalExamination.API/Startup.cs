@@ -59,10 +59,10 @@ namespace MedicalExamination.API
                     var filePath = Path.Combine(System.AppContext.BaseDirectory, "MedicalExamination.API.xml");
                     c.IncludeXmlComments(filePath);
                 });
+            services.AddTransient<IOrganizationsRepository, OrganizationsRepository>();
+            services.AddTransient<IOrganizationsServices, OrganizationsServices>();
 
-                services.AddCors();
-            services.AddTransient<ICustomerRepository, CustomerRepository>();
-            services.AddTransient<ICustomerServices, CustomerServices>();
+            services.AddCors();
             }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
