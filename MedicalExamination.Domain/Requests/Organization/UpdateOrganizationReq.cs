@@ -6,7 +6,7 @@ namespace MedicalExamination.Domain.Requests
 {
     public class UpdateOrganizationReq
     {
-        private string _organizationIdNeedFind;
+        private string _organizationId;
         private string _organizationName;
         private string _organizationPhoneNumber;
         private string _organizationEmail;
@@ -15,7 +15,7 @@ namespace MedicalExamination.Domain.Requests
         private string _phoneContact;
         private string _emailContact;
 
-        public string OrganizationIdNeedFind { get => _organizationIdNeedFind; set => _organizationIdNeedFind = value; }
+        public string OrganizationId { get => _organizationId; set => _organizationId = value; }
         public string OrganizationName { get => _organizationName; set => _organizationName = value; }
         public string OrganizationPhoneNumber { get => _organizationPhoneNumber; set => _organizationPhoneNumber = value; }
         public string OrganizationEmail { get => _organizationEmail; set => _organizationEmail = value; }

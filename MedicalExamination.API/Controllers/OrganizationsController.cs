@@ -24,10 +24,10 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <returns>List all Organizations</returns>
 
-        [HttpGet("api/organizations/Gets")]
-        public async Task<IActionResult> getallorganization()
+        [HttpGet("api/organizations/GetsAllOrganizations")]
+        public async Task<IActionResult> GetAllOrganizations()
         {
-            return Ok(await _organizationsServices.GetAllOrganization());
+            return Ok(await _organizationsServices.GetAllOrganizations());
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <param name="organizationId"></param>
         /// <returns>Specific Product has id want to find</returns>
-        [HttpGet("api/organizations/getorganization/{organizationId}")]
+        [HttpGet("api/Organizations/GetOrganization/{organizationId}")]
         public async Task<IActionResult> GetProductById(string organizationId)
         {
             return Ok(await _organizationsServices.GetOrganizationById(organizationId));
@@ -46,10 +46,10 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <param name="organizationName"></param>
         /// <returns>Specific Product has id want to find</returns>
-        [HttpGet("api/organizations/getOrganizationsByNameASC/{organizationName}")]
-        public async Task<IActionResult> GetOrangizationsByNameASCByName(string organizationName)
+        [HttpGet("api/Organizations/GetOrganizationsByNameASC/{organizationName}")]
+        public async Task<IActionResult> SearchOrangizationsByNameASCByName(string organizationName)
         {
-            return Ok(await _organizationsServices.GetOrganizationsByNameASCByName(organizationName));
+            return Ok(await _organizationsServices.SearchOrganizationsByNameASCByName(organizationName));
         }
 
         /// <summary>
@@ -57,10 +57,10 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <param name="organizationName"></param>
         /// <returns>Specific Product has id want to find</returns>
-        [HttpGet("api/organizations/getOrganizationsByNameDESC/{organizationName}")]
+        [HttpGet("api/Organizations/SearchOrganizationsByNameDESC/{organizationName}")]
         public async Task<IActionResult> GetOrangizationsByNameDESCByName(string organizationName)
         {
-            return Ok(await _organizationsServices.GetOrganizationsByNameDESCByName(organizationName));
+            return Ok(await _organizationsServices.SearchOrganizationsByNameDESCByName(organizationName));
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns>New Organization</returns>
-        [HttpPost("api/organizations/createorganization")]
+        [HttpPost("api/Organizations/CreateOrganization")]
         public async Task<IActionResult> CreateProduct(CreateOrganizationReq request)
         {
             return Ok(await _organizationsServices.CreateOrganization(request));
@@ -79,10 +79,10 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns>Organization updated</returns>
-        [HttpPost("api/organizations/editorganization")]
-        public async Task<IActionResult> EditOrangization(UpdateOrganizationReq request)
+        [HttpPut("api/Organizations/UpdateOrganization")]
+        public async Task<IActionResult> UpdateOrangization(UpdateOrganizationReq request)
         {
-            return Ok(await _organizationsServices.EditOrganization(request));
+            return Ok(await _organizationsServices.UpdateOrganization(request));
         }
 
     }

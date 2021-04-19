@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using MedicalExamination.DAL.Interface;
+using MedicalExamination.Domain.Entities;
 using MedicalExamination.Domain.Requests;
-using MedicalExamination.Domain.Responses.Organization;
 using MedicalExamination.Domain.Responses.OrganizationRes;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -32,7 +32,7 @@ namespace MedicalExamination.DAL.Implement
             
             using var result = SqlMapper.QueryFirstOrDefaultAsync<CreateOrganizationRes>(
                                                             cnn: connection,
-                                                            sql: "[sp_CreateOrganization]",
+                                                            sql: "sp_CreateOrganization",
                                                             param: parameters,
                                                             commandType: CommandType.StoredProcedure);
             try
@@ -45,10 +45,10 @@ namespace MedicalExamination.DAL.Implement
             }
         }
 
-      public async Task<UpdateOrganizationRes> EditOrganization(UpdateOrganizationReq request)
+      public async Task<UpdateOrganizationRes> UpdateOrganization(UpdateOrganizationReq request)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add(name: "@OrganizationIdNeedFind", request.OrganizationIdNeedFind);
+            parameters.Add(name: "@OrganizationId", request.OrganizationId);
             parameters.Add(name: "@OrganizationName", request.OrganizationName);
             parameters.Add(name: "@OrganizationPhoneNumber", request.OrganizationPhoneNumber);
             parameters.Add(name: "@OrganizationEmail", request.OrganizationEmail);
@@ -59,26 +59,19 @@ namespace MedicalExamination.DAL.Implement
             parameters.Add(name: "@Message", "", DbType.String, ParameterDirection.Output);
             using (var result = SqlMapper.QueryFirstOrDefaultAsync<Organization>(
                                                             cnn: connection,
-                                                            sql: "sp_ModifyProduct",
+                                                            sql: "sp_UpdateOrganization",
                                                             param: parameters,
                                                             commandType: CommandType.StoredProcedure))
             {
-                try
-                {
                     UpdateOrganizationRes editRes = new UpdateOrganizationRes();
                     editRes.Organization = await result;
                     editRes.Message = parameters.Get<string>("@Message");
                     return editRes;
-                }
-                catch (Exception)
-                {
-                    return new UpdateOrganizationRes();
-                }
             }
         }
 
 
-        public async Task<IEnumerable<Organization>> GetAllOrganization()
+        public async Task<IEnumerable<Organization>> GetAllOrganizations()
         {
             using (var result = SqlMapper.QueryAsync<Organization>(cnn: connection,
                                                                    sql: "sp_GetAllOrganization",
@@ -117,19 +110,19 @@ namespace MedicalExamination.DAL.Implement
 
         }
      
-        public async Task<IEnumerable<Organization>> GetOrganizationsByNameASCByName(string orangizationName)
+        public async Task<IEnumerable<Organization>> SearchOrganizationsByNameASCByName(string orangizationName)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@OrganizationName", orangizationName);
 
-            using (var result = SqlMapper.QueryFirstOrDefaultAsync<Organization>(
+            using (var result = SqlMapper.QueryAsync<Organization>(
                                               cnn: connection,
                                               sql: "sp_SearchOrganizationsByNameASCByName",
                                               param: parameters,
                                               commandType: CommandType.StoredProcedure))
             try
             {
-                return (IEnumerable<Organization>)await result;
+                return await result;
             }
             catch (Exception)
             {
@@ -138,19 +131,19 @@ namespace MedicalExamination.DAL.Implement
 
         }
 
-        public async Task<IEnumerable<Organization>> GetOrganizationsByNameDESCByName(string orangizationName)
+        public async Task<IEnumerable<Organization>> SearchOrganizationsByNameDESCByName(string orangizationName)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@OrganizationName", orangizationName);
 
-            using (var result = SqlMapper.QueryFirstOrDefaultAsync<Organization>(
+            using (var result = SqlMapper.QueryAsync<Organization>(
                                               cnn: connection,
                                               sql: "sp_SearchOrganizationsByNameDESCByName",
                                               param: parameters,
                                               commandType: CommandType.StoredProcedure))
                 try
                 {
-                    return (IEnumerable<Organization>)await result;
+                    return await result;
                 }
                 catch (Exception)
                 {

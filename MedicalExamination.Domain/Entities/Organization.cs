@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace MedicalExamination.Domain.Responses.Organization
+namespace MedicalExamination.Domain.Entities
 {
-  public  class Organization
+    public class Organization
     {
+
         private string _organizationId;
         private string _organizationName;
         private string _organizationPhoneNumber;
@@ -23,6 +25,5 @@ namespace MedicalExamination.Domain.Responses.Organization
         public string PersonContact { get => _personContact; set => _personContact = value; }
         public string PhoneContact { get => _phoneContact; set => _phoneContact = value; }
         public string EmailContact { get => _emailContact; set => _emailContact = value; }
-
     }
 }
