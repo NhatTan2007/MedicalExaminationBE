@@ -45,7 +45,7 @@ namespace MedicalExamination.DAL.Implement
             }
         }
 
-        public async Task<EditCustomerRes> UpdateCustomer(EditCustomerReq request)
+        public async Task<UpdateCustomerRes> UpdateCustomer(UpdateCustomerReq request)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@CustomerId", request.CustomerId);
@@ -65,14 +65,14 @@ namespace MedicalExamination.DAL.Implement
             {
                 try
                 {
-                    EditCustomerRes editRes = new EditCustomerRes();
+                    UpdateCustomerRes editRes = new UpdateCustomerRes();
                     editRes.Customer = await result;
                     editRes.Message = parameters.Get<string>("@Message");
                     return editRes;
                 }
                 catch (Exception)
                 {
-                    return new EditCustomerRes();
+                    return new UpdateCustomerRes();
                 }
             }
         }

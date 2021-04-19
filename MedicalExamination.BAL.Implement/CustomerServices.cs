@@ -25,7 +25,7 @@ namespace MedicalExamination.BAL.Implement
             return await _customerRepository.CreateCustomer(request);
         }
 
-        public async Task<EditCustomerRes> UpdateCustomer(EditCustomerReq request)
+        public async Task<UpdateCustomerRes> UpdateCustomer(UpdateCustomerReq request)
         {
             return await _customerRepository.UpdateCustomer(request);
         }
