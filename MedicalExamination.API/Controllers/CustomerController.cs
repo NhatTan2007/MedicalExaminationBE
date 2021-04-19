@@ -18,7 +18,7 @@ namespace MedicalExamination.API.Controllers
             _customerServices = customerServices;
         }
 
-        [HttpGet("api/customer/GetAllCustomer")]
+        [HttpGet("api/customer/GetCustomers")]
         public async Task<IActionResult> GetAllCustomer()
         {
             return Ok(await _customerServices.GetAllCustomer());
@@ -38,13 +38,13 @@ namespace MedicalExamination.API.Controllers
         }
 
 
-        [HttpPut("api/customer/edit/")]
-        public async Task<IActionResult> EditProduct(EditCustomerReq request)
+        [HttpPut("api/customer/Update/")]
+        public async Task<IActionResult> UpdateCustomerd(EditCustomerReq request)
         {
             return Ok(await _customerServices.UpdateCustomer(request));
         }
 
-        [HttpPut("api/customer/SearchByNameOrIdentityNumberAscByFirstName/{keyWord}")]
+        [HttpPut("api/customer/Search/{keyWord}")]
         public async Task<IActionResult> SearchByNameOrIdentityNumberAscByFirstName(string keyWord)
         {
             return Ok(await _customerServices.SearchByNameOrIdentityNumberAscByFirstName(keyWord));

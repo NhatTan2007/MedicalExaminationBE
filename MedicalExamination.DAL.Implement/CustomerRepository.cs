@@ -120,14 +120,14 @@ namespace MedicalExamination.DAL.Implement
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@SearchKey", keyWord);
 
-            using (var result = SqlMapper.QueryFirstOrDefaultAsync<Customer>(
+            using (var result = SqlMapper.QueryAsync<Customer>(
                                               cnn: connection,
                                               sql: "sp_SearchByNameOrIdentityNumberAscByFirstName",
                                               param: parameters,
                                               commandType: CommandType.StoredProcedure))
                 try
                 {
-                    return (IEnumerable<Customer>)await result;
+                    return await result;
                 }
                 catch (Exception)
                 {
