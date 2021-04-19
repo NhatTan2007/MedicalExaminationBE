@@ -39,7 +39,7 @@ namespace MedicalExamination.API.Controllers
 
 
         [HttpPut("api/customer/Update/")]
-        public async Task<IActionResult> UpdateCustomerd(EditCustomerReq request)
+        public async Task<IActionResult> UpdateCustomerd(UpdateCustomerReq request)
         {
             return Ok(await _customerServices.UpdateCustomer(request));
         }
