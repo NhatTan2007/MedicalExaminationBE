@@ -59,8 +59,6 @@ namespace MedicalExamination.API
                     var filePath = Path.Combine(System.AppContext.BaseDirectory, "MedicalExamination.API.xml");
                     c.IncludeXmlComments(filePath);
                 });
-            //services.AddTransient<ICategoryRepository, CategoryRepository>();
-            //services.AddTransient<ICategoryServices, CategoryServices>();
             services.AddTransient<IOrganizationsRepository, OrganizationsRepository>();
             services.AddTransient<IOrganizationsServices, OrganizationsServices>();
 
