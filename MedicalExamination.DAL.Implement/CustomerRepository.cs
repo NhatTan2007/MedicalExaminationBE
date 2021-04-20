@@ -28,6 +28,9 @@ namespace MedicalExamination.DAL.Implement
             parameters.Add(name: "@PhoneNumber", request.PhoneNumber);
             parameters.Add(name: "@IdentityNumber", request.IdentityNumber);
             parameters.Add(name: "@Email", request.Email);
+            parameters.Add(name: "@Gender", request.Gender);
+            parameters.Add(name: "@DateOfIssuanceIdentityNumber", request.DateOfIssuanceIdentityNumber);
+            parameters.Add(name: "@PlaceOfIssuanceIdentityNumber", request.PlaceOfIssuanceIdentityNumber);
             using (var result = SqlMapper.QueryFirstOrDefaultAsync<CreateCustomerRes>(
                                                             cnn: connection,
                                                             sql: "[sp_CreateCustomer]",
@@ -56,6 +59,9 @@ namespace MedicalExamination.DAL.Implement
             parameters.Add(name: "@PhoneNumber", request.PhoneNumber);
             parameters.Add(name: "@IdentityNumber", request.IdentityNumber);
             parameters.Add(name: "@Email", request.Email);
+            parameters.Add(name: "@Gender", request.Gender);
+            parameters.Add(name: "@DateOfIssuanceIdentityNumber", request.DateOfIssuanceIdentityNumber);
+            parameters.Add(name: "@PlaceOfIssuanceIdentityNumber", request.PlaceOfIssuanceIdentityNumber);
             parameters.Add(name: "@Message", "", DbType.String, ParameterDirection.Output);
             using (var result = SqlMapper.QueryFirstOrDefaultAsync<Customer>(
                                                             cnn: connection,
