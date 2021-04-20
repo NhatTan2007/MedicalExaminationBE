@@ -15,6 +15,9 @@ namespace MedicalExamination.Domain.Entities
         private string _adress;
         private string _phoneNumber;
         private string _identityNumber;
+        private bool _gender;
+        private DateTime _dateOfIssuanceIdentityNumber;
+        private string _placeOfIssuanceIdentityNumber;
         [Key]
         [MaxLength(50)]
         public string CustomerId { get => _customerId; set => _customerId = value; }
@@ -37,5 +40,12 @@ namespace MedicalExamination.Domain.Entities
         [Required]
         [MaxLength(20)]
         public string IdentityNumber { get => _identityNumber; set => _identityNumber = value; }
+        [Required]
+        public bool Gender { get => _gender; set => _gender = value; }
+        [Required]
+        public DateTime DateOfIssuanceIdentityNumber { get => _dateOfIssuanceIdentityNumber; set => _dateOfIssuanceIdentityNumber = value; }
+        [Required]
+        [MaxLength(100)]
+        public string PlaceOfIssuanceIdentityNumber { get => _placeOfIssuanceIdentityNumber; set => _placeOfIssuanceIdentityNumber = value; }
     }
 }
