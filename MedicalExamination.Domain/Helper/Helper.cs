@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using AutoMapper;
+using MedicalExamination.Domain.Models.MedicalRecord;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace MedicalExamination.Domain.Helper
 {
@@ -14,6 +17,10 @@ namespace MedicalExamination.Domain.Helper
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<TSource, TDestination>();
+                cfg.CreateMap<MedicalRecordDetails, string>().ConvertUsing(s => JsonConvert.SerializeObject(s));
+                cfg.CreateMap<MedicalHistoryForm, string>().ConvertUsing(s => JsonConvert.SerializeObject(s));
+                cfg.CreateMap<string, MedicalRecordDetails>().ConvertUsing(s => JsonConvert.DeserializeObject<MedicalRecordDetails>(s));
+                cfg.CreateMap<string, MedicalHistoryForm>().ConvertUsing(s => JsonConvert.DeserializeObject<MedicalHistoryForm>(s));
             });
 
             IMapper mapper = config.CreateMapper();

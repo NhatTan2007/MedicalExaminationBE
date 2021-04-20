@@ -1,13 +1,13 @@
-﻿using MedicalExamination.Domain.Models.MedicalRecord;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace MedicalExamination.Domain.Requests.MedicalRecord
+namespace MedicalExamination.Domain.Models.MedicalRecord
 {
-    public class CreateMedicalRecordReq
+    public class MedicalRecordModel
     {
+        private string _medicalRecordId;
         private MedicalHistoryForm _medicalHistory;
         private MedicalRecordDetails _details;
         private double _createDate;
@@ -23,6 +23,7 @@ namespace MedicalExamination.Domain.Requests.MedicalRecord
         private bool _wasFinishedExamination;
         private string _customerId;
 
+        public string MedicalRecordId { get => _medicalRecordId; set => _medicalRecordId = value; }
         public MedicalHistoryForm MedicalHistory { get => _medicalHistory; set => _medicalHistory = value; }
         public MedicalRecordDetails Details { get => _details; set => _details = value; }
         public double CreateDate { get => _createDate; set => _createDate = value; }
