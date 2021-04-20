@@ -22,6 +22,10 @@ namespace MedicalExamination.BAL.Implement
         public async Task<CreateMedicalRecordRes> CreateMedicalRecord(CreateMedicalRecordReq request)
         {
             MedicalRecord newMedicalRecord = Helper.AutoDTO<CreateMedicalRecordReq, MedicalRecord>(request);
+            DateTime utc = DateTime.UtcNow;
+            DateTime timeAtTimeZone = Helper.ConvertUTCToTimeZone(utc, Helper.idTimeZoneUtc7);
+            newMedicalRecord.CreateDate = Helper.ConvertToTimeStamp(timeAtTimeZone);
+            newMedicalRecord.MedicalRecordId = $"{newMedicalRecord.CreateDate}";
             return await _medicalRecordRepository.CreateMedicalRecord(newMedicalRecord);
         }
 

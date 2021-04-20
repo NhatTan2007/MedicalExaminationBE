@@ -19,6 +19,7 @@ namespace MedicalExamination.DAL.Implement
         public async Task<CreateMedicalRecordRes> CreateMedicalRecord(MedicalRecord medicalRecord)
         {
             DynamicParameters parameters = new DynamicParameters();
+            parameters.Add(name: "@MedicalRecordId", medicalRecord.MedicalRecordId);
             parameters.Add(name: "@Detail", medicalRecord.Details);
             parameters.Add(name: "@CreateDate", medicalRecord.CreateDate);
             parameters.Add(name: "@IsGroup", medicalRecord.IsGroup);

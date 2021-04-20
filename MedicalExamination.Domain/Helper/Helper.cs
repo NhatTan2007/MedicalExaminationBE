@@ -11,6 +11,8 @@ namespace MedicalExamination.Domain.Helper
 {
     public static class Helper
     {
+        public static string idTimeZoneUtc7 = "SE Asia Standard Time";
+        private static DateTime baseDate = new DateTime(1970, 01, 01);
 
         public static TDestination AutoDTO<TSource, TDestination>(TSource source)
         {
@@ -48,6 +50,28 @@ namespace MedicalExamination.Domain.Helper
         public static string LowercaseString(string data)
         {
             return RemoveDoubleSpaces(data).ToLower();
+        }
+
+        public static DateTime ConvertUTCToTimeZone(DateTime utcTime, string idTimeZone)
+        {
+            TimeZoneInfo cstZone = TimeZoneInfo.FindSystemTimeZoneById(idTimeZone);
+            return TimeZoneInfo.ConvertTimeFromUtc(utcTime, cstZone);
+        }
+
+        public static DateTime TimeZoneConvertToUTC(DateTime time, string idTimeZone)
+        {
+            TimeZoneInfo cstZone = TimeZoneInfo.FindSystemTimeZoneById(idTimeZone);
+            return TimeZoneInfo.ConvertTimeToUtc(time, cstZone);
+        }
+
+        public static double ConvertToTimeStamp(DateTime time)
+        {
+            return time.Subtract(baseDate).TotalSeconds;
+        }
+
+        public static DateTime GetDateTimeFromTimeStamp(double timeStamp)
+        {
+            return baseDate.AddSeconds(timeStamp);
         }
     }
 }
