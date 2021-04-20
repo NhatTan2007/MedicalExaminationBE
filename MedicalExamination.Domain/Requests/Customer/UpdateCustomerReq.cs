@@ -18,6 +18,7 @@ namespace MedicalExamination.Domain.Requests.Customers
         private DateTime _dateOfIssuanceIdentityNumber;
         private string _placeOfIssuanceIdentityNumber;
 
+
         public string CustomerId { get => _customerId; set => _customerId = value; }
         public string FirstName { get => _firstName; set => _firstName = value; }
         public string LastName { get => _lastName; set => _lastName = value; }
