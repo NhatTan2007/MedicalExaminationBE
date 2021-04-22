@@ -6,8 +6,8 @@ namespace MedicalExamination.Domain.Responses.MedicalRecord
 {
     public class UpdateMedicalRecordRes
     {
-        public MedicalExamination.Domain.Entities.MedicalRecord MedicalRecord { get; set; }
+        public string MedicalRecordId { get; set; }
         public string Message { get; set; }
-        public bool Success => MedicalRecord != null;
+        public bool Success => !String.IsNullOrEmpty(MedicalRecordId);
     }
 }
