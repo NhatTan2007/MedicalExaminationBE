@@ -44,7 +44,7 @@ namespace MedicalExamination.API.Controllers
             return Ok(await _customerServices.UpdateCustomer(request));
         }
 
-        [HttpPut("api/customer/Search/{keyWord}")]
+        [HttpGet("api/customer/Search/{keyWord}")]
         public async Task<IActionResult> SearchByNameOrIdentityNumberAscByFirstName(string keyWord)
         {
             return Ok(await _customerServices.SearchByNameOrIdentityNumberAscByFirstName(keyWord));
