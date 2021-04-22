@@ -106,17 +106,13 @@ namespace MedicalExamination.DAL.Implement
             parameters.Add(name: "@WasFinishedExamination", medicalRecord.WasFinishedExamination);
             parameters.Add(name: "@MedicalHistory", medicalRecord.MedicalHistory);
             parameters.Add(name: "@ReasonToExamination", medicalRecord.ReasonToExamination);
-            parameters.Add(name: "@Message", "", System.Data.DbType.String, System.Data.ParameterDirection.Output);
-            using (var result = SqlMapper.QueryFirstOrDefaultAsync<MedicalRecord>(
+            using (var result = SqlMapper.QueryFirstOrDefaultAsync<UpdateMedicalRecordRes>(
                 cnn: connection,
                 sql: "sp_CreateMedicalRecord",
                 param: parameters,
                 commandType: System.Data.CommandType.StoredProcedure))
             {
-                UpdateMedicalRecordRes updateRes = new UpdateMedicalRecordRes();
-                updateRes.Message = parameters.Get<string>("@Message");
-                updateRes.MedicalRecord = await result;
-                return updateRes;
+                return await result;
 
             };
         }
