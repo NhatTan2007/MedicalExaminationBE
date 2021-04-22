@@ -65,6 +65,10 @@ namespace MedicalExamination.API
             services.AddTransient<ICustomerServices, CustomerServices>();
             services.AddTransient<IMedicalRecordService, MedicalRecordService>();
             services.AddTransient<IMedicalRecordRepository, MedicalRecordRepository>();
+            services.AddTransient<ICustomerOrganizationRepository, CustomerOrganizationRepository>();
+            services.AddTransient<ICustomerOrganizationServices, CustomerOrganizationServices>();
+            services.AddTransient<IMedicalServiceRepository, MedicalServiceRepository>();
+            services.AddTransient<IMedicalServiceService, MedicalServiceService>();
 
             services.AddCors();
             }
