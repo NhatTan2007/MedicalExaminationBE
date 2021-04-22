@@ -19,6 +19,18 @@ namespace MedicalExamination.BAL.Implement
         {
             _medicalRecordRepository = medicalRecordRepository;
         }
+
+        public async Task<UpdateMedicalRecordRes> ActiveMedicalRecord(string medicalRecordId)
+        {
+            MedicalRecord medicalRecord = await GetMedicalRecordById(medicalRecordId);
+            if(medicalRecord != null)
+            {
+                medicalRecord.IsActive = true;
+                return await _medicalRecordRepository.UpdateMedicalRecord(medicalRecord);
+            }
+            return new UpdateMedicalRecordRes() { Message = "Hồ sơ bệnh án không tồn tại" };
+        }
+
         public async Task<CreateMedicalRecordRes> CreateMedicalRecord(CreateMedicalRecordReq request)
         {
             MedicalRecord newMedicalRecord = Helper.AutoDTO<CreateMedicalRecordReq, MedicalRecord>(request);
@@ -39,14 +51,20 @@ namespace MedicalExamination.BAL.Implement
             return await _medicalRecordRepository.GetMedicalRecordById(medicalRecordId);
         }
 
+        public async Task<UpdateMedicalRecordRes> PaidMedicalRecord(string medicalRecordId)
+        {
+            MedicalRecord medicalRecord = await GetMedicalRecordById(medicalRecordId);
+            if (medicalRecord != null)
+            {
+                medicalRecord.IsPaid = true;
+                return await _medicalRecordRepository.UpdateMedicalRecord(medicalRecord);
+            }
+            return new UpdateMedicalRecordRes() { Message = "Hồ sơ bệnh án không tồn tại" };
+        }
+
         public async Task<IEnumerable<MedicalRecordViewRes>> SearchMedicalRecordByNameOrIdActiveNotFinishedExamination(string searchKey)
         {
             return await _medicalRecordRepository.SearchMedicalRecordByNameOrIdActiveNotFinishedExamination(searchKey);
-        }
-
-        public async Task<UpdateMedicalRecordRes> UpdateMedicalRecord(UpdateMedicalRecordReq request)
-        {
-            throw new NotImplementedException();
         }
     }
 }
