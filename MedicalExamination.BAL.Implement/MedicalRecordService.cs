@@ -1,6 +1,7 @@
 ﻿using MedicalExamination.BAL.Interface;
 using MedicalExamination.DAL.Interface;
 using MedicalExamination.Domain.Entities;
+using MedicalExamination.Domain.Helper;
 using MedicalExamination.Domain.Requests.MedicalRecord;
 using MedicalExamination.Domain.Responses.MedicalRecord;
 using System;
@@ -18,9 +19,14 @@ namespace MedicalExamination.BAL.Implement
         {
             _medicalRecordRepository = medicalRecordRepository;
         }
-        public Task<CreateMedicalRecordRes> CreateMedicalRecord(CreateMedicalRecordReq request)
+        public async Task<CreateMedicalRecordRes> CreateMedicalRecord(CreateMedicalRecordReq request)
         {
-            throw new NotImplementedException();
+            MedicalRecord newMedicalRecord = Helper.AutoDTO<CreateMedicalRecordReq, MedicalRecord>(request);
+            DateTime utc = DateTime.UtcNow;
+            DateTime timeAtTimeZone = Helper.ConvertUTCToTimeZone(utc, Helper.idTimeZoneUtc7);
+            newMedicalRecord.CreateDate = Helper.ConvertToTimeStamp(timeAtTimeZone);
+            newMedicalRecord.MedicalRecordId = $"{newMedicalRecord.CreateDate}";
+            return await _medicalRecordRepository.CreateMedicalRecord(newMedicalRecord);
         }
 
         public async Task<IEnumerable<MedicalRecordViewRes>> GetAllInactiveMedicalRecords()

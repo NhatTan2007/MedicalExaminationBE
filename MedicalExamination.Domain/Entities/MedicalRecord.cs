@@ -8,6 +8,8 @@ namespace MedicalExamination.Domain.Entities
     public class MedicalRecord
     {
         private string _medicalRecordId;
+        private string _reasonToExamination;
+        private string _medicalHistory;
         private string _details;
         private double _createDate;
         private bool _isGroup;
@@ -37,5 +39,7 @@ namespace MedicalExamination.Domain.Entities
         public decimal TotalAmount { get => _totalAmount; set => _totalAmount = value; }
         public bool WasFinishedExamination { get => _wasFinishedExamination; set => _wasFinishedExamination = value; }
         public string CustomerId { get => _customerId; set => _customerId = value; }
+        public string MedicalHistory { get => _medicalHistory; set => _medicalHistory = value; }
+        public string ReasonToExamination { get => _reasonToExamination; set => _reasonToExamination = value; }
     }
 }

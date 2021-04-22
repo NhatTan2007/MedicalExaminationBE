@@ -112,6 +112,7 @@ namespace MedicalExamination.DAL.Implement
             {
                 try
                 {
+                    IEnumerable<Customer> list = await result;
                     return await result;
                 }
                 catch (Exception)

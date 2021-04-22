@@ -19,6 +19,7 @@ namespace MedicalExamination.DAL.Implement
         public async Task<CreateMedicalRecordRes> CreateMedicalRecord(MedicalRecord medicalRecord)
         {
             DynamicParameters parameters = new DynamicParameters();
+            parameters.Add(name: "@MedicalRecordId", medicalRecord.MedicalRecordId);
             parameters.Add(name: "@Detail", medicalRecord.Details);
             parameters.Add(name: "@CreateDate", medicalRecord.CreateDate);
             parameters.Add(name: "@IsGroup", medicalRecord.IsGroup);
@@ -31,6 +32,8 @@ namespace MedicalExamination.DAL.Implement
             parameters.Add(name: "@GMExaminationId", medicalRecord.GMExaminationId);
             parameters.Add(name: "@DateCompleted", medicalRecord.DateCompleted);
             parameters.Add(name: "@IsPaid", medicalRecord.IsPaid);
+            parameters.Add(name: "@MedicalHistory", medicalRecord.MedicalHistory);
+            parameters.Add(name: "@ReasonToExamination", medicalRecord.ReasonToExamination);
             parameters.Add(name: "@WasFinishedExamination", medicalRecord.WasFinishedExamination);
             using (var result = SqlMapper.QueryFirstOrDefaultAsync<CreateMedicalRecordRes>(
                 cnn: connection,
@@ -101,6 +104,8 @@ namespace MedicalExamination.DAL.Implement
             parameters.Add(name: "@DateCompleted", medicalRecord.DateCompleted);
             parameters.Add(name: "@IsPaid", medicalRecord.IsPaid);
             parameters.Add(name: "@WasFinishedExamination", medicalRecord.WasFinishedExamination);
+            parameters.Add(name: "@MedicalHistory", medicalRecord.MedicalHistory);
+            parameters.Add(name: "@ReasonToExamination", medicalRecord.ReasonToExamination);
             parameters.Add(name: "@Message", "", System.Data.DbType.String, System.Data.ParameterDirection.Output);
             using (var result = SqlMapper.QueryFirstOrDefaultAsync<MedicalRecord>(
                 cnn: connection,
