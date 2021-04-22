@@ -15,6 +15,7 @@ namespace MedicalExamination.Domain.Responses.MedicalRecord
         public string MedicalRecordId { get => _medicalRecordId; set => _medicalRecordId = value; }
         public string CustomerFirstName { get => _customerFirstName; set => _customerFirstName = value; }
         public string CustomerLastName { get => _customerLastName; set => _customerLastName = value; }
+        public string CustomerFullName => $"{_customerLastName} {_customerFirstName}";
         public bool IsActive { get => _isActive; set => _isActive = value; }
         public bool IsPaid { get => _isPaid; set => _isPaid = value; }
     }
