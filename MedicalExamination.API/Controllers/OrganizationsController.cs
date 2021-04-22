@@ -23,7 +23,6 @@ namespace MedicalExamination.API.Controllers
         /// Get all Organizations 
         /// </summary>
         /// <returns>List all Organizations</returns>
-
         [HttpGet("api/organizations/GetsAllOrganizations")]
         public async Task<IActionResult> GetAllOrganizations()
         {
