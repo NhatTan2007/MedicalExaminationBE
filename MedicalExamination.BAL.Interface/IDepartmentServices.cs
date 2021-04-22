@@ -6,13 +6,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicalExamination.DAL.Interface
+namespace MedicalExamination.BAL.Interface
 {
-    public interface IDepartmentRepository
+    public interface IDepartmentServices
     {
-        Task<Department> GetDepartmentById(string departmentId);       
+        Task<Department> GetDepartmentById(string departmentId);
         Task<CreateDepartmentRes> CreateDepartment(CreateDepartmentReq request);
         Task<UpdateDepartmentRes> UpdateDepartment(UpdateDepartmentReq request);
-
     }
 }
