@@ -8,8 +8,8 @@ namespace MedicalExamination.Domain.Requests.MedicalRecord
 {
     public class CreateMedicalRecordReq
     {
-        private string _medicalHistory;
-        private string _details;
+        private MedicalHistoryForm _medicalHistory;
+        private MedicalRecordDetails _details;
         private string _reasonToExamination;
         private bool _isGroup;
         private string _customerFirstName;
@@ -22,8 +22,8 @@ namespace MedicalExamination.Domain.Requests.MedicalRecord
         private bool _wasFinishedExamination;
         private string _customerId;
 
-        public string MedicalHistory { get => _medicalHistory; set => _medicalHistory = value; }
-        public string Details { get => _details; set => _details = value; }
+        public MedicalHistoryForm MedicalHistory { get => _medicalHistory; set => _medicalHistory = value; }
+        public MedicalRecordDetails Details { get => _details; set => _details = value; }
         public bool IsGroup { get => _isGroup; set => _isGroup = value; }
         public string CustomerFirstName { get => _customerFirstName; set => _customerFirstName = value; }
         public string CustomerLastName { get => _customerLastName; set => _customerLastName = value; }
