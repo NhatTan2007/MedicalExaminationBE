@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace MedicalExamination.Domain.Entities
+namespace MedicalExamination.Domain.Requests.User
 {
-    public class AppIdentityUser : IdentityUser
+    public class CreateUserReq
     {
-        private string _employeeCode;
+        private string _userName;
+        private string _email;
+        private string _password;
+        private string _phoneNumber;
         private string _firstName;
         private string _lastName;
         private double _dateOfBirth;
@@ -18,34 +18,22 @@ namespace MedicalExamination.Domain.Entities
         private bool _isActive;
         private string _avatar;
         private string _signature;
-        [Required]
-        [MaxLength(10)]
-        public string EmployeeCode { get => _employeeCode; set => _employeeCode = value; }
-        [Required]
-        [MaxLength(30)]
+        private bool _isEmployee;
+
+
+        public string UserName { get => _userName; set => _userName = value; }
+        public string Email { get => _email; set => _email = value; }
+        public string Password { get => _password; set => _password = value; }
+        public string PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
         public string FirstName { get => _firstName; set => _firstName = value; }
-        [Required]
-        [MaxLength(70)]
         public string LastName { get => _lastName; set => _lastName = value; }
         public double DateOfBirth { get => _dateOfBirth; set => _dateOfBirth = value; }
-        [MaxLength(200)]
         public string Address { get => _address; set => _address = value; }
-        [MaxLength(40)]
         public string Titles { get => _titles; set => _titles = value; }
-        [Required]
         public bool IsActive { get => _isActive; set => _isActive = value; }
-        [MaxLength(50)]
         public string DepartmentId { get; set; }
-        [ForeignKey(name: "DepartmentId")]
-        public Department Department { get; set; }
-        [MaxLength(200)]
         public string Avatar { get => _avatar; set => _avatar = value; }
-        [MaxLength(200)]
         public string Signature { get => _signature; set => _signature = value; }
-
-        public AppIdentityUser()
-        {
-            _isActive = true;
-        }
+        public bool IsEmployee { get => _isEmployee; set => _isEmployee = value; }
     }
 }

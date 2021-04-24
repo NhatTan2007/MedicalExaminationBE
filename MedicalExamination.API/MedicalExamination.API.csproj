@@ -6,12 +6,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>\MedicalExaminationBE\MedicalExamination.API\MedicalExamination.API.xml</DocumentationFile>
+    <DocumentationFile>MedicalExamination.API\MedicalExamination.API.xml</DocumentationFile>
     <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>\MedicalExaminationBE\MedicalExamination.API\MedicalExamination.API.xml</DocumentationFile>
+    <DocumentationFile>MedicalExamination.API\MedicalExamination.API.xml</DocumentationFile>
     <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
 
