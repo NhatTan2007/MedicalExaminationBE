@@ -44,7 +44,7 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <param name="search"></param>
         /// <returns>List of organization has name likely with search key</returns>
-        [HttpGet("{search}/orderASCByName")]
+        [HttpGet("search/{search}/orderASCByName")]
         public async Task<IActionResult> SearchOrangizationsByNameASCByName(string search)
         {
             return Ok(await _organizationsServices.SearchOrganizationsByNameASCByName(search));
@@ -55,7 +55,7 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <param name="search"></param>
         /// <returns>List of organization has name likely with search key</returns>
-        [HttpGet("{search}/orderDESCByName")]
+        [HttpGet("search/{search}/orderDESCByName")]
         public async Task<IActionResult> GetOrangizationsByNameDESCByName(string search)
         {
             return Ok(await _organizationsServices.SearchOrganizationsByNameDESCByName(search));
