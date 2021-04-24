@@ -12,7 +12,7 @@ namespace MedicalExamination.Domain.Requests.User
         private string _phoneNumber;
         private string _firstName;
         private string _lastName;
-        private double _dateOfBirth;
+        private DateTime _dateOfBirth;
         private string _address;
         private string _titles;
         private bool _isActive;
@@ -27,7 +27,7 @@ namespace MedicalExamination.Domain.Requests.User
         public string PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
         public string FirstName { get => _firstName; set => _firstName = value; }
         public string LastName { get => _lastName; set => _lastName = value; }
-        public double DateOfBirth { get => _dateOfBirth; set => _dateOfBirth = value; }
+        public DateTime DateOfBirth { get => _dateOfBirth; set => _dateOfBirth = value; }
         public string Address { get => _address; set => _address = value; }
         public string Titles { get => _titles; set => _titles = value; }
         public bool IsActive { get => _isActive; set => _isActive = value; }

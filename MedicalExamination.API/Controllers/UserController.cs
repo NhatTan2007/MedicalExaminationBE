@@ -46,7 +46,7 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>Response about create new medical record</returns>
-        [HttpPost("api/user")]
+        [HttpGet("api/user/{userId}")]
         public async Task<IActionResult> GetUserById(string userId)
         {
             return Ok(await _userServices.GetUserById(userId));

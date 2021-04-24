@@ -12,13 +12,12 @@ namespace MedicalExamination.Domain.Entities
         private string _employeeCode;
         private string _firstName;
         private string _lastName;
-        private double _dateOfBirth;
+        private DateTime _dateOfBirth;
         private string _address;
         private string _titles;
         private bool _isActive;
         private string _avatar;
         private string _signature;
-        [Required]
         [MaxLength(10)]
         public string EmployeeCode { get => _employeeCode; set => _employeeCode = value; }
         [Required]
@@ -27,7 +26,7 @@ namespace MedicalExamination.Domain.Entities
         [Required]
         [MaxLength(70)]
         public string LastName { get => _lastName; set => _lastName = value; }
-        public double DateOfBirth { get => _dateOfBirth; set => _dateOfBirth = value; }
+        public DateTime DateOfBirth { get => _dateOfBirth; set => _dateOfBirth = value; }
         [MaxLength(200)]
         public string Address { get => _address; set => _address = value; }
         [MaxLength(40)]

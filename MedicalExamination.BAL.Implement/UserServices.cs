@@ -28,13 +28,13 @@ namespace MedicalExamination.BAL.Implement
 
 
             //Add user id and employeeCode
-            newUser.Id = new Guid().ToString();
+            newUser.Id = Guid.NewGuid().ToString();
             //Make employee code
             if (request.IsEmployee)
             {
                 int employeesCount = _userRepository.CountEmployees();
-                _employeeCodePattern = _employeeCodePattern.Substring(0, _employeeCodePattern.Length - employeesCount.ToString().Length - 1);
-                newUser.EmployeeCode = $"{_employeeCodePattern}{employeesCount}";
+                _employeeCodePattern = _employeeCodePattern.Substring(0, _employeeCodePattern.Length - employeesCount.ToString().Length);
+                newUser.EmployeeCode = $"{_employeeCodePattern}{employeesCount+1}";
             }
 
             return await _userRepository.CreateNewUser(newUser, request.Password);

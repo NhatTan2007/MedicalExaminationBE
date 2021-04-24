@@ -14,5 +14,6 @@ namespace MedicalExamination.DAL.Interface
         List<UserViewModel> GetAllUser();
         Task<AppIdentityUser> GetUserById(string userId);
         int CountEmployees();
+        Task<UpdateUserRes> UpdateUserInfo(AppIdentityUser user);
     }
 }

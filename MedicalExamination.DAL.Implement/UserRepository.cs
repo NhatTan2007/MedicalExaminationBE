@@ -47,23 +47,28 @@ namespace MedicalExamination.DAL.Implement
         {
             return (from u in _dbContext.Users
                     join d in _dbContext.Departments
-                    on u.DepartmentId equals d.DepartmentId
+                    on u.DepartmentId equals d.DepartmentId into gj
+                    from x in gj.DefaultIfEmpty()
                     select new UserViewModel()
                     {
                         UserId = u.Id,
                         EmployeeCode = u.EmployeeCode,
                         FirstName = u.FirstName,
                         LastName = u.LastName,
-                        DateOfBirth = u.DateOfBirth,
                         DepartmentId = u.DepartmentId,
                         IsActive = u.IsActive,
-                        DepartmentName = d.DepartmentName
+                        DepartmentName = (x == null ? "" : x.DepartmentName)
                     }).OrderBy(u => u.DepartmentName).ToList();
         }
 
         public async Task<AppIdentityUser> GetUserById(string userId)
         {
             return await _userManager.FindByIdAsync(userId);
+        }
+
+        public Task<UpdateUserRes> UpdateUserInfo(AppIdentityUser user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

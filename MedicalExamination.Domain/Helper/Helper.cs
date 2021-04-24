@@ -6,6 +6,8 @@ using AutoMapper;
 using MedicalExamination.Domain.Models.MedicalRecord;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
+using MedicalExamination.Domain.Entities;
+using MedicalExamination.Domain.Responses.User;
 
 namespace MedicalExamination.Domain.Helper
 {
@@ -19,6 +21,7 @@ namespace MedicalExamination.Domain.Helper
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<TSource, TDestination>();
+                cfg.CreateMap<AppIdentityUser, UserDetailsModel>().ForMember(u => u.UserId, act => act.MapFrom(src => src.Id));
                 cfg.CreateMap<MedicalRecordDetails, string>().ConvertUsing(s => JsonConvert.SerializeObject(s));
                 cfg.CreateMap<MedicalHistoryForm, string>().ConvertUsing(s => JsonConvert.SerializeObject(s));
                 cfg.CreateMap<string, MedicalRecordDetails>().ConvertUsing(s => JsonConvert.DeserializeObject<MedicalRecordDetails>(s));
