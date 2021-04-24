@@ -15,7 +15,7 @@ namespace MedicalExamination.BAL.Interface
         Task<CreateOrganizationRes> CreateOrganization(CreateOrganizationReq request);
         Task<UpdateOrganizationRes> UpdateOrganization(UpdateOrganizationReq request);
         
-        Task<IEnumerable<Organization>> SearchOrganizationsByNameASCByName(string orangizationName);
-        Task<IEnumerable<Organization>> SearchOrganizationsByNameDESCByName(string orangizationName);
+        Task<IEnumerable<Organization>> SearchOrganizationsByNameASCByName(string search);
+        Task<IEnumerable<Organization>> SearchOrganizationsByNameDESCByName(string search);
     }
 }

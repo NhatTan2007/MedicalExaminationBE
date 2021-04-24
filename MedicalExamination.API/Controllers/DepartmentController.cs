@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.API.Controllers
 {
-    [ApiController]
-    public class DepartmentController : ControllerBase
+    public class DepartmentController : BaseApiController
     {
         private IDepartmentServices _departmentServices;
 
@@ -21,8 +20,9 @@ namespace MedicalExamination.API.Controllers
         /// <summary>
         /// Get a department by id
         /// </summary>
-        /// <returns>A Department detail</returns>
-        [HttpGet("api/Department/GetDepartment/{departmentId}")]
+        /// ///<param name="departmentId"></param>
+        /// <returns>Specific department</returns>
+        [HttpGet("{departmentId}")]
         public async Task<IActionResult> GetDepartmentById(string departmentId)
         {
             return Ok(await _departmentServices.GetDepartmentById(departmentId));
@@ -32,19 +32,19 @@ namespace MedicalExamination.API.Controllers
         ///Create a new department
         ///</summary>
         ///<param name="request"></param>
-        ///<returns>New Department</returns>
-        [HttpPost("api/Department/CreateDepartment")]
+        ///<returns>Response when create a new department</returns>
+        [HttpPost("create")]
         public async Task<IActionResult> CreateDepartment(CreateDepartmentReq request)
         {
             return Ok(await _departmentServices.CreateDepartment(request));
         }
 
         /// <summary>
-        /// Update new department
+        /// Update department data
         /// </summary>
         /// <param name="request"></param>
-        /// <returns>Department updated</returns>
-        [HttpPut("api/Department/UpdateDepartment")]
+        /// <returns>Response when update department data</returns>
+        [HttpPut("update")]
         public async Task<IActionResult> UpdateOrangization(UpdateDepartmentReq request)
         {
             return Ok(await _departmentServices.UpdateDepartment(request));

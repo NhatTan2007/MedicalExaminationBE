@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.API.Controllers
 {
-    [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : BaseApiController
     {
         private readonly IUserServices _userServices;
 
@@ -24,7 +23,7 @@ namespace MedicalExamination.API.Controllers
         /// Get all User
         /// </summary>
         /// <returns>List of users</returns>
-        [HttpGet("api/user")]
+        [HttpGet("")]
         public IActionResult GetAllUser()
         {
             return Ok(_userServices.GetAllUser());
@@ -35,18 +34,18 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns>Response about create new User</returns>
-        [HttpPost("api/user")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateMedicalRecord(CreateUserReq request)
         {
             return Ok(await _userServices.CreateNewUser(request));
         }
 
         /// <summary>
-        /// Create new Medical record
+        /// Get a specific user by userId
         /// </summary>
         /// <param name="userId"></param>
-        /// <returns>Response about create new medical record</returns>
-        [HttpGet("api/user/{userId}")]
+        /// <returns>Specific User</returns>
+        [HttpGet("{userId}")]
         public async Task<IActionResult> GetUserById(string userId)
         {
             return Ok(await _userServices.GetUserById(userId));

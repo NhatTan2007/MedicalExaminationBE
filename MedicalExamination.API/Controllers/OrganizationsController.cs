@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.API.Controllers
 {
-    [ApiController]
-    public class OrganizationsController : ControllerBase
+    public class OrganizationsController : BaseApiController
     {
         private readonly IOrganizationsServices _organizationsServices;
 
@@ -23,7 +22,7 @@ namespace MedicalExamination.API.Controllers
         /// Get all Organizations 
         /// </summary>
         /// <returns>List all Organizations</returns>
-        [HttpGet("api/organizations/GetsAllOrganizations")]
+        [HttpGet("")]
         public async Task<IActionResult> GetAllOrganizations()
         {
             return Ok(await _organizationsServices.GetAllOrganizations());
@@ -33,53 +32,53 @@ namespace MedicalExamination.API.Controllers
         /// Get Organization by Id
         /// </summary>
         /// <param name="organizationId"></param>
-        /// <returns>Specific Product has id want to find</returns>
-        [HttpGet("api/Organizations/GetOrganization/{organizationId}")]
-        public async Task<IActionResult> GetProductById(string organizationId)
+        /// <returns>Specific organization has id want to find</returns>
+        [HttpGet("{organizationId}")]
+        public async Task<IActionResult> GetOrganizationById(string organizationId)
         {
             return Ok(await _organizationsServices.GetOrganizationById(organizationId));
         }
 
         /// <summary>
-        /// Get Organizations by name Order ASC
+        /// Get Organizations by name Order by Name ASC
         /// </summary>
-        /// <param name="organizationName"></param>
-        /// <returns>Specific Product has id want to find</returns>
-        [HttpGet("api/Organizations/GetOrganizationsByNameASC/{organizationName}")]
-        public async Task<IActionResult> SearchOrangizationsByNameASCByName(string organizationName)
+        /// <param name="search"></param>
+        /// <returns>List of organization has name likely with search key</returns>
+        [HttpGet("{search}/orderASCByName")]
+        public async Task<IActionResult> SearchOrangizationsByNameASCByName(string search)
         {
-            return Ok(await _organizationsServices.SearchOrganizationsByNameASCByName(organizationName));
+            return Ok(await _organizationsServices.SearchOrganizationsByNameASCByName(search));
         }
 
         /// <summary>
-        /// Get Organizations by name Order ASC
+        /// Get Organizations by name Order by Name ASC
         /// </summary>
-        /// <param name="organizationName"></param>
-        /// <returns>Specific Product has id want to find</returns>
-        [HttpGet("api/Organizations/SearchOrganizationsByNameDESC/{organizationName}")]
-        public async Task<IActionResult> GetOrangizationsByNameDESCByName(string organizationName)
+        /// <param name="search"></param>
+        /// <returns>List of organization has name likely with search key</returns>
+        [HttpGet("{search}/orderDESCByName")]
+        public async Task<IActionResult> GetOrangizationsByNameDESCByName(string search)
         {
-            return Ok(await _organizationsServices.SearchOrganizationsByNameDESCByName(organizationName));
+            return Ok(await _organizationsServices.SearchOrganizationsByNameDESCByName(search));
         }
 
         /// <summary>
         /// Create new Organization
         /// </summary>
         /// <param name="request"></param>
-        /// <returns>New Organization</returns>
-        [HttpPost("api/Organizations/CreateOrganization")]
-        public async Task<IActionResult> CreateProduct(CreateOrganizationReq request)
+        /// <returns>Response when create a new organization</returns>
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateOrganization(CreateOrganizationReq request)
         {
             return Ok(await _organizationsServices.CreateOrganization(request));
         }
 
         /// <summary>
-        /// Edit new Organization
+        /// Update data of a organization
         /// </summary>
         /// <param name="request"></param>
-        /// <returns>Organization updated</returns>
-        [HttpPut("api/Organizations/UpdateOrganization")]
-        public async Task<IActionResult> UpdateOrangization(UpdateOrganizationReq request)
+        /// <returns>Response when update data of a organization</returns>
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateOrganization(UpdateOrganizationReq request)
         {
             return Ok(await _organizationsServices.UpdateOrganization(request));
         }

@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.API.Controllers
 {
-    [ApiController]
-    public class CustomerOrganizationController: ControllerBase
+    public class CustomerOrganizationController: BaseApiController
     {
         private readonly ICustomerOrganizationServices _customerOrganizationServices;
 

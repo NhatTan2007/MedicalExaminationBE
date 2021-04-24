@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.API.Controllers
 {
-    [ApiController]
-    public class CustomerController : ControllerBase
+    public class CustomerController : BaseApiController
     {
         private readonly ICustomerServices _customerServices;
 
@@ -18,39 +17,58 @@ namespace MedicalExamination.API.Controllers
             _customerServices = customerServices;
         }
 
-        [HttpGet("api/customer/GetCustomers")]
+        /// <summary>
+        /// Get all customers
+        /// </summary>
+        /// <returns>List of all customers</returns>
+        [HttpGet("")]
         public async Task<IActionResult> GetAllCustomer()
         {
             return Ok(await _customerServices.GetAllCustomer());
         }
 
-
-        [HttpGet("api/customer/get/{customerId}")]
+        /// <summary>
+        /// Get customer by customerId
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns>Specific customer</returns>
+        [HttpGet("{customerId}")]
         public async Task<IActionResult> GetCustomertById(string customerId)
         {
             return Ok(await _customerServices.GetCustomerById(customerId));
         }
 
-        [HttpPost("api/customer/create")]
+        /// <summary>
+        /// Create new customer
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>Response when create a new customer</returns>
+        [HttpPost("create")]
         public async Task<IActionResult> CreateCustomer(CreateCustomerReq request)
         {
             return Ok(await _customerServices.CreateCustomer(request));
         }
 
-
-        [HttpPut("api/customer/Update/")]
+        /// <summary>
+        /// Update information of specific customer
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>Response when update customer information</returns>
+        [HttpPut("update")]
         public async Task<IActionResult> UpdateCustomerd(UpdateCustomerReq request)
         {
             return Ok(await _customerServices.UpdateCustomer(request));
         }
 
-        [HttpGet("api/customer/Search/{keyWord}")]
-        public async Task<IActionResult> SearchByNameOrIdentityNumberAscByFirstName(string keyWord)
+        /// <summary>
+        /// Update information of specific customer
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns>Response when update customer information</returns>
+        [HttpGet("search/{keyWord}")]
+        public async Task<IActionResult> SearchByNameOrIdentityNumberAscByFirstName(string keyword)
         {
-            return Ok(await _customerServices.SearchByNameOrIdentityNumberAscByFirstName(keyWord));
+            return Ok(await _customerServices.SearchByNameOrIdentityNumberAscByFirstName(keyword));
         }
-
-
-
     }
 }

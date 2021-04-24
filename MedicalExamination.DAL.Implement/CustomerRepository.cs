@@ -122,10 +122,10 @@ namespace MedicalExamination.DAL.Implement
             }
         }
 
-        public async Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyWord)
+        public async Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyword)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add(name: "@SearchKey", keyWord);
+            parameters.Add(name: "@SearchKey", keyword);
 
             using (var result = SqlMapper.QueryAsync<Customer>(
                                               cnn: connection,

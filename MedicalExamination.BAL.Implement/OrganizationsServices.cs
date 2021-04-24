@@ -40,14 +40,14 @@ namespace MedicalExamination.BAL.Implement
 
        
 
-        public async Task<IEnumerable<Organization>> SearchOrganizationsByNameASCByName(string orangizationName)
+        public async Task<IEnumerable<Organization>> SearchOrganizationsByNameASCByName(string search)
         {
-            return await _organizationsRepository.SearchOrganizationsByNameASCByName(orangizationName);
+            return await _organizationsRepository.SearchOrganizationsByNameASCByName(search);
         }
 
-        public async Task<IEnumerable<Organization>> SearchOrganizationsByNameDESCByName(string orangizationName)
+        public async Task<IEnumerable<Organization>> SearchOrganizationsByNameDESCByName(string search)
         {
-            return await _organizationsRepository.SearchOrganizationsByNameDESCByName(orangizationName);
+            return await _organizationsRepository.SearchOrganizationsByNameDESCByName(search);
         }
     }
 }

@@ -40,9 +40,9 @@ namespace MedicalExamination.BAL.Implement
             return await _customerRepository.GetAllCustomer();
         }
 
-        public async Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyWord)
+        public async Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyword)
         {
-            return await _customerRepository.SearchByNameOrIdentityNumberAscByFirstName(keyWord);
+            return await _customerRepository.SearchByNameOrIdentityNumberAscByFirstName(keyword);
         }
     }
 }
