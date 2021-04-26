@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.BAL.Interface
 {
-    public interface ICustomerServices
+    public interface ICustomerService
     {
         Task<IEnumerable<Customer>> GetAllCustomer();
         Task<Customer> GetCustomerById(string customerId);
         Task<CreateCustomerRes> CreateCustomer(CreateCustomerReq request);
         Task<UpdateCustomerRes> UpdateCustomer(UpdateCustomerReq request);
-        Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyWord);
+        Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyword);
 
     }
 }

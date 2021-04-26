@@ -110,10 +110,10 @@ namespace MedicalExamination.DAL.Implement
 
         }
      
-        public async Task<IEnumerable<Organization>> SearchOrganizationsByNameASCByName(string orangizationName)
+        public async Task<IEnumerable<Organization>> SearchOrganizationsByNameASCByName(string search)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add(name: "@OrganizationName", orangizationName);
+            parameters.Add(name: "@Search", search);
 
             using (var result = SqlMapper.QueryAsync<Organization>(
                                               cnn: connection,
@@ -131,10 +131,10 @@ namespace MedicalExamination.DAL.Implement
 
         }
 
-        public async Task<IEnumerable<Organization>> SearchOrganizationsByNameDESCByName(string orangizationName)
+        public async Task<IEnumerable<Organization>> SearchOrganizationsByNameDESCByName(string search)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add(name: "@OrganizationName", orangizationName);
+            parameters.Add(name: "@Search", search);
 
             using (var result = SqlMapper.QueryAsync<Organization>(
                                               cnn: connection,

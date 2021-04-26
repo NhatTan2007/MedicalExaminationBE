@@ -6,6 +6,9 @@ using AutoMapper;
 using MedicalExamination.Domain.Models.MedicalRecord;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
+using MedicalExamination.Domain.Entities;
+using MedicalExamination.Domain.Responses.User;
+using MedicalExamination.Domain.Requests.User;
 
 namespace MedicalExamination.Domain.Helper
 {
@@ -19,6 +22,10 @@ namespace MedicalExamination.Domain.Helper
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<TSource, TDestination>();
+                cfg.CreateMap<AppIdentityUser, UserDetailsModel>().ForMember(u => u.UserId, act => act.MapFrom(src => src.Id));
+                cfg.CreateMap<CreateUserReq, AppIdentityUser>()
+                                    .ForMember(appUser => appUser.UserName,
+                                                act => act.MapFrom(src => Helper.FormatUsername(src.UserName)));
                 cfg.CreateMap<MedicalRecordDetails, string>().ConvertUsing(s => JsonConvert.SerializeObject(s));
                 cfg.CreateMap<MedicalHistoryForm, string>().ConvertUsing(s => JsonConvert.SerializeObject(s));
                 cfg.CreateMap<string, MedicalRecordDetails>().ConvertUsing(s => JsonConvert.DeserializeObject<MedicalRecordDetails>(s));
@@ -52,6 +59,12 @@ namespace MedicalExamination.Domain.Helper
             return RemoveDoubleSpaces(data).ToLower();
         }
 
+        public static string FormatUsername(string data)
+        {
+            data = RemoveDoubleSpaces(data).ToLower();
+            return data.Replace(" ", "");
+        }
+
         public static DateTime ConvertUTCToTimeZone(DateTime utcTime, string idTimeZone)
         {
             TimeZoneInfo cstZone = TimeZoneInfo.FindSystemTimeZoneById(idTimeZone);
@@ -73,5 +86,6 @@ namespace MedicalExamination.Domain.Helper
         {
             return baseDate.AddSeconds(timeStamp);
         }
+
     }
 }
