@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.BAL.Interface
 {
-   public interface IGMExaminationServices
+   public interface IGMExaminationService
     {
         Task<IEnumerable<GroupMedicalExamination>> GetAllGMExaminations();
         Task<GroupMedicalExamination> GetGMExaminationById(string GMExaminationId);
