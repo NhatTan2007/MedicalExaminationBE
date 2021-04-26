@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.BAL.Implement
 {
-    public class UserServices : IUserServices
+    public class UserServices : IUserService
     {
         private readonly IUserRepository _userRepository;
         private string _employeeCodePattern;

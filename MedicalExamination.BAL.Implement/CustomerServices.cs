@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.BAL.Implement
 {
-    public class CustomerServices : ICustomerServices
+    public class CustomerServices : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
 

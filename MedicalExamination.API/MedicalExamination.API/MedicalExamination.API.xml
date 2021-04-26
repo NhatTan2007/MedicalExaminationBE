@@ -24,7 +24,7 @@
             <param name="request"></param>
             <returns>Response when create a new customer</returns>
         </member>
-        <member name="M:MedicalExamination.API.Controllers.CustomerController.UpdateCustomerd(MedicalExamination.Domain.Requests.Customers.UpdateCustomerReq)">
+        <member name="M:MedicalExamination.API.Controllers.CustomerController.UpdateCustomer(MedicalExamination.Domain.Requests.Customers.UpdateCustomerReq)">
             <summary>
             Update information of specific customer
             </summary>
@@ -33,10 +33,39 @@
         </member>
         <member name="M:MedicalExamination.API.Controllers.CustomerController.SearchByNameOrIdentityNumberAscByFirstName(System.String)">
             <summary>
-            Update information of specific customer
+            Search a customer by name or identity number
             </summary>
             <param name="keyword"></param>
-            <returns>Response when update customer information</returns>
+            <returns>List or a customer</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.CustomerOrganizationController.CreateCustomerOrganization(MedicalExamination.Domain.Requests.CustomerOrganization.CreateCustomerOrganizationReq)">
+            <summary>
+            Create new customer organization
+            </summary>
+            <param name="request"></param>
+            <returns>Response of create a new customer organization</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.CustomerOrganizationController.UpdateCustomerOrganization(MedicalExamination.Domain.Requests.CustomerOrganization.UpdateCustomerOrganizationReq)">
+            <summary>
+            Update data of a customer organization
+            </summary>
+            <param name="request"></param>
+            <returns>Response update data of a customer organization</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.CustomerOrganizationController.GetCustomerOrganizationByOrganizationId(System.String)">
+            <summary>
+            Get Customer Organization By OrganizationId
+            </summary>
+            <param name="organizationId"></param>
+            <returns>List of Customer Organization</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.CustomerOrganizationController.GetCustomerOrganizationByCustomerIdAndOrganizationId(System.String,System.String)">
+            <summary>
+            Get Customer Organization By OrganizationId And Customer id
+            </summary>
+            <param name="organizationId"></param>
+            <param name="customerId"></param>
+            <returns>A Customer Organization</returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.DepartmentController.GetDepartmentById(System.String)">
             <summary>
@@ -199,7 +228,7 @@
         </member>
         <member name="M:MedicalExamination.API.Controllers.UserController.GetAllUser">
             <summary>
-            Get all User
+            Get all Users
             </summary>
             <returns>List of users</returns>
         </member>
@@ -212,10 +241,10 @@
         </member>
         <member name="M:MedicalExamination.API.Controllers.UserController.GetUserById(System.String)">
             <summary>
-            Create new Medical record
+            Get a specific user by userId
             </summary>
             <param name="userId"></param>
-            <returns>Response about create new medical record</returns>
+            <returns>Specific User</returns>
         </member>
     </members>
 </doc>

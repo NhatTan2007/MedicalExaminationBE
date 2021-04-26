@@ -11,9 +11,9 @@ namespace MedicalExamination.API.Controllers
 {
     public class OrganizationsController : BaseApiController
     {
-        private readonly IOrganizationsServices _organizationsServices;
+        private readonly IOrganizationsService _organizationsServices;
 
-        public OrganizationsController(IOrganizationsServices organizationsServices)
+        public OrganizationsController(IOrganizationsService organizationsServices)
         {
             _organizationsServices = organizationsServices;
         }

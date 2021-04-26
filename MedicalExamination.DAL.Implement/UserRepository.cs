@@ -27,7 +27,7 @@ namespace MedicalExamination.DAL.Implement
 
         public int CountEmployees()
         {
-            return _userManager.Users.Where(u => u.EmployeeCode != null).Count();
+            return _dbContext.Users.Where(u => u.EmployeeCode != null).Count();
         }
 
         public async Task<CreateUserRes> CreateNewUser(AppIdentityUser newUser, string password)

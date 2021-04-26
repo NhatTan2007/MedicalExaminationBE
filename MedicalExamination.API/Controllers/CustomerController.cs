@@ -1,5 +1,6 @@
 ﻿using MedicalExamination.BAL.Interface;
 using MedicalExamination.Domain.Requests.Customers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace MedicalExamination.API.Controllers
 {
     public class CustomerController : BaseApiController
     {
-        private readonly ICustomerServices _customerServices;
+        private readonly ICustomerService _customerServices;
 
-        public CustomerController(ICustomerServices customerServices)
+        public CustomerController(ICustomerService customerServices)
         {
             _customerServices = customerServices;
         }
@@ -22,6 +23,7 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <returns>List of all customers</returns>
         [HttpGet("")]
+        [Authorize]
         public async Task<IActionResult> GetAllCustomer()
         {
             return Ok(await _customerServices.GetAllCustomer());
@@ -33,6 +35,7 @@ namespace MedicalExamination.API.Controllers
         /// <param name="customerId"></param>
         /// <returns>Specific customer</returns>
         [HttpGet("{customerId}")]
+        [Authorize]
         public async Task<IActionResult> GetCustomertById(string customerId)
         {
             return Ok(await _customerServices.GetCustomerById(customerId));
@@ -55,17 +58,17 @@ namespace MedicalExamination.API.Controllers
         /// <param name="request"></param>
         /// <returns>Response when update customer information</returns>
         [HttpPut("update")]
-        public async Task<IActionResult> UpdateCustomerd(UpdateCustomerReq request)
+        public async Task<IActionResult> UpdateCustomer(UpdateCustomerReq request)
         {
             return Ok(await _customerServices.UpdateCustomer(request));
         }
 
         /// <summary>
-        /// Update information of specific customer
+        /// Search a customer by name or identity number
         /// </summary>
         /// <param name="keyword"></param>
-        /// <returns>Response when update customer information</returns>
-        [HttpGet("search/{keyWord}")]
+        /// <returns>List or a customer</returns>
+        [HttpGet("search/{keyword}")]
         public async Task<IActionResult> SearchByNameOrIdentityNumberAscByFirstName(string keyword)
         {
             return Ok(await _customerServices.SearchByNameOrIdentityNumberAscByFirstName(keyword));

@@ -1,5 +1,6 @@
 ﻿using MedicalExamination.BAL.Interface;
 using MedicalExamination.Domain.Requests.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,15 @@ namespace MedicalExamination.API.Controllers
 {
     public class UserController : BaseApiController
     {
-        private readonly IUserServices _userServices;
+        private readonly IUserService _userServices;
 
-        public UserController(IUserServices userServices)
+        public UserController(IUserService userServices)
         {
             _userServices = userServices;
         }
 
         /// <summary>
-        /// Get all User
+        /// Get all Users
         /// </summary>
         /// <returns>List of users</returns>
         [HttpGet("")]

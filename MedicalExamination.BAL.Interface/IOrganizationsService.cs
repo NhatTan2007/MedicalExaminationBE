@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.BAL.Interface
 {
-   public interface IOrganizationsServices
+   public interface IOrganizationsService
     {
         Task<IEnumerable<Organization>> GetAllOrganizations();
         Task<Organization> GetOrganizationById(string orangizationId);

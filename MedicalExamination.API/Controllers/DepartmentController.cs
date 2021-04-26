@@ -10,9 +10,9 @@ namespace MedicalExamination.API.Controllers
 {
     public class DepartmentController : BaseApiController
     {
-        private IDepartmentServices _departmentServices;
+        private IDepartmentService _departmentServices;
 
-        public DepartmentController(IDepartmentServices departmentServices)
+        public DepartmentController(IDepartmentService departmentServices)
         {
             _departmentServices = departmentServices;
         }

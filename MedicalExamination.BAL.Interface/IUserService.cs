@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.BAL.Interface
 {
-    public interface IUserServices
+    public interface IUserService
     {
         Task<CreateUserRes> CreateNewUser(CreateUserReq request);
         List<UserViewModel> GetAllUser();

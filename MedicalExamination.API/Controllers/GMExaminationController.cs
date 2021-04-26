@@ -11,9 +11,9 @@ namespace MedicalExamination.API.Controllers
 {
     public class GMExaminationController : BaseApiController
     {
-        private IGMExaminationServices _gMExaminationServices;
+        private IGMExaminationService _gMExaminationServices;
 
-        public GMExaminationController(IGMExaminationServices gMExaminationServices)
+        public GMExaminationController(IGMExaminationService gMExaminationServices)
         {
             _gMExaminationServices = gMExaminationServices;
         }
