@@ -1,4 +1,5 @@
 ﻿using MedicalExamination.Domain.Entities;
+using MedicalExamination.Domain.Models.MedicalRecord;
 using MedicalExamination.Domain.Requests.MedicalRecord;
 using MedicalExamination.Domain.Responses.MedicalRecord;
 using System;
@@ -11,8 +12,8 @@ namespace MedicalExamination.BAL.Interface
     public interface IMedicalRecordService
     {
         Task<CreateMedicalRecordRes> CreateMedicalRecord(CreateMedicalRecordReq request);
-        Task<MedicalRecord> GetMedicalRecordById(string medicalRecordId);
-        Task<IEnumerable<MedicalRecordViewRes>> SearchMedicalRecordByNameOrIdActiveNotFinishedExamination(string searchKey);
+        Task<MedicalRecordModel> GetMedicalRecordById(string medicalRecordId);
+        Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByNameOrIdActiveNotFinishedExamination();
         Task<IEnumerable<MedicalRecordViewRes>> GetAllInactiveMedicalRecords();
         Task<UpdateMedicalRecordRes> PaidMedicalRecord(string medicalRecordId);
         Task<UpdateMedicalRecordRes> ActiveMedicalRecord(string medicalRecordId);

@@ -23,7 +23,7 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <returns>List of all customers</returns>
         [HttpGet("")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetAllCustomer()
         {
             return Ok(await _customerServices.GetAllCustomer());
@@ -35,7 +35,7 @@ namespace MedicalExamination.API.Controllers
         /// <param name="customerId"></param>
         /// <returns>Specific customer</returns>
         [HttpGet("{customerId}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetCustomertById(string customerId)
         {
             return Ok(await _customerServices.GetCustomerById(customerId));
@@ -72,6 +72,16 @@ namespace MedicalExamination.API.Controllers
         public async Task<IActionResult> SearchByNameOrIdentityNumberAscByFirstName(string keyword)
         {
             return Ok(await _customerServices.SearchByNameOrIdentityNumberAscByFirstName(keyword));
+        }
+        /// <summary>
+        /// Get a customer by Identity Number
+        /// </summary>
+        /// <param name="identityNumber"></param>
+        /// <returns>A customer</returns>
+        [HttpGet("identityNumber/{identityNumber}")]
+        public async Task<IActionResult> GetCustomerByIdentityNumber(string identityNumber)
+        {
+            return Ok(await _customerServices.GetCustomerByIdentityNumber(identityNumber));
         }
     }
 }

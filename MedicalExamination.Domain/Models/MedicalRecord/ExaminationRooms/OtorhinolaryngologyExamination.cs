@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms
 {
-    public class OtorhinolaryngologyExamination //Tai mũi họng
+    public class OtorhinolaryngologyExamination : AExaminationRooms //Tai mũi họng
     {
         public byte LeftEarNormal { get; set; }
         public byte RightEarNormal { get; set; }

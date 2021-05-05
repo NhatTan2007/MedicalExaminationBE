@@ -44,5 +44,10 @@ namespace MedicalExamination.BAL.Implement
         {
             return await _customerRepository.SearchByNameOrIdentityNumberAscByFirstName(keyword);
         }
+
+        public async Task<Customer> GetCustomerByIdentityNumber(string identityNumber)
+        {
+            return await _customerRepository.GetCustomerByIdentityNumber(identityNumber);
+        }
     }
 }

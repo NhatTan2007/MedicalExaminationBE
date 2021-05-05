@@ -20,7 +20,7 @@ namespace MedicalExamination.DAL.Implement
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@MedicalRecordId", medicalRecord.MedicalRecordId);
-            parameters.Add(name: "@Detail", medicalRecord.Details);
+            parameters.Add(name: "@Details", medicalRecord.Details);
             parameters.Add(name: "@CreateDate", medicalRecord.CreateDate);
             parameters.Add(name: "@IsGroup", medicalRecord.IsGroup);
             parameters.Add(name: "@IsActive", medicalRecord.IsActive);
@@ -73,13 +73,26 @@ namespace MedicalExamination.DAL.Implement
             }
         }
 
-        public async Task<IEnumerable<MedicalRecordViewRes>> SearchMedicalRecordByNameOrIdActiveNotFinishedExamination(string searchKey)
+        //public async Task<IEnumerable<MedicalRecordViewRes>> SearchMedicalRecordByNameOrIdActiveNotFinishedExamination(string searchKey)
+        //{
+        //    DynamicParameters parameters = new DynamicParameters();
+        //    parameters.Add(name: "@SearchKey", searchKey);
+        //    using (var result = SqlMapper.QueryAsync<MedicalRecordViewRes>(
+        //        cnn: connection,
+        //        sql: "sp_SearchMedicalRecordByNameOrIdActiveNotFinishedExamination",
+        //        param: parameters,
+        //        commandType: System.Data.CommandType.StoredProcedure))
+        //    {
+        //        return await result;
+        //    }
+        //}
+
+        public async Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByNameOrIdActiveNotFinishedExamination()
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add(name: "@SearchKey", searchKey);
             using (var result = SqlMapper.QueryAsync<MedicalRecordViewRes>(
                 cnn: connection,
-                sql: "sp_SearchMedicalRecordByNameOrIdActiveNotFinishedExamination",
+                sql: "sp_GetMedicalRecordByNameOrIdActiveNotFinishedExamination",
                 param: parameters,
                 commandType: System.Data.CommandType.StoredProcedure))
             {
@@ -91,7 +104,7 @@ namespace MedicalExamination.DAL.Implement
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@MedicalRecordId", medicalRecord.MedicalRecordId);
-            parameters.Add(name: "@Detail", medicalRecord.Details);
+            parameters.Add(name: "@Details", medicalRecord.Details);
             parameters.Add(name: "@CreateDate", medicalRecord.CreateDate);
             parameters.Add(name: "@IsGroup", medicalRecord.IsGroup);
             parameters.Add(name: "@IsActive", medicalRecord.IsActive);

@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MedicalExamination.BAL.Interface\MedicalExamination.BAL.Interface.csproj" />
     <ProjectReference Include="..\MedicalExamination.DAL.Implement\MedicalExamination.DAL.Implement.csproj" />
     <ProjectReference Include="..\MedicalExamination.Domain\MedicalExamination.Domain.csproj" />

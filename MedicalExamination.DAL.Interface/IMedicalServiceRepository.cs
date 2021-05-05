@@ -14,5 +14,7 @@ namespace MedicalExamination.DAL.Interface
         Task<UpdateMedicalServiceRes> UpdateMedicalService(UpdateMedicalServiceReq request);
         Task<IEnumerable<MedicalService>> GetMedicalServiceByDepartmentId(string departmentId);
         Task<MedicalService> GetMedicalServiceByMedicalServiceId(string medicalServiceId);
+        Task<IEnumerable<MedicalService>> GetMedicalServices();
+        Task<IEnumerable<MedicalService>> GetActiveMedicalServices();
     }
 }

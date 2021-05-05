@@ -24,7 +24,7 @@ namespace MedicalExamination.DAL.Implement
             parameters.Add(name: "@FirstName", request.FirstName);
             parameters.Add(name: "@LastName", request.LastName);
             parameters.Add(name: "@DateOfBirth", request.DateOfBirth);
-            parameters.Add(name: "@Adress", request.Adress);
+            parameters.Add(name: "@Address", request.Address);
             parameters.Add(name: "@PhoneNumber", request.PhoneNumber);
             parameters.Add(name: "@IdentityNumber", request.IdentityNumber);
             parameters.Add(name: "@Email", request.Email);
@@ -55,7 +55,7 @@ namespace MedicalExamination.DAL.Implement
             parameters.Add(name: "@FirstName", request.FirstName);
             parameters.Add(name: "@LastName", request.LastName);
             parameters.Add(name: "@DateOfBirth", request.DateOfBirth);
-            parameters.Add(name: "@Adress", request.Adress);
+            parameters.Add(name: "@Address", request.Address);
             parameters.Add(name: "@PhoneNumber", request.PhoneNumber);
             parameters.Add(name: "@IdentityNumber", request.IdentityNumber);
             parameters.Add(name: "@Email", request.Email);
@@ -140,6 +140,27 @@ namespace MedicalExamination.DAL.Implement
                 {
                     return new List<Customer>();
                 }
+        }
+
+        public async Task<Customer> GetCustomerByIdentityNumber(string identityNumber)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@IdentityNumber", identityNumber);
+            using (var result = SqlMapper.QueryFirstOrDefaultAsync<Customer>(
+                                                cnn: connection,
+                                                sql: "sp_GetCustomerByIdentityNumber",
+                                                param: parameters,
+                                                commandType: CommandType.StoredProcedure))
+            {
+                try
+                {
+                    return await result;
+                }
+                catch (Exception ex)
+                {
+                    return new Customer();
+                }
+            }
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using AutoMapper.Configuration;
-using Dapper;
+﻿using Dapper;
 using MedicalExamination.DAL.Interface;
 using MedicalExamination.Domain.Entities;
 using MedicalExamination.Domain.Requests.MedicalService;
 using MedicalExamination.Domain.Responses.MedicalService;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,7 +15,7 @@ namespace MedicalExamination.DAL.Implement
     public class MedicalServiceRepository : BaseRepository, IMedicalServiceRepository
     {
 
-        public MedicalServiceRepository(Microsoft.Extensions.Configuration.IConfiguration config) : base(config)
+        public MedicalServiceRepository(IConfiguration config) : base(config)
         {
 
         }
@@ -41,6 +41,19 @@ namespace MedicalExamination.DAL.Implement
             catch (Exception)
             {
                 return new CreateMedicalServiceRes();
+            }
+        }
+
+        public async Task<IEnumerable<MedicalService>> GetActiveMedicalServices()
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            using (var result = SqlMapper.QueryAsync<MedicalService>(
+                                                cnn: connection,
+                                                sql: "sp_GetActiveMedicalServices",
+                                                param: parameters,
+                                                commandType: CommandType.StoredProcedure))
+            {
+                return await result;
             }
         }
 
@@ -84,6 +97,19 @@ namespace MedicalExamination.DAL.Implement
                 {
                     return new MedicalService();
                 }
+            }
+        }
+
+        public async Task<IEnumerable<MedicalService>> GetMedicalServices()
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            using (var result = SqlMapper.QueryAsync<MedicalService>(
+                                                cnn: connection,
+                                                sql: "sp_GetAllMedicalServices",
+                                                param: parameters,
+                                                commandType: CommandType.StoredProcedure))
+            {
+                    return await result;
             }
         }
 
