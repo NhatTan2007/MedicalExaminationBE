@@ -12,6 +12,7 @@ namespace MedicalExamination.BAL.Interface
     {
         Task<IEnumerable<Customer>> GetAllCustomer();
         Task<Customer> GetCustomerById(string customerId);
+        Task<Customer> GetCustomerByIdentityNumber(string identityNumber);
         Task<CreateCustomerRes> CreateCustomer(CreateCustomerReq request);
         Task<UpdateCustomerRes> UpdateCustomer(UpdateCustomerReq request);
         Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyword);

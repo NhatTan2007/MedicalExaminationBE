@@ -12,7 +12,7 @@ namespace MedicalExamination.DAL.Interface
         Task<CreateMedicalRecordRes> CreateMedicalRecord(MedicalRecord medicalRecord);
         Task<UpdateMedicalRecordRes> UpdateMedicalRecord(MedicalRecord medicalRecord);
         Task<MedicalRecord> GetMedicalRecordById(string medicalRecordId);
-        Task<IEnumerable<MedicalRecordViewRes>> SearchMedicalRecordByNameOrIdActiveNotFinishedExamination(string searchKey);
+        Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByNameOrIdActiveNotFinishedExamination();
         Task<IEnumerable<MedicalRecordViewRes>> GetAllInactiveMedicalRecords();
     }
 }

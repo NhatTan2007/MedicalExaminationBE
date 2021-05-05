@@ -2,12 +2,15 @@
 using MedicalExamination.DAL.Interface;
 using MedicalExamination.Domain.Entities;
 using MedicalExamination.Domain.Helper;
+using MedicalExamination.Domain.Models.MedicalRecord;
 using MedicalExamination.Domain.Requests.MedicalRecord;
 using MedicalExamination.Domain.Responses.MedicalRecord;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace MedicalExamination.BAL.Implement
 {
@@ -22,8 +25,8 @@ namespace MedicalExamination.BAL.Implement
 
         public async Task<UpdateMedicalRecordRes> ActiveMedicalRecord(string medicalRecordId)
         {
-            MedicalRecord medicalRecord = await GetMedicalRecordById(medicalRecordId);
-            if(medicalRecord != null)
+            MedicalRecord medicalRecord = await _medicalRecordRepository.GetMedicalRecordById(medicalRecordId);
+            if (medicalRecord != null)
             {
                 medicalRecord.IsActive = true;
                 return await _medicalRecordRepository.UpdateMedicalRecord(medicalRecord);
@@ -46,14 +49,15 @@ namespace MedicalExamination.BAL.Implement
             return await _medicalRecordRepository.GetAllInactiveMedicalRecords();
         }
 
-        public async Task<MedicalRecord> GetMedicalRecordById(string medicalRecordId)
+        public async Task<MedicalRecordModel> GetMedicalRecordById(string medicalRecordId)
         {
-            return await _medicalRecordRepository.GetMedicalRecordById(medicalRecordId);
+            MedicalRecord medicalRecord = await _medicalRecordRepository.GetMedicalRecordById(medicalRecordId);
+            return Helper.AutoDTO<MedicalRecord, MedicalRecordModel>(medicalRecord);
         }
 
         public async Task<UpdateMedicalRecordRes> PaidMedicalRecord(string medicalRecordId)
         {
-            MedicalRecord medicalRecord = await GetMedicalRecordById(medicalRecordId);
+            MedicalRecord medicalRecord = await _medicalRecordRepository.GetMedicalRecordById(medicalRecordId);
             if (medicalRecord != null)
             {
                 medicalRecord.IsPaid = true;
@@ -62,9 +66,9 @@ namespace MedicalExamination.BAL.Implement
             return new UpdateMedicalRecordRes() { Message = "Hồ sơ bệnh án không tồn tại" };
         }
 
-        public async Task<IEnumerable<MedicalRecordViewRes>> SearchMedicalRecordByNameOrIdActiveNotFinishedExamination(string searchKey)
+        public async Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByNameOrIdActiveNotFinishedExamination()
         {
-            return await _medicalRecordRepository.SearchMedicalRecordByNameOrIdActiveNotFinishedExamination(searchKey);
+            return await _medicalRecordRepository.GetMedicalRecordByNameOrIdActiveNotFinishedExamination();
         }
     }
 }

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.API.Controllers
 {
-    public class OrganizationsController : BaseApiController
+    public class OrganizationController : BaseApiController
     {
         private readonly IOrganizationsService _organizationsServices;
 
-        public OrganizationsController(IOrganizationsService organizationsServices)
+        public OrganizationController(IOrganizationsService organizationsServices)
         {
             _organizationsServices = organizationsServices;
         }
