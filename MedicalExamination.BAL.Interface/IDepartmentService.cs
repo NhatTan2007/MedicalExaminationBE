@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.BAL.Interface
 {
-    public interface IDepartmentServices
+    public interface IDepartmentService
     {
         Task<Department> GetDepartmentById(string departmentId);
         Task<CreateDepartmentRes> CreateDepartment(CreateDepartmentReq request);

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.BAL.Implement
 {
-   public class DepartmentServices : IDepartmentServices
+   public class DepartmentServices : IDepartmentService
     {
         private IDepartmentRepository _departmentRepository;
 

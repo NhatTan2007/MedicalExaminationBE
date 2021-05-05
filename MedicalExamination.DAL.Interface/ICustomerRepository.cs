@@ -14,6 +14,6 @@ namespace MedicalExamination.DAL.Interface
         Task<Customer> GetCustomerById(string customerId);
         Task<CreateCustomerRes> CreateCustomer(CreateCustomerReq request);
         Task<UpdateCustomerRes> UpdateCustomer(UpdateCustomerReq request);
-        Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyWord);
+        Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyword);
     }
 }

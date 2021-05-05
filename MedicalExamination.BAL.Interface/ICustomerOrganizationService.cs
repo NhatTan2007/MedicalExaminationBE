@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.BAL.Interface
 {
-    public interface ICustomerOrganizationServices
+    public interface ICustomerOrganizationService
     {
         Task<CreateCustomerOrganizationRes> CreateCustomerOrganization(CreateCustomerOrganizationReq request);
         Task<UpdateCustomerOrganizationRes> UpdateCustomerOrganization(UpdateCustomerOrganizationReq request);
