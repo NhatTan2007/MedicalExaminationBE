@@ -140,7 +140,6 @@
             <summary>
             Get specific medical record by id
             </summary>
-            <param name="medicalRecordId"></param>
             <returns>exists medical record</returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.ActiveMedicalRecordBy(System.String)">
@@ -161,7 +160,6 @@
             <summary>
             Get medical record is active but not finish examination
             </summary>
-            <param name="searchKey"></param>
             <returns>list medical record</returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.GetMedicalServices">

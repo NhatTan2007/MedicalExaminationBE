@@ -65,6 +65,15 @@ namespace MedicalExamination.API
                         ValidateIssuer = false,
                         ValidateAudience = false
                     };
+                    opts.Events.OnMessageReceived = context =>
+                    {
+                        if (context.Request.Cookies.ContainsKey("c10-Access-Token"))
+                        {
+                            context.Token = context.Request.Cookies["c10-Access-Token"];
+                        }
+
+                        return Task.CompletedTask;
+                    };
                 });
 
             services.AddSwaggerGen(c =>

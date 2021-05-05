@@ -66,6 +66,11 @@ namespace MedicalExamination.DAL.Implement
             return await _userManager.FindByIdAsync(userId);
         }
 
+        public AppIdentityUser GetUserByUsernameAndRefreshToken(string username, string refreshToken)
+        {
+            return _userManager.Users.FirstOrDefault(u => u.UserName == username && u.RefreshToken == refreshToken);
+        }
+
         public Task<UpdateUserRes> UpdateUserInfo(AppIdentityUser user)
         {
             throw new NotImplementedException();
