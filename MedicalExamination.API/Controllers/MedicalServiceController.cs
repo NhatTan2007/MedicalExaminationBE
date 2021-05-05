@@ -18,6 +18,26 @@ namespace MedicalExamination.API.Controllers
         }
 
         /// <summary>
+        /// Get all medical services
+        /// </summary>
+        /// <returns>List medical services </returns>
+        [HttpGet("")]
+        public async Task<IActionResult> GetMedicalServices()
+        {
+            return Ok(await _medicalServiceService.GetMedicalServices());
+        }
+
+        /// <summary>
+        /// Get active medical services
+        /// </summary>
+        /// <returns>List medical services </returns>
+        [HttpGet("active")]
+        public async Task<IActionResult> GetActiveMedicalServices()
+        {
+            return Ok(await _medicalServiceService.GetActiveMedicalServices());
+        }
+
+        /// <summary>
         /// Create a new medical service
         /// </summary>
         /// <param name="request"></param>
@@ -61,6 +81,5 @@ namespace MedicalExamination.API.Controllers
         {
             return Ok(await _medicalServiceService.GetMedicalServiceByDepartmentId(departmentId));
         }
-
     }
 }

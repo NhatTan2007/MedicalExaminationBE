@@ -32,7 +32,6 @@ namespace MedicalExamination.API.Controllers
         /// <summary>
         /// Get specific medical record by id
         /// </summary>
-        /// <param name="medicalRecordId"></param>
         /// <returns>exists medical record</returns>
         [HttpGet("{medicalRecordId}")]
         public async Task<IActionResult> GetMedicalRecordById(string medicalRecordId)
@@ -63,14 +62,13 @@ namespace MedicalExamination.API.Controllers
         }
 
         /// <summary>
-        /// Search by name of patient or id of medical record is active but not finish examination
+        /// Get medical record is active but not finish examination
         /// </summary>
-        /// <param name="searchKey"></param>
         /// <returns>list medical record</returns>
-        [HttpGet("searchActive/{searchKey}")]
-        public async Task<IActionResult> SearchMedicalRecordsByNameOrIdActiveNotFinishedExamination(string searchKey)
+        [HttpGet("getActive")]
+        public async Task<IActionResult> GetMedicalRecordsByNameOrIdActiveNotFinishedExamination()
         {
-            return Ok(await _medicalRecordService.SearchMedicalRecordByNameOrIdActiveNotFinishedExamination(searchKey));
+            return Ok(await _medicalRecordService.GetMedicalRecordByNameOrIdActiveNotFinishedExamination());
         }
     }
 }

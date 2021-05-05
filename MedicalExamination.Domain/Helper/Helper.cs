@@ -86,6 +86,5 @@ namespace MedicalExamination.Domain.Helper
         {
             return baseDate.AddSeconds(timeStamp);
         }
-
     }
 }

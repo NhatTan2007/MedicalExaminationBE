@@ -38,6 +38,13 @@
             <param name="keyword"></param>
             <returns>List or a customer</returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.CustomerController.GetCustomerByIdentityNumber(System.String)">
+            <summary>
+            Get a customer by Identity Number
+            </summary>
+            <param name="identityNumber"></param>
+            <returns>A customer</returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.CustomerOrganizationController.CreateCustomerOrganization(MedicalExamination.Domain.Requests.CustomerOrganization.CreateCustomerOrganizationReq)">
             <summary>
             Create new customer organization
@@ -133,7 +140,6 @@
             <summary>
             Get specific medical record by id
             </summary>
-            <param name="medicalRecordId"></param>
             <returns>exists medical record</returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.ActiveMedicalRecordBy(System.String)">
@@ -150,12 +156,23 @@
             <param name="medicalRecordId"></param>
             <returns>Response of update medical record</returns>
         </member>
-        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.SearchMedicalRecordsByNameOrIdActiveNotFinishedExamination(System.String)">
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.GetMedicalRecordsByNameOrIdActiveNotFinishedExamination">
             <summary>
-            Search by name of patient or id of medical record is active but not finish examination
+            Get medical record is active but not finish examination
             </summary>
-            <param name="searchKey"></param>
             <returns>list medical record</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.GetMedicalServices">
+            <summary>
+            Get all medical services
+            </summary>
+            <returns>List medical services </returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.GetActiveMedicalServices">
+            <summary>
+            Get active medical services
+            </summary>
+            <returns>List medical services </returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.CreateMedicalService(MedicalExamination.Domain.Requests.MedicalService.CreateMedicalServiceReq)">
             <summary>
@@ -185,41 +202,41 @@
             <param name="departmentId"></param>
             <returns>A list of medical service</returns>
         </member>
-        <member name="M:MedicalExamination.API.Controllers.OrganizationsController.GetAllOrganizations">
+        <member name="M:MedicalExamination.API.Controllers.OrganizationController.GetAllOrganizations">
             <summary>
             Get all Organizations 
             </summary>
             <returns>List all Organizations</returns>
         </member>
-        <member name="M:MedicalExamination.API.Controllers.OrganizationsController.GetOrganizationById(System.String)">
+        <member name="M:MedicalExamination.API.Controllers.OrganizationController.GetOrganizationById(System.String)">
             <summary>
             Get Organization by Id
             </summary>
             <param name="organizationId"></param>
             <returns>Specific organization has id want to find</returns>
         </member>
-        <member name="M:MedicalExamination.API.Controllers.OrganizationsController.SearchOrangizationsByNameASCByName(System.String)">
+        <member name="M:MedicalExamination.API.Controllers.OrganizationController.SearchOrangizationsByNameASCByName(System.String)">
             <summary>
             Get Organizations by name Order by Name ASC
             </summary>
             <param name="search"></param>
             <returns>List of organization has name likely with search key</returns>
         </member>
-        <member name="M:MedicalExamination.API.Controllers.OrganizationsController.GetOrangizationsByNameDESCByName(System.String)">
+        <member name="M:MedicalExamination.API.Controllers.OrganizationController.GetOrangizationsByNameDESCByName(System.String)">
             <summary>
             Get Organizations by name Order by Name ASC
             </summary>
             <param name="search"></param>
             <returns>List of organization has name likely with search key</returns>
         </member>
-        <member name="M:MedicalExamination.API.Controllers.OrganizationsController.CreateOrganization(MedicalExamination.Domain.Requests.CreateOrganizationReq)">
+        <member name="M:MedicalExamination.API.Controllers.OrganizationController.CreateOrganization(MedicalExamination.Domain.Requests.CreateOrganizationReq)">
             <summary>
             Create new Organization
             </summary>
             <param name="request"></param>
             <returns>Response when create a new organization</returns>
         </member>
-        <member name="M:MedicalExamination.API.Controllers.OrganizationsController.UpdateOrganization(MedicalExamination.Domain.Requests.UpdateOrganizationReq)">
+        <member name="M:MedicalExamination.API.Controllers.OrganizationController.UpdateOrganization(MedicalExamination.Domain.Requests.UpdateOrganizationReq)">
             <summary>
             Update data of a organization
             </summary>

@@ -73,5 +73,15 @@ namespace MedicalExamination.API.Controllers
         {
             return Ok(await _customerServices.SearchByNameOrIdentityNumberAscByFirstName(keyword));
         }
+        /// <summary>
+        /// Get a customer by Identity Number
+        /// </summary>
+        /// <param name="identityNumber"></param>
+        /// <returns>A customer</returns>
+        [HttpGet("identityNumber/{identityNumber}")]
+        public async Task<IActionResult> GetCustomerByIdentityNumber(string identityNumber)
+        {
+            return Ok(await _customerServices.GetCustomerByIdentityNumber(identityNumber));
+        }
     }
 }

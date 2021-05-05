@@ -14,34 +14,20 @@ namespace MedicalExamination.API.Controllers
 {
     public class AccountController : BaseApiController
     {
-        private UserManager<AppIdentityUser> _userManager;
-        private readonly SignInManager<AppIdentityUser> _signInManager;
-        private readonly ITokenService _tokenService;
+        private readonly IAccountService _accountService;
 
-        public AccountController(UserManager<AppIdentityUser> userManager,
-                                    SignInManager<AppIdentityUser> signInManager,
-                                    ITokenService tokenService)
+        public AccountController(IAccountService accountService)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _tokenService = tokenService;
+            _accountService = accountService;
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(AccountLoginReq request)
         {
-            var user = await _userManager.FindByNameAsync(request.UserName);
-            if (user != null)
+            var result = await _accountService.Login(request);
+            if (result != null)
             {
-                var loginResult = await _signInManager.CheckPasswordSignInAsync(user, request.Password, lockoutOnFailure: false);
-                if (loginResult.Succeeded)
-                {
-                    return Ok(new AccountLoginRes() 
-                                            {
-                                                UserName = user.UserName,
-                                                Token = _tokenService.CreateToken(user)
-                                            });
-                }
+                return Ok(await _accountService.Login(request));
             }
             return Unauthorized("Invalid username or password, please try again");
         }
