@@ -12,7 +12,7 @@ namespace MedicalExamination.Domain.Entities
         private string _lastName;
         private DateTime _dateOfBirth;
         private string _email;
-        private string _adress;
+        private string _address;
         private string _phoneNumber;
         private string _identityNumber;
         private bool _gender;
@@ -33,7 +33,7 @@ namespace MedicalExamination.Domain.Entities
         public string Email { get => _email; set => _email = value; }
         [Required]
         [MaxLength(200)]
-        public string Adress { get => _adress; set => _adress = value; }
+        public string Address { get => _address; set => _address = value; }
         [Required]
         [MaxLength(20)]
         public string PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }

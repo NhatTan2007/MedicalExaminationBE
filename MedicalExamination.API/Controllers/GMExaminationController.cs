@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.API.Controllers
 {
-    [ApiController]
-    public class GMExaminationController : ControllerBase
+    public class GMExaminationController : BaseApiController
     {
-        private IGMExaminationServices _gMExaminationServices;
+        private IGMExaminationService _gMExaminationServices;
 
-        public GMExaminationController(IGMExaminationServices gMExaminationServices)
+        public GMExaminationController(IGMExaminationService gMExaminationServices)
         {
             _gMExaminationServices = gMExaminationServices;
         }
@@ -23,7 +22,7 @@ namespace MedicalExamination.API.Controllers
         /// Get all Group Medical Examination Records 
         /// </summary>
         /// <returns>List all Group Medical Examination</returns>
-        [HttpGet("api/GMExamination/GetsAllGMExamination")]
+        [HttpGet("")]
         public async Task<IActionResult> GetAllGMExamintion()
         {
             return Ok(await _gMExaminationServices.GetAllGMExaminations());
@@ -32,40 +31,42 @@ namespace MedicalExamination.API.Controllers
         /// <summary>
         /// Get a Group Medical Examination Records By Id 
         /// </summary>
-        /// <returns>A Group Medical Examination</returns>
-        [HttpGet("api/GMExamination/GetGMExamination/{GMExaminationId}")]
+        /// <param name="GMExaminationId"></param>
+        /// <returns>Specific Group examination record</returns>
+        [HttpGet("{GMExaminationId}")]
         public async Task<IActionResult> GetGMExaminationById(string GMExaminationId)
         {
             return Ok(await _gMExaminationServices.GetGMExaminationById(GMExaminationId));
         }
 
         /// <summary>
-        /// Get a Group Medical Examination Records By OrganizationId 
+        /// Get group examination records by organization Id
         /// </summary>
-        /// <returns>A Group Medical Examination</returns>
-        [HttpGet("api/GMExamination/GetGMExaminationByOrganizationId/{OrganizationId}")]
-        public async Task<IActionResult> GetGMExaminationByOrganizationId(string OrganizationId)
+        /// <param name="organizationId"></param>
+        /// <returns>List Group examination records has specific OrganizationId</returns>
+        [HttpGet("organization/{organizationId}")]
+        public async Task<IActionResult> GetGMExaminationByOrganizationId(string organizationId)
         {
-            return Ok(await _gMExaminationServices.GetGMExaminationByOrganizationId(OrganizationId));
+            return Ok(await _gMExaminationServices.GetGMExaminationByOrganizationId(organizationId));
         }
 
         ///<summary>
-        ///Create A Group Medical Examination Record
+        ///Create A Group Medical Examination
         ///</summary>
         ///<param name="request"></param>
-        ///<returns>New Group Medical Examination</returns>
-        [HttpPost("api/GMExamination/CreateGMExamination")]
+        ///<returns>Response when create a new group medical examination</returns>
+        [HttpPost("create")]
         public async Task<IActionResult> CreateGMExamination(CreateGMExaminationReq request)
         {
             return Ok(await _gMExaminationServices.CreateGMExamination(request));
         }
 
         ///<summary>
-        ///Update A Group Medical Examination Record
+        ///Update data of Group Medical Examination
         ///</summary>
         ///<param name="request"></param>
-        ///<returns>A Group Medical Examination Updated</returns>
-        [HttpPut("api/GMExamination/UpdateGMExamination")]
+        ///<returns>Response when update group medical examination data</returns>
+        [HttpPut("update")]
         public async Task<IActionResult> UpdateGMExamination(UpdateGMExaminationReq request)
         {
             return Ok(await _gMExaminationServices.UpdateGMExamination(request));

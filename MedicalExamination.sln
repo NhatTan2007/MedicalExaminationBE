@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Function.Test", "Function.Test\Function.Test.csproj", "{9839067C-C54B-441C-B511-0CF3A0FCDA43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Function.Test", "Function.Test\Function.Test.csproj", "{9839067C-C54B-441C-B511-0CF3A0FCDA43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

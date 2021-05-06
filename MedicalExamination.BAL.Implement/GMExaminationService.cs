@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.BAL.Implement
 {
-   public class GMExaminationServices : IGMExaminationServices
+   public class GMExaminationService : IGMExaminationService
     {
         private IGMExaminationRepository _gMExaminationRepository;
-        public GMExaminationServices(IGMExaminationRepository gMExaminationRepository)
+        public GMExaminationService(IGMExaminationRepository gMExaminationRepository)
         {
             _gMExaminationRepository = gMExaminationRepository;
         }

@@ -15,7 +15,7 @@ namespace MedicalExamination.DAL.Implement.DbContexts
 
         }
 
-        DbSet<Department> Departments { get; set; }
+        public DbSet<Department> Departments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

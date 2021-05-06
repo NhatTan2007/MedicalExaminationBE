@@ -17,7 +17,6 @@ namespace MedicalExamination.Domain.Entities
         public string DepartmentName { get => _departmentName; set => _departmentName = value; }
         [Required]
         public bool IsActive { get => _isActive; set => _isActive = value; }
-        public List<AppIdentityUser> Doctors { get; set; }
 
         public Department()
         {

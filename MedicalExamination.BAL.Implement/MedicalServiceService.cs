@@ -23,6 +23,11 @@ namespace MedicalExamination.BAL.Implement
             return await _medicalServiceRepository.CreateMedicalService(request);
         }
 
+        public async Task<IEnumerable<MedicalService>> GetActiveMedicalServices()
+        {
+            return await _medicalServiceRepository.GetActiveMedicalServices();
+        }
+
         public async Task<IEnumerable<MedicalService>> GetMedicalServiceByDepartmentId(string departmentId)
         {
             return await _medicalServiceRepository.GetMedicalServiceByDepartmentId(departmentId);
@@ -31,6 +36,11 @@ namespace MedicalExamination.BAL.Implement
         public async Task<MedicalService> GetMedicalServiceByMedicalServiceId(string medicalServiceId)
         {
             return await _medicalServiceRepository.GetMedicalServiceByMedicalServiceId(medicalServiceId);
+        }
+
+        public async Task<IEnumerable<MedicalService>> GetMedicalServices()
+        {
+            return await _medicalServiceRepository.GetMedicalServices();
         }
 
         public async Task<UpdateMedicalServiceRes> UpdateMedicalService(UpdateMedicalServiceReq request)

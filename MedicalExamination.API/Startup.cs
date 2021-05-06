@@ -4,8 +4,10 @@ using MedicalExamination.DAL.Implement;
 using MedicalExamination.DAL.Implement.DbContexts;
 using MedicalExamination.DAL.Interface;
 using MedicalExamination.Domain.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +16,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MedicalExamination.API
@@ -26,6 +30,7 @@ namespace MedicalExamination.API
     public class Startup
     {
         private readonly IConfiguration _config;
+        private string _corsPolicy = "AllowAllPolicy";
 
         public Startup(IConfiguration config)
         {
@@ -37,7 +42,13 @@ namespace MedicalExamination.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddCors(opts => opts.AddPolicy(_corsPolicy, builder =>
+            {
+                builder.WithOrigins("http://khamskdinhky.tech", "http://localhost:4200")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+            }));
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseSqlServer(_config.GetConnectionString("DbConnection")), ServiceLifetime.Transient);
             services.AddIdentity<AppIdentityUser, AppIdentityRole>(opt =>
@@ -46,6 +57,35 @@ namespace MedicalExamination.API
                                         })
                                         .AddEntityFrameworkStores<AppDbContext>()
                                         .AddDefaultTokenProviders();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opts =>
+                {
+                    opts.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["TokenKey"])),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                    opts.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            if (context.Request.Cookies.ContainsKey("X-Access-Token"))
+                            {
+                                context.Token = context.Request.Cookies["X-Access-Token"];
+                            }
+                            return Task.CompletedTask;
+                        }
+                    };
+                });
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.SameSite = SameSiteMode.None;
+            });
+            services.AddControllers().AddNewtonsoftJson();
+
             services.AddSwaggerGen(c =>
                 {
                     c.SwaggerDoc("v1",
@@ -59,27 +99,33 @@ namespace MedicalExamination.API
                     var filePath = Path.Combine(System.AppContext.BaseDirectory, "MedicalExamination.API.xml");
                     c.IncludeXmlComments(filePath);
                 });
-            services.AddTransient<IOrganizationsRepository, OrganizationsRepository>();
-            services.AddTransient<IOrganizationsServices, OrganizationsServices>();
-            services.AddTransient<ICustomerRepository, CustomerRepository>();
-            services.AddTransient<ICustomerServices, CustomerServices>();
-            services.AddTransient<IMedicalRecordService, MedicalRecordService>();
-            services.AddTransient<IMedicalRecordRepository, MedicalRecordRepository>();
-            services.AddTransient<IGMExaminationRepository, GMExaminationRepository>();
-            services.AddTransient<IGMExaminationServices, GMExaminationServices>();
-            services.AddTransient<IDepartmentRepository, DepartmentRepository>();
-            services.AddTransient<IDepartmentServices, DepartmentServices>();
-            services.AddTransient<ICustomerOrganizationRepository, CustomerOrganizationRepository>();
-            services.AddTransient<ICustomerOrganizationServices, CustomerOrganizationServices>();
-            services.AddTransient<IMedicalServiceRepository, MedicalServiceRepository>();
-            services.AddTransient<IMedicalServiceService, MedicalServiceService>();
 
-            services.AddCors();
-            }
+
+            services.AddScoped<IOrganizationsRepository, OrganizationsRepository>();
+            services.AddScoped<IOrganizationsService, OrganizationsService>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerService, CustomerServices>();
+            services.AddScoped<IMedicalRecordService, MedicalRecordService>();
+            services.AddScoped<IMedicalRecordRepository, MedicalRecordRepository>();
+            services.AddScoped<IGMExaminationRepository, GMExaminationRepository>();
+            services.AddScoped<IGMExaminationService, GMExaminationService>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IDepartmentService, DepartmentServices>();
+            services.AddScoped<ICustomerOrganizationRepository, CustomerOrganizationRepository>();
+            services.AddScoped<ICustomerOrganizationService, CustomerOrganizationService>();
+            services.AddScoped<IMedicalServiceRepository, MedicalServiceRepository>();
+            services.AddScoped<IMedicalServiceService, MedicalServiceService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserServices>();
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IAccountService, AccountService>();
+        }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //app.UseCors(_corsPolicy);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -96,11 +142,14 @@ namespace MedicalExamination.API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Medical Examination API");
             });
-            app.UseCors(opt => opt.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseRouting();
 
+            app.UseCors(_corsPolicy);
+            app.UseCookiePolicy();
+
             app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

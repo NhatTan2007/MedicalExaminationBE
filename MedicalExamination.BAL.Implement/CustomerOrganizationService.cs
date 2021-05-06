@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.BAL.Implement
 {
-     public class CustomerOrganizationServices : ICustomerOrganizationServices
+     public class CustomerOrganizationService : ICustomerOrganizationService
     {
         private readonly ICustomerOrganizationRepository _customerOrganizationRepository;
 
-        public CustomerOrganizationServices(ICustomerOrganizationRepository customerOrganizationRepository)
+        public CustomerOrganizationService(ICustomerOrganizationRepository customerOrganizationRepository)
         {
             _customerOrganizationRepository = customerOrganizationRepository;
         }

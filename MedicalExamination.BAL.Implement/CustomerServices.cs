@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.BAL.Implement
 {
-    public class CustomerServices : ICustomerServices
+    public class CustomerServices : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
 
@@ -40,9 +40,14 @@ namespace MedicalExamination.BAL.Implement
             return await _customerRepository.GetAllCustomer();
         }
 
-        public async Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyWord)
+        public async Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyword)
         {
-            return await _customerRepository.SearchByNameOrIdentityNumberAscByFirstName(keyWord);
+            return await _customerRepository.SearchByNameOrIdentityNumberAscByFirstName(keyword);
+        }
+
+        public async Task<Customer> GetCustomerByIdentityNumber(string identityNumber)
+        {
+            return await _customerRepository.GetCustomerByIdentityNumber(identityNumber);
         }
     }
 }

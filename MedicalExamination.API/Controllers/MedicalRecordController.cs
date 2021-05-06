@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.API.Controllers
 {
-    [ApiController]
-    public class MedicalRecordController : ControllerBase
+    public class MedicalRecordController : BaseApiController
     {
         private readonly IMedicalRecordService _medicalRecordService;
 
@@ -24,18 +23,17 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns>Response about create new medical record</returns>
-        [HttpPost("api/medicalrecord/create")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateMedicalRecord(CreateMedicalRecordReq request)
         {
             return Ok(await _medicalRecordService.CreateMedicalRecord(request));
         }
 
         /// <summary>
-        /// Create new Medical record
+        /// Get specific medical record by id
         /// </summary>
-        /// <param name="medicalRecordId"></param>
         /// <returns>exists medical record</returns>
-        [HttpGet("api/medicalrecord/get/{medicalRecordId}")]
+        [HttpGet("{medicalRecordId}")]
         public async Task<IActionResult> GetMedicalRecordById(string medicalRecordId)
         {
             return Ok(await _medicalRecordService.GetMedicalRecordById(medicalRecordId));
@@ -46,7 +44,7 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <param name="medicalRecordId"></param>
         /// <returns>Response of update medical record</returns>
-        [HttpGet("api/medicalrecord/active/{medicalRecordId}")]
+        [HttpGet("active/{medicalRecordId}")]
         public async Task<IActionResult> ActiveMedicalRecordBy(string medicalRecordId)
         {
             return Ok(await _medicalRecordService.ActiveMedicalRecord(medicalRecordId));
@@ -57,21 +55,20 @@ namespace MedicalExamination.API.Controllers
         /// </summary>
         /// <param name="medicalRecordId"></param>
         /// <returns>Response of update medical record</returns>
-        [HttpGet("api/medicalrecord/paid/{medicalRecordId}")]
+        [HttpGet("paid/{medicalRecordId}")]
         public async Task<IActionResult> PaidMedicalRecordBy(string medicalRecordId)
         {
             return Ok(await _medicalRecordService.GetMedicalRecordById(medicalRecordId));
         }
 
         /// <summary>
-        /// Search by name of patient or id of medical record is active but not finish examination
+        /// Get medical record is active but not finish examination
         /// </summary>
-        /// <param name="searchKey"></param>
         /// <returns>list medical record</returns>
-        [HttpGet("api/medicalrecord/SearchActiveMedicalRecord")]
-        public async Task<IActionResult> SearchMedicalRecordsByNameOrIdActiveNotFinishedExamination(string searchKey)
+        [HttpGet("getActive")]
+        public async Task<IActionResult> GetMedicalRecordsByNameOrIdActiveNotFinishedExamination()
         {
-            return Ok(await _medicalRecordService.SearchMedicalRecordByNameOrIdActiveNotFinishedExamination(searchKey));
+            return Ok(await _medicalRecordService.GetMedicalRecordByNameOrIdActiveNotFinishedExamination());
         }
     }
 }
