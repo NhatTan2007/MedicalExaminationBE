@@ -35,18 +35,19 @@ namespace MedicalExamination.BAL.Implement
 
         public async Task<AccountLoginRes> Login(AccountLoginReq request)
         {
-
-            var loginResult = await _signInManager.PasswordSignInAsync(request.Username, request.Password, false, false);
-            if (loginResult.Succeeded)
+            var user = await _userManager.FindByNameAsync(request.Username);
+            if (user != null)
             {
-                var user = await _userManager.FindByNameAsync(request.Username);
-
-                return new AccountLoginRes()
+                var loginResult = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
+                if (loginResult.Succeeded)
                 {
-                    UserName = user.UserName,
-                    Token = await _tokenService.CreateToken(user),
-                    RefreshToken = user.RefreshToken
-                };
+                    return new AccountLoginRes()
+                    {
+                        UserName = user.UserName,
+                        Token = await _tokenService.CreateToken(user),
+                        RefreshToken = user.RefreshToken
+                    };
+                }
             }
             return null;
         }
