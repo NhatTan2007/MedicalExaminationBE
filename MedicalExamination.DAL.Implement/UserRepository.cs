@@ -32,6 +32,7 @@ namespace MedicalExamination.DAL.Implement
 
         public async Task<CreateUserRes> CreateNewUser(AppIdentityUser newUser, string password)
         {
+            newUser.DepartmentId = newUser.DepartmentId == "" ? null : newUser.DepartmentId;
             var result = await _userManager.CreateAsync(newUser, password);
             CreateUserRes response = new CreateUserRes();
             if (result.Succeeded)
@@ -64,6 +65,11 @@ namespace MedicalExamination.DAL.Implement
         public async Task<AppIdentityUser> GetUserById(string userId)
         {
             return await _userManager.FindByIdAsync(userId);
+        }
+
+        public AppIdentityUser GetUserByUsernameAndRefreshToken(string username, string refreshToken)
+        {
+            return _userManager.Users.FirstOrDefault(u => u.UserName == username && u.RefreshToken == refreshToken);
         }
 
         public Task<UpdateUserRes> UpdateUserInfo(AppIdentityUser user)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace MedicalExamination.Domain.Entities
 {
@@ -18,6 +19,7 @@ namespace MedicalExamination.Domain.Entities
         private bool _isActive;
         private string _avatar;
         private string _signature;
+        private string _refreshToken;
         [MaxLength(10)]
         public string EmployeeCode { get => _employeeCode; set => _employeeCode = value; }
         [Required]
@@ -41,6 +43,8 @@ namespace MedicalExamination.Domain.Entities
         public string Avatar { get => _avatar; set => _avatar = value; }
         [MaxLength(200)]
         public string Signature { get => _signature; set => _signature = value; }
+        [JsonIgnore]
+        public string RefreshToken { get => _refreshToken; set => _refreshToken = value; }
 
         public AppIdentityUser()
         {

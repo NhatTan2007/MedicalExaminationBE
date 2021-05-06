@@ -49,5 +49,10 @@ namespace MedicalExamination.BAL.Implement
         {
             return Helper.AutoDTO<AppIdentityUser, UserDetailsModel>(await _userRepository.GetUserById(userId));
         }
+
+        public AppIdentityUser GetUserByUsernameAndRefreshToken(string username, string refreshToken)
+        {
+            return _userRepository.GetUserByUsernameAndRefreshToken(username, refreshToken);
+        }
     }
 }

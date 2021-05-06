@@ -30,6 +30,7 @@ namespace MedicalExamination.API
     public class Startup
     {
         private readonly IConfiguration _config;
+        private string _corsPolicy = "AllowAllPolicy";
 
         public Startup(IConfiguration config)
         {
@@ -41,7 +42,13 @@ namespace MedicalExamination.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddCors(opts => opts.AddPolicy(_corsPolicy, builder =>
+            {
+                builder.WithOrigins("http://khamskdinhky.tech", "http://localhost:4200")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+            }));
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseSqlServer(_config.GetConnectionString("DbConnection")), ServiceLifetime.Transient);
             services.AddIdentity<AppIdentityUser, AppIdentityRole>(opt =>
@@ -51,12 +58,8 @@ namespace MedicalExamination.API
                                         .AddEntityFrameworkStores<AppDbContext>()
                                         .AddDefaultTokenProviders();
 
-            services.AddAuthentication(opts =>
-            {
-                opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opts.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opts =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opts =>
                 {
                     opts.TokenValidationParameters = new TokenValidationParameters
                     {
@@ -65,7 +68,23 @@ namespace MedicalExamination.API
                         ValidateIssuer = false,
                         ValidateAudience = false
                     };
+                    opts.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            if (context.Request.Cookies.ContainsKey("X-Access-Token"))
+                            {
+                                context.Token = context.Request.Cookies["X-Access-Token"];
+                            }
+                            return Task.CompletedTask;
+                        }
+                    };
                 });
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.SameSite = SameSiteMode.None;
+            });
+            services.AddControllers().AddNewtonsoftJson();
 
             services.AddSwaggerGen(c =>
                 {
@@ -98,13 +117,12 @@ namespace MedicalExamination.API
             services.AddScoped<IUserService, UserServices>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAccountService, AccountService>();
-
-            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //app.UseCors(_corsPolicy);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -124,7 +142,8 @@ namespace MedicalExamination.API
 
             app.UseRouting();
 
-            app.UseCors(opt => opt.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(_corsPolicy);
+            app.UseCookiePolicy();
 
             app.UseAuthentication();
 
