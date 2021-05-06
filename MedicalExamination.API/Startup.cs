@@ -84,17 +84,6 @@ namespace MedicalExamination.API
                         }
                     };
                 });
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.SameSite = SameSiteMode.None;
-            });
-            services.AddControllers().AddNewtonsoftJson();
-
-            
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.SameSite = SameSiteMode.None;
-            });
             services.AddControllers().AddNewtonsoftJson();
 
             services.AddSwaggerGen(c =>
@@ -154,7 +143,6 @@ namespace MedicalExamination.API
             app.UseRouting();
 
             app.UseCors(_corsPolicy);
-            app.UseCookiePolicy();
 
             app.UseAuthentication();
 
