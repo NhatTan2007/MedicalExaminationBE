@@ -27,11 +27,10 @@ namespace MedicalExamination.BAL.Implement
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.NameId, user.Id),
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
             };
 
-            var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
+            var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256Signature);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -43,11 +42,11 @@ namespace MedicalExamination.BAL.Implement
             var tokenHandler = new JwtSecurityTokenHandler();
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-
+            var test = await _userManager.FindByIdAsync(user.Id);
             //Create refresh token
             user.RefreshToken = Guid.NewGuid().ToString();
-            await _userManager.UpdateAsync(user);
-
+            var result = await _userManager.UpdateAsync(user);
+            
             return tokenHandler.WriteToken(token);
         }
     }

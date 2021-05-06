@@ -32,14 +32,13 @@ namespace MedicalExamination.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _accountService.Login(request);
-                if (result != null)
+                var response = await _accountService.Login(request);
+                if (response != null)
                 {
-                    AccountLoginRes response = await _accountService.Login(request);
-                    CookieOptions cookieOptions = new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict };
-                    Response.Cookies.Append("c10-Access-Token", response.Token, cookieOptions);
-                    Response.Cookies.Append("c10-Username", response.UserName, cookieOptions);
-                    Response.Cookies.Append("c10-Refresh-Token", response.RefreshToken, cookieOptions);
+                    var cookieOptions = new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.None, Secure = true};
+                    Response.Cookies.Append("X-Access-Token", response.Token, cookieOptions);
+                    Response.Cookies.Append("X-Username", response.UserName, cookieOptions);
+                    Response.Cookies.Append("X-Refresh-Token", response.RefreshToken, cookieOptions);
                     return Ok();
                 }
                 return Unauthorized("Invalid username or password, please try again");
@@ -53,7 +52,7 @@ namespace MedicalExamination.API.Controllers
             string userName = String.Empty;
             string refreshToken = String.Empty;
 
-            if (!(Request.Cookies.TryGetValue("c10-Username", out userName) && (Request.Cookies.TryGetValue("c10-Refresh-Token", out refreshToken))))
+            if (!(Request.Cookies.TryGetValue("X-Username", out userName) && (Request.Cookies.TryGetValue("X-Refresh-Token", out refreshToken))))
             {
                 return BadRequest();
             }
@@ -64,10 +63,10 @@ namespace MedicalExamination.API.Controllers
 
             string token = await _tokenService.CreateToken(user);
 
-            CookieOptions cookieOptions = new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Lax };
-            Response.Cookies.Append("c10-Access-Token", token, cookieOptions);
-            Response.Cookies.Append("c10-Username", user.UserName, cookieOptions);
-            Response.Cookies.Append("c10-Refresh-Token", user.RefreshToken, cookieOptions);
+            CookieOptions cookieOptions = new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.None, Secure = true };
+            Response.Cookies.Append("X-Access-Token", token, cookieOptions);
+            Response.Cookies.Append("X-Username", user.UserName, cookieOptions);
+            Response.Cookies.Append("X-Refresh-Token", user.RefreshToken, cookieOptions);
             return Ok();
         }
     }

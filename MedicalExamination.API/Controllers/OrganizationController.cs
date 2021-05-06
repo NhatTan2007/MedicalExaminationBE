@@ -1,6 +1,7 @@
 ﻿using MedicalExamination.BAL.Interface;
 using MedicalExamination.Domain.Requests;
 using MedicalExamination.Domain.Responses.OrganizationRes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.API.Controllers
 {
+    [Authorize]
     public class OrganizationController : BaseApiController
     {
         private readonly IOrganizationsService _organizationsServices;

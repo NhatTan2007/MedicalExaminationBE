@@ -32,6 +32,7 @@ namespace MedicalExamination.DAL.Implement
 
         public async Task<CreateUserRes> CreateNewUser(AppIdentityUser newUser, string password)
         {
+            newUser.DepartmentId = newUser.DepartmentId == "" ? null : newUser.DepartmentId;
             var result = await _userManager.CreateAsync(newUser, password);
             CreateUserRes response = new CreateUserRes();
             if (result.Succeeded)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace MedicalExamination.Domain.Entities
 {
@@ -42,6 +43,7 @@ namespace MedicalExamination.Domain.Entities
         public string Avatar { get => _avatar; set => _avatar = value; }
         [MaxLength(200)]
         public string Signature { get => _signature; set => _signature = value; }
+        [JsonIgnore]
         public string RefreshToken { get => _refreshToken; set => _refreshToken = value; }
 
         public AppIdentityUser()
