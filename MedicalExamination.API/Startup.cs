@@ -51,14 +51,18 @@ namespace MedicalExamination.API
             }));
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseSqlServer(_config.GetConnectionString("DbConnection")), ServiceLifetime.Transient);
-            services.AddIdentity<AppIdentityUser, AppIdentityRole>(opt =>
-                                        {
-                                            opt.User.RequireUniqueEmail = true;
-                                        })
-                                        .AddEntityFrameworkStores<AppDbContext>()
-                                        .AddDefaultTokenProviders();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services.AddIdentity<AppIdentityUser, AppIdentityRole>(opt =>
+            {
+                opt.User.RequireUniqueEmail = true;
+            })
+                            .AddEntityFrameworkStores<AppDbContext>();
+
+            services.AddAuthentication(options => {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
                 .AddJwtBearer(opts =>
                 {
                     opts.TokenValidationParameters = new TokenValidationParameters
@@ -80,10 +84,6 @@ namespace MedicalExamination.API
                         }
                     };
                 });
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.SameSite = SameSiteMode.None;
-            });
             services.AddControllers().AddNewtonsoftJson();
 
             services.AddSwaggerGen(c =>
@@ -143,7 +143,6 @@ namespace MedicalExamination.API
             app.UseRouting();
 
             app.UseCors(_corsPolicy);
-            app.UseCookiePolicy();
 
             app.UseAuthentication();
 
