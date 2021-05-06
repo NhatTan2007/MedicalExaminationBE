@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MedicalExamination.BAL.Interface
 {
     public interface ITokenService
     {
-        string CreateToken(AppIdentityUser user);
+        Task<string> CreateToken(AppIdentityUser user);
     }
 }

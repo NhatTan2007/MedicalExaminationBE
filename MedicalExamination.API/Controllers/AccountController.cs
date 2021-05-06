@@ -15,21 +15,59 @@ namespace MedicalExamination.API.Controllers
     public class AccountController : BaseApiController
     {
         private readonly IAccountService _accountService;
+        private readonly IUserService _userService;
+        private readonly ITokenService _tokenService;
 
-        public AccountController(IAccountService accountService)
+        public AccountController(IAccountService accountService,
+                                    IUserService userService,
+                                    ITokenService tokenService)
         {
             _accountService = accountService;
+            _userService = userService;
+            _tokenService = tokenService;
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(AccountLoginReq request)
         {
-            var result = await _accountService.Login(request);
-            if (result != null)
+            if (ModelState.IsValid)
             {
-                return Ok(await _accountService.Login(request));
+                var response = await _accountService.Login(request);
+                if (response != null)
+                {
+                    var cookieOptions = new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.None, Secure = true};
+                    Response.Cookies.Append("X-Access-Token", response.Token, cookieOptions);
+                    Response.Cookies.Append("X-Username", response.UserName, cookieOptions);
+                    Response.Cookies.Append("X-Refresh-Token", response.RefreshToken, cookieOptions);
+                    return Ok();
+                }
+                return Unauthorized("Invalid username or password, please try again");
             }
-            return Unauthorized("Invalid username or password, please try again");
+            return BadRequest(ModelState);
+        }
+
+        [HttpGet("refresh")]
+        public async Task<IActionResult> RefreshToken()
+        {
+            string userName = String.Empty;
+            string refreshToken = String.Empty;
+
+            if (!(Request.Cookies.TryGetValue("X-Username", out userName) && (Request.Cookies.TryGetValue("X-Refresh-Token", out refreshToken))))
+            {
+                return BadRequest();
+            }
+
+            var user = _userService.GetUserByUsernameAndRefreshToken(userName, refreshToken);
+
+            if (user == null) return BadRequest();
+
+            string token = await _tokenService.CreateToken(user);
+
+            CookieOptions cookieOptions = new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.None, Secure = true };
+            Response.Cookies.Append("X-Access-Token", token, cookieOptions);
+            Response.Cookies.Append("X-Username", user.UserName, cookieOptions);
+            Response.Cookies.Append("X-Refresh-Token", user.RefreshToken, cookieOptions);
+            return Ok();
         }
     }
 }
