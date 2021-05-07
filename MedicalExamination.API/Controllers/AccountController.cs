@@ -1,7 +1,9 @@
 ﻿using MedicalExamination.BAL.Interface;
 using MedicalExamination.Domain.Entities;
+using MedicalExamination.Domain.Helper;
 using MedicalExamination.Domain.Requests.Account;
 using MedicalExamination.Domain.Responses.Account;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace MedicalExamination.API.Controllers
 {
+    [EnableCors("AllowAllPolicy")]
     public class AccountController : BaseApiController
     {
         private readonly IAccountService _accountService;
@@ -35,10 +38,20 @@ namespace MedicalExamination.API.Controllers
                 var response = await _accountService.Login(request);
                 if (response != null)
                 {
-                    var cookieOptions = new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.None, Secure = true};
+                    var cookieOptions = new CookieOptions() { HttpOnly = true,
+                        SameSite = SameSiteMode.None,
+                        Secure = true
+                    };
                     Response.Cookies.Append("X-Access-Token", response.Token, cookieOptions);
                     Response.Cookies.Append("X-Username", response.UserName, cookieOptions);
                     Response.Cookies.Append("X-Refresh-Token", response.RefreshToken, cookieOptions);
+
+                    //test add header
+                    //Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                    //Response.Headers.Add("Access-Control-Allow-Credentials", "true");
+                    //Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Accept-Encoding, Content-Length, Content-MD5, Date, X-Api-Version, X-File-Name");
+                    //Response.Headers.Add("Access-Control-Allow-Methods", "POST,GET,PUT,PATCH,DELETE,OPTIONS");
+
                     return Ok();
                 }
                 return Unauthorized("Invalid username or password, please try again");
@@ -60,10 +73,11 @@ namespace MedicalExamination.API.Controllers
             var user = _userService.GetUserByUsernameAndRefreshToken(userName, refreshToken);
 
             if (user == null) return BadRequest();
-
+            //zo anh
             string token = await _tokenService.CreateToken(user);
 
-            CookieOptions cookieOptions = new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.None, Secure = true };
+            CookieOptions cookieOptions = new CookieOptions() { HttpOnly = true,
+                SameSite = SameSiteMode.None, Secure = true};
             Response.Cookies.Append("X-Access-Token", token, cookieOptions);
             Response.Cookies.Append("X-Username", user.UserName, cookieOptions);
             Response.Cookies.Append("X-Refresh-Token", user.RefreshToken, cookieOptions);

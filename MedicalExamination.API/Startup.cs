@@ -4,8 +4,10 @@ using MedicalExamination.DAL.Implement;
 using MedicalExamination.DAL.Implement.DbContexts;
 using MedicalExamination.DAL.Interface;
 using MedicalExamination.Domain.Entities;
+using MedicalExamination.Domain.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
@@ -44,23 +46,30 @@ namespace MedicalExamination.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(opts => opts.AddPolicy(_corsPolicy, builder =>
-            {
-                builder.WithOrigins("http://khamskdinhky.tech", "http://localhost:4200")
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials();
-            }));
+            // ********************
+            // Setup CORS
+            // ********************
+            var corsBuilder = new CorsPolicyBuilder();
+            corsBuilder.AllowAnyHeader();
+            corsBuilder.AllowAnyMethod();
+            corsBuilder.WithOrigins(Helper.domain); // for a specific url. Don't add a forward slash on the end!
+            corsBuilder.AllowCredentials();
+
+            services.AddCors(opts => opts.AddPolicy(_corsPolicy, corsBuilder.Build()));
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseSqlServer(_config.GetConnectionString("DbConnection")), ServiceLifetime.Transient);
-            services.AddIdentity<AppIdentityUser, AppIdentityRole>(opt =>
-                                        {
-                                            opt.User.RequireUniqueEmail = true;
-                                        })
-                                        .AddEntityFrameworkStores<AppDbContext>()
-                                        .AddDefaultTokenProviders();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services.AddIdentity<AppIdentityUser, AppIdentityRole>(opt =>
+            {
+                opt.User.RequireUniqueEmail = true;
+            })
+                            .AddEntityFrameworkStores<AppDbContext>();
+
+            services.AddAuthentication(options => {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
                 .AddJwtBearer(opts =>
                 {
                     opts.TokenValidationParameters = new TokenValidationParameters
@@ -82,10 +91,6 @@ namespace MedicalExamination.API
                         }
                     };
                 });
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.SameSite = SameSiteMode.None;
-            });
             services.AddControllers().AddNewtonsoftJson();
 
             // chan multi-part
@@ -141,8 +146,6 @@ namespace MedicalExamination.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -153,10 +156,13 @@ namespace MedicalExamination.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Medical Examination API");
             });
 
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseCors(_corsPolicy);
-            app.UseCookiePolicy();
+
+            app.UseHttpsRedirection();
 
             app.UseStaticFiles(new StaticFileOptions
             {
