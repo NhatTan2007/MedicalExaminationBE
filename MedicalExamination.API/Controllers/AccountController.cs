@@ -1,5 +1,6 @@
 ﻿using MedicalExamination.BAL.Interface;
 using MedicalExamination.Domain.Entities;
+using MedicalExamination.Domain.Helper;
 using MedicalExamination.Domain.Requests.Account;
 using MedicalExamination.Domain.Responses.Account;
 using Microsoft.AspNetCore.Cors;
@@ -39,9 +40,7 @@ namespace MedicalExamination.API.Controllers
                 {
                     var cookieOptions = new CookieOptions() { HttpOnly = true,
                         SameSite = SameSiteMode.None,
-                        Secure = true,
-                        Domain = "https://khamskdinhky.tech",
-                        Path = "/"
+                        Secure = true
                     };
                     Response.Cookies.Append("X-Access-Token", response.Token, cookieOptions);
                     Response.Cookies.Append("X-Username", response.UserName, cookieOptions);
@@ -78,8 +77,7 @@ namespace MedicalExamination.API.Controllers
             string token = await _tokenService.CreateToken(user);
 
             CookieOptions cookieOptions = new CookieOptions() { HttpOnly = true,
-                SameSite = SameSiteMode.None, Secure = true, Domain = "https://khamskdinhky.tech",
-            Path="/" };
+                SameSite = SameSiteMode.None, Secure = true};
             Response.Cookies.Append("X-Access-Token", token, cookieOptions);
             Response.Cookies.Append("X-Username", user.UserName, cookieOptions);
             Response.Cookies.Append("X-Refresh-Token", user.RefreshToken, cookieOptions);

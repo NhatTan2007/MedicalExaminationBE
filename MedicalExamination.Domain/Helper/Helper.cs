@@ -16,7 +16,7 @@ namespace MedicalExamination.Domain.Helper
     {
         public static string idTimeZoneUtc7 = "SE Asia Standard Time";
         private static DateTime baseDate = new DateTime(1970, 01, 01);
-
+        public static string domain = "http://khamskdinhky.tech:4200";
         public static TDestination AutoDTO<TSource, TDestination>(TSource source)
         {
             var config = new MapperConfiguration(cfg =>
