@@ -1,5 +1,6 @@
 ﻿using MedicalExamination.BAL.Interface;
 using MedicalExamination.Domain.Entities;
+using MedicalExamination.Domain.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -32,10 +33,14 @@ namespace MedicalExamination.BAL.Implement
 
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256Signature);
 
+            var getTime = DateTime.UtcNow;
+
+            var utc7Time = Helper.ConvertUTCToTimeZone(getTime, Helper.idTimeZoneUtc7);
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddMinutes(6),
+                Expires = utc7Time.AddMinutes(6),
                 SigningCredentials = creds
             };
 
