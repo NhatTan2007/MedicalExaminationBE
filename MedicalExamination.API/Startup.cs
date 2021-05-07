@@ -6,6 +6,7 @@ using MedicalExamination.DAL.Interface;
 using MedicalExamination.Domain.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -42,13 +43,16 @@ namespace MedicalExamination.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(opts => opts.AddPolicy(_corsPolicy, builder =>
-            {
-                builder.WithOrigins("http://khamskdinhky.tech", "http://localhost:4200")
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials();
-            }));
+            //// ********************
+            //// Setup CORS
+            //// ********************
+            //var corsBuilder = new CorsPolicyBuilder();
+            //corsBuilder.AllowAnyHeader();
+            //corsBuilder.AllowAnyMethod();
+            //corsBuilder.WithOrigins("https://khamskdinhky.tech"); // for a specific url. Don't add a forward slash on the end!
+            //corsBuilder.AllowCredentials();
+
+            //services.AddCors(opts => opts.AddPolicy(_corsPolicy, corsBuilder.Build()));
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseSqlServer(_config.GetConnectionString("DbConnection")), ServiceLifetime.Transient);
 
@@ -84,12 +88,6 @@ namespace MedicalExamination.API
                         }
                     };
                 });
-
-            
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.SameSite = SameSiteMode.None;
-            });
             services.AddControllers().AddNewtonsoftJson();
 
             services.AddSwaggerGen(c =>
@@ -134,7 +132,7 @@ namespace MedicalExamination.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
@@ -146,10 +144,13 @@ namespace MedicalExamination.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Medical Examination API");
             });
 
+            app.UseStaticFiles();
+
             app.UseRouting();
 
-            app.UseCors(_corsPolicy);
-            app.UseCookiePolicy();
+            //app.UseCors(_corsPolicy);
+
+            app.UseHttpsRedirection();
 
             app.UseAuthentication();
 
