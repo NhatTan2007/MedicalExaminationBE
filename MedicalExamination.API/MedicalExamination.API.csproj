@@ -35,5 +35,9 @@
     <ProjectReference Include="..\MedicalExamination.Domain\MedicalExamination.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resouces\images\" />
+  </ItemGroup>
+
 
 </Project>
