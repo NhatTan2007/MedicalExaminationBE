@@ -6,8 +6,8 @@ namespace MedicalExamination.Domain.Responses.Account
 {
     public class AccountLoginRes
     {
-        public string UserName { get; set; }
-        public string Token { get; set; }
-        public string RefreshToken { get; set; }
+        public string DepartmentId { get; set; }
+        public string FullName { get; set; }
+        public string UserId { get; set; }
     }
 }
