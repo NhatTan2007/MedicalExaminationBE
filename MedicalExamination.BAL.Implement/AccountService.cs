@@ -33,7 +33,7 @@ namespace MedicalExamination.BAL.Implement
 
         //}
 
-        public async Task<AccountLoginRes> Login(AccountLoginReq request)
+        public async Task<AccountLoginResult> Login(AccountLoginReq request, AccountLoginRes response)
         {
             var user = await _userManager.FindByNameAsync(request.Username);
             if (user != null)
@@ -41,7 +41,10 @@ namespace MedicalExamination.BAL.Implement
                 var loginResult = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
                 if (loginResult.Succeeded)
                 {
-                    return new AccountLoginRes()
+                    response.UserId = user.Id;
+                    response.DepartmentId = user.DepartmentId;
+                    response.FullName = $"{user.LastName} {user.FirstName}";
+                    return new AccountLoginResult()
                     {
                         UserName = user.UserName,
                         Token = await _tokenService.CreateToken(user),

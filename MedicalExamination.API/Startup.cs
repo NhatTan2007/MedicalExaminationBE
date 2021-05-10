@@ -1,3 +1,4 @@
+using MedicalExamination.API.Controllers;
 using MedicalExamination.BAL.Implement;
 using MedicalExamination.BAL.Interface;
 using MedicalExamination.DAL.Implement;
@@ -52,10 +53,12 @@ namespace MedicalExamination.API
             var corsBuilder = new CorsPolicyBuilder();
             corsBuilder.AllowAnyHeader();
             corsBuilder.AllowAnyMethod();
-            corsBuilder.WithOrigins(Helper.domain); // for a specific url. Don't add a forward slash on the end!
+            corsBuilder.WithOrigins(Helper.domain, "http://khamskdinhky.tech:4200");
             corsBuilder.AllowCredentials();
 
-            services.AddCors(opts => opts.AddPolicy(_corsPolicy, corsBuilder.Build()));
+            services.AddCors(opts => {
+                opts.AddPolicy(_corsPolicy, corsBuilder.Build());
+            });
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseSqlServer(_config.GetConnectionString("DbConnection")), ServiceLifetime.Transient);
 
@@ -140,7 +143,7 @@ namespace MedicalExamination.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //app.UseCors(_corsPolicy);
+            app.UseCors(_corsPolicy);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -159,9 +162,7 @@ namespace MedicalExamination.API
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseCors(_corsPolicy);
-
+          
             app.UseHttpsRedirection();
 
 
