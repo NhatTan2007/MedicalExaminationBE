@@ -9,7 +9,7 @@ namespace MedicalExamination.BAL.Interface
 {
     public interface IAccountService
     {
-        Task<AccountLoginRes> Login(AccountLoginReq request);
+        Task<AccountLoginResult> Login(AccountLoginReq request, AccountLoginRes response);
         //Task<string> CreateCookie(AccountLoginRes response);
     }
 }
