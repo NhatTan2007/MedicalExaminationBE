@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,48 +13,49 @@ namespace MedicalExamination.API.Controllers
     public class UploadController : BaseApiController
     {
 
-        private IWebHostEnvironment _hostingEnvironment;
+        private IWebHostEnvironment _environment;
 
-        public UploadController(IWebHostEnvironment hostingEnvironment)
+        public UploadController(IWebHostEnvironment environment)
         {
-            _hostingEnvironment = hostingEnvironment;
+            _environment = environment;
+        }
+
+        public class FIleUploadAPI // model 
+        {
+            //public string userA {get;set;}
         }
 
         [HttpPost, DisableRequestSizeLimit]
-       public IActionResult Upload()
+        public string Upload()
         {
-            try
+            IFormFile files = Request.Form.Files[0];
+            if (files.Length > 0)
             {
-                var file = Request.Form.Files[0];
-                var folderName = Path.Combine("Resouces", "images");
-                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-
-                if (file.Length > 0)
+                try
                 {
-                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                    var fullPath = Path.Combine(pathToSave, fileName);
-                    var dbPath = Path.Combine(folderName, fileName);
-
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    if (!Directory.Exists(_environment.WebRootPath + "\\uploads\\"))
                     {
-                        file.CopyTo(stream);
+                        Directory.CreateDirectory(_environment.WebRootPath + "\\uploads\\");
                     }
-                    return OK(new { dbPath });
+                    var uniqueFilename = Guid.NewGuid().ToString() + "_" + files.FileName;
+                    using (FileStream filestream = System.IO.File.Create(_environment.WebRootPath + "\\uploads\\" + uniqueFilename))
+                    {
+                        files.CopyTo(filestream);
+                        filestream.Flush();
+                        return "\\uploads\\" + files.FileName;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    return BadRequest();
+                    return ex.ToString();
                 }
             }
-            catch (Exception ex)
+            else
             {
-                return StatusCode(500, $"Internal server error:{ex}");
+                return "Unsuccessful";
             }
-        }
 
-        private IActionResult OK(object p)
-        {
-            throw new NotImplementedException();
+
         }
     }
 }

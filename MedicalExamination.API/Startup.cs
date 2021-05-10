@@ -164,11 +164,6 @@ namespace MedicalExamination.API
 
             app.UseHttpsRedirection();
 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resouces")),
-                RequestPath = new PathString("/Resouces")
-            }) ;
 
             app.UseAuthentication();
 

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -14,13 +14,6 @@
     <DocumentationFile>MedicalExamination.API\MedicalExamination.API.xml</DocumentationFile>
     <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="wwwroot\**" />
-    <Content Remove="wwwroot\**" />
-    <EmbeddedResource Remove="wwwroot\**" />
-    <None Remove="wwwroot\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.14" />
@@ -42,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resouces\images\" />
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 
