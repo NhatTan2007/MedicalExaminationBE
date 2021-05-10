@@ -16,13 +16,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\**" />
-    <Content Remove="wwwroot\**" />
-    <EmbeddedResource Remove="wwwroot\**" />
-    <None Remove="wwwroot\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.14" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
@@ -39,6 +32,10 @@
     <ProjectReference Include="..\MedicalExamination.DAL.Implement\MedicalExamination.DAL.Implement.csproj" />
     <ProjectReference Include="..\MedicalExamination.DAL.Interface\MedicalExamination.DAL.Interface.csproj" />
     <ProjectReference Include="..\MedicalExamination.Domain\MedicalExamination.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 

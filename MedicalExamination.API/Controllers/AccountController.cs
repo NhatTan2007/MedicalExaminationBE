@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -50,10 +51,10 @@ namespace MedicalExamination.API.Controllers
                     Response.Cookies.Append("X-Access-Token", loginResult.Token, cookieOptions);
                     Response.Cookies.Append("X-Username", loginResult.UserName, cookieOptions);
                     Response.Cookies.Append("X-Refresh-Token", loginResult.RefreshToken, cookieOptions);
-
                     return Ok(response);
                 }
                 Response.Cookies.Delete("X-Access-Token", cookieOptions);
+                Response.Cookies.Delete("X-Username", cookieOptions);
                 Response.Cookies.Delete("X-Refresh-Token", cookieOptions);
                 return Unauthorized("Invalid username or password, please try again");
             }
