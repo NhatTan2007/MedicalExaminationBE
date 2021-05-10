@@ -47,7 +47,6 @@ namespace MedicalExamination.API.Controllers
                 var loginResult = await _accountService.Login(request, response);
                 if (loginResult != null)
                 {
-
                     Response.Cookies.Append("X-Access-Token", loginResult.Token, cookieOptions);
                     Response.Cookies.Append("X-Username", loginResult.UserName, cookieOptions);
                     Response.Cookies.Append("X-Refresh-Token", loginResult.RefreshToken, cookieOptions);
