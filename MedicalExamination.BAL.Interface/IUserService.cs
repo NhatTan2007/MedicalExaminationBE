@@ -14,5 +14,6 @@ namespace MedicalExamination.BAL.Interface
         List<UserViewModel> GetAllUser();
         Task<UserDetailsModel> GetUserById(string userId);
         AppIdentityUser GetUserByUsernameAndRefreshToken(string username, string refreshToken);
+        Task<UserInfoRes> GetUserInfo(string userName);
     }
 }

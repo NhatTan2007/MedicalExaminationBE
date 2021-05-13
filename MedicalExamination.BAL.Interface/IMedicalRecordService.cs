@@ -17,5 +17,6 @@ namespace MedicalExamination.BAL.Interface
         Task<IEnumerable<MedicalRecordViewRes>> GetAllInactiveMedicalRecords();
         Task<UpdateMedicalRecordRes> PaidMedicalRecord(string medicalRecordId);
         Task<UpdateMedicalRecordRes> ActiveMedicalRecord(string medicalRecordId);
+        Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByCustomerId(string customerId);
     }
 }

@@ -9,6 +9,7 @@ namespace MedicalExamination.Domain.Responses.MedicalRecord
         private string _medicalRecordId;
         private string _customerFirstName;
         private string _customerLastName;
+        private DateTime _createDate;
         private bool _isActive;
         private bool _isPaid;
 
@@ -18,5 +19,6 @@ namespace MedicalExamination.Domain.Responses.MedicalRecord
         public string CustomerFullName => $"{_customerLastName} {_customerFirstName}";
         public bool IsActive { get => _isActive; set => _isActive = value; }
         public bool IsPaid { get => _isPaid; set => _isPaid = value; }
+        public DateTime CreateDate { get => _createDate; set => _createDate = value; }
     }
 }

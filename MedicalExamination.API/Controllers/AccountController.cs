@@ -98,5 +98,23 @@ namespace MedicalExamination.API.Controllers
             Response.Cookies.Append("X-Refresh-Token", user.RefreshToken, cookieOptions);
             return Ok();
         }
+        [Authorize]
+        [HttpGet("userInfo")]
+        public async Task<IActionResult> GetUserInfo()
+        {
+            string userName = String.Empty;
+
+            if (!Request.Cookies.TryGetValue("X-Username", out userName))
+            {
+                return BadRequest();
+            }
+
+            var userInfo = await _userService.GetUserInfo(userName);
+            if(userInfo != null)
+            {
+                return Ok(userInfo);
+            }
+            return BadRequest();
+        }
     }
 }
