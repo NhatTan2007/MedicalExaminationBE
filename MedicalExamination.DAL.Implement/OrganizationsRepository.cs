@@ -2,6 +2,7 @@
 using MedicalExamination.DAL.Interface;
 using MedicalExamination.Domain.Entities;
 using MedicalExamination.Domain.Requests;
+using MedicalExamination.Domain.Responses.Organization;
 using MedicalExamination.Domain.Responses.OrganizationRes;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -150,6 +151,30 @@ namespace MedicalExamination.DAL.Implement
                     return new List<Organization>();
                 }
 
+        }
+
+        public async Task<QuerryOrganizationRes> GetOrganizationBypagination(int currentPage, int pageSize)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add(name: "@CurrentPage", currentPage);
+            parameters.Add(name: "@PageSize", pageSize);
+            parameters.Add(name: "@TotalOrganization", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+            using (var result = SqlMapper.QueryAsync<Customer>(
+                                              cnn: connection,
+                                              sql: "sp_PaginationByOrganization",
+                                              param: parameters,
+                                              commandType: CommandType.StoredProcedure))
+                try
+                {
+                    QuerryOrganizationRes querryResult = new QuerryOrganizationRes();
+                    querryResult.Organization = (IEnumerable<Organization>)await result;
+                    querryResult.TotalOrganization = parameters.Get<int>("@TotalOrganization");
+                    return querryResult;
+                }
+                catch (Exception ex)
+                {
+                    return new QuerryOrganizationRes();
+                }
         }
     }
 }

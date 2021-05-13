@@ -44,6 +44,18 @@ namespace MedicalExamination.API.Controllers
         }
 
         /// <summary>
+        /// GetOrganizationBypagination
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [HttpGet("currentPage/{currentPage}/pageSize/{pageSize}")]
+        public async Task<IActionResult> GetOrganizationBypagination(int currentPage, int pageSize)
+        {
+            return Ok(await _organizationsServices.GetOrganizationBypagination(currentPage, pageSize));
+        }
+
+        /// <summary>
         /// Get Organizations by name Order by Name ASC
         /// </summary>
         /// <param name="search"></param>

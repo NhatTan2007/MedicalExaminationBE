@@ -10,6 +10,14 @@
             </summary>
             <returns>List of all customers</returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.CustomerController.GetCustomerBypagination(System.Int32,System.Int32)">
+            <summary>
+            GetCustomerBypagination
+            </summary>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.CustomerController.GetCustomertById(System.String)">
             <summary>
             Get customer by customerId
@@ -214,6 +222,14 @@
             </summary>
             <param name="organizationId"></param>
             <returns>Specific organization has id want to find</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.OrganizationController.GetOrganizationBypagination(System.Int32,System.Int32)">
+            <summary>
+            GetOrganizationBypagination
+            </summary>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.OrganizationController.SearchOrangizationsByNameASCByName(System.String)">
             <summary>

@@ -1,5 +1,6 @@
 ﻿using MedicalExamination.Domain.Entities;
 using MedicalExamination.Domain.Requests;
+using MedicalExamination.Domain.Responses.Organization;
 using MedicalExamination.Domain.Responses.OrganizationRes;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace MedicalExamination.BAL.Interface
    public interface IOrganizationsService
     {
         Task<IEnumerable<Organization>> GetAllOrganizations();
+
+        Task<QuerryOrganizationRes> GetOrganizationBypagination(int currentPage, int pageSize);
+
         Task<Organization> GetOrganizationById(string orangizationId);
         Task<CreateOrganizationRes> CreateOrganization(CreateOrganizationReq request);
         Task<UpdateOrganizationRes> UpdateOrganization(UpdateOrganizationReq request);

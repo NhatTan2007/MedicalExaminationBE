@@ -30,6 +30,18 @@ namespace MedicalExamination.API.Controllers
         }
 
         /// <summary>
+        /// GetCustomerBypagination
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [HttpGet("currentPage/{currentPage}/pageSize/{pageSize}")]
+        public async Task<IActionResult> GetCustomerBypagination(int currentPage, int pageSize)
+        {
+            return Ok(await _customerServices.GetCustomerBypagination(currentPage, pageSize));
+        }
+
+        /// <summary>
         /// Get customer by customerId
         /// </summary>
         /// <param name="customerId"></param>

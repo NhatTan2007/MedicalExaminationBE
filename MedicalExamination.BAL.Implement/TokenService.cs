@@ -40,7 +40,7 @@ namespace MedicalExamination.BAL.Implement
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = utc7Time.AddMinutes(6),
+                Expires = utc7Time.AddMonths(6),
                 SigningCredentials = creds
             };
 

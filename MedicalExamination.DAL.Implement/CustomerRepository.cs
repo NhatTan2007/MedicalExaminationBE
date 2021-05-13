@@ -162,6 +162,31 @@ namespace MedicalExamination.DAL.Implement
                 }
             }
         }
+
+        public async Task<QuerryCustomerRes> GetCustomerBypagination(int currentPage, int pageSize)
+        {
+            
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add(name: "@CurrentPage", currentPage);
+            parameters.Add(name: "@PageSize", pageSize);
+            parameters.Add(name: "@TotalCustomer", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+            using (var result = SqlMapper.QueryAsync<Customer>(
+                                              cnn: connection,
+                                              sql: "sp_PaginationByCustomer",
+                                              param: parameters,
+                                              commandType: CommandType.StoredProcedure))
+                try
+                {
+                    QuerryCustomerRes querryResult = new QuerryCustomerRes();
+                    querryResult.Customers = await result;
+                    querryResult.TotalCustomer = parameters.Get<int>("@TotalCustomer");
+                    return querryResult;
+                }
+                catch (Exception ex)
+                {
+                    return new QuerryCustomerRes();
+                }
+        }
     }
 }
 

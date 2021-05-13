@@ -2,6 +2,7 @@
 using MedicalExamination.DAL.Interface;
 using MedicalExamination.Domain.Entities;
 using MedicalExamination.Domain.Requests;
+using MedicalExamination.Domain.Responses.Organization;
 using MedicalExamination.Domain.Responses.OrganizationRes;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,11 @@ namespace MedicalExamination.BAL.Implement
         public async Task<IEnumerable<Organization>> SearchOrganizationsByNameDESCByName(string search)
         {
             return await _organizationsRepository.SearchOrganizationsByNameDESCByName(search);
+        }
+
+        public async Task<QuerryOrganizationRes> GetOrganizationBypagination(int currentPage, int pageSize)
+        {
+            return await _organizationsRepository.GetOrganizationBypagination(currentPage, pageSize);
         }
     }
 }
