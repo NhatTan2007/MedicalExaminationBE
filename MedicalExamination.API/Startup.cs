@@ -1,9 +1,11 @@
+using MedicalExamination.API.Controllers;
 using MedicalExamination.BAL.Implement;
 using MedicalExamination.BAL.Interface;
 using MedicalExamination.DAL.Implement;
 using MedicalExamination.DAL.Implement.DbContexts;
 using MedicalExamination.DAL.Interface;
 using MedicalExamination.Domain.Entities;
+using MedicalExamination.Domain.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
@@ -43,16 +45,18 @@ namespace MedicalExamination.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //// ********************
-            //// Setup CORS
-            //// ********************
-            //var corsBuilder = new CorsPolicyBuilder();
-            //corsBuilder.AllowAnyHeader();
-            //corsBuilder.AllowAnyMethod();
-            //corsBuilder.WithOrigins("https://khamskdinhky.tech"); // for a specific url. Don't add a forward slash on the end!
-            //corsBuilder.AllowCredentials();
+            // ********************
+            // Setup CORS
+            // ********************
+            var corsBuilder = new CorsPolicyBuilder();
+            corsBuilder.AllowAnyHeader();
+            corsBuilder.AllowAnyMethod();
+            corsBuilder.WithOrigins(Helper.domain, "http://khamskdinhky.tech:4200");
+            corsBuilder.AllowCredentials();
 
-            //services.AddCors(opts => opts.AddPolicy(_corsPolicy, corsBuilder.Build()));
+            services.AddCors(opts => {
+                opts.AddPolicy(_corsPolicy, corsBuilder.Build());
+            });
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseSqlServer(_config.GetConnectionString("DbConnection")), ServiceLifetime.Transient);
 
@@ -126,13 +130,11 @@ namespace MedicalExamination.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //app.UseCors(_corsPolicy);
+            app.UseCors(_corsPolicy);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
-
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
@@ -147,9 +149,7 @@ namespace MedicalExamination.API
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            //app.UseCors(_corsPolicy);
-
+          
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
