@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 namespace MedicalExamination.API.Controllers
 {
     [Authorize]
-    [EnableCors("AllowAllPolicy")]
     public class OrganizationController : BaseApiController
     {
         private readonly IOrganizationsService _organizationsServices;

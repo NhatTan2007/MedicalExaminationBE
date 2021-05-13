@@ -14,5 +14,6 @@ namespace MedicalExamination.DAL.Interface
         Task<MedicalRecord> GetMedicalRecordById(string medicalRecordId);
         Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByNameOrIdActiveNotFinishedExamination();
         Task<IEnumerable<MedicalRecordViewRes>> GetAllInactiveMedicalRecords();
+        Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByCustomerId(string customerId);
     }
 }
