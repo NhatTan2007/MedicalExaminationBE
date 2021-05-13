@@ -37,10 +37,10 @@ namespace MedicalExamination.BAL.Implement
         public async Task<CreateMedicalRecordRes> CreateMedicalRecord(CreateMedicalRecordReq request)
         {
             MedicalRecord newMedicalRecord = Helper.AutoDTO<CreateMedicalRecordReq, MedicalRecord>(request);
-            DateTime utc = DateTime.UtcNow;
-            DateTime timeAtTimeZone = Helper.ConvertUTCToTimeZone(utc, Helper.idTimeZoneUtc7);
-            newMedicalRecord.CreateDate = Helper.ConvertToTimeStamp(timeAtTimeZone);
-            newMedicalRecord.MedicalRecordId = $"{newMedicalRecord.CreateDate}";
+            //DateTime utc = DateTime.UtcNow;
+            //DateTime timeAtTimeZone = Helper.ConvertUTCToTimeZone(utc, Helper.idTimeZoneUtc7);
+            //newMedicalRecord.CreateDate = Helper.ConvertToTimeStamp(timeAtTimeZone);
+            //newMedicalRecord.MedicalRecordId = $"{newMedicalRecord.CreateDate}";
             return await _medicalRecordRepository.CreateMedicalRecord(newMedicalRecord);
         }
 
@@ -69,6 +69,11 @@ namespace MedicalExamination.BAL.Implement
         public async Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByNameOrIdActiveNotFinishedExamination()
         {
             return await _medicalRecordRepository.GetMedicalRecordByNameOrIdActiveNotFinishedExamination();
+        }
+
+        public async Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByCustomerId(string customerId)
+        {
+            return await _medicalRecordRepository.GetMedicalRecordByCustomerId(customerId);
         }
     }
 }

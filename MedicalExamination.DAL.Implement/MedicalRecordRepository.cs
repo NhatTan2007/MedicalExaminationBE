@@ -19,9 +19,9 @@ namespace MedicalExamination.DAL.Implement
         public async Task<CreateMedicalRecordRes> CreateMedicalRecord(MedicalRecord medicalRecord)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add(name: "@MedicalRecordId", medicalRecord.MedicalRecordId);
+            //parameters.Add(name: "@MedicalRecordId", medicalRecord.MedicalRecordId);
             parameters.Add(name: "@Details", medicalRecord.Details);
-            parameters.Add(name: "@CreateDate", medicalRecord.CreateDate);
+            //parameters.Add(name: "@CreateDate", medicalRecord.CreateDate);
             parameters.Add(name: "@IsGroup", medicalRecord.IsGroup);
             parameters.Add(name: "@IsActive", medicalRecord.IsActive);
             parameters.Add(name: "@CustomerId", medicalRecord.CustomerId);
@@ -52,6 +52,20 @@ namespace MedicalExamination.DAL.Implement
             using (var result = SqlMapper.QueryAsync<MedicalRecordViewRes>(
                 cnn: connection,
                 sql: "sp_GetAllInactiveMedicalRecords",
+                param: parameters,
+                commandType: System.Data.CommandType.StoredProcedure))
+            {
+                return await result;
+            }
+        }
+
+        public async Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByCustomerId(string customerId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add(name: "@customerId", customerId);
+            using (var result = SqlMapper.QueryAsync<MedicalRecordViewRes>(
+                cnn: connection,
+                sql: "sp_GetMedicalRecordsByCustomerId",
                 param: parameters,
                 commandType: System.Data.CommandType.StoredProcedure))
             {

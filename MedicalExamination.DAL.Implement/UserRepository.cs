@@ -32,16 +32,24 @@ namespace MedicalExamination.DAL.Implement
 
         public async Task<CreateUserRes> CreateNewUser(AppIdentityUser newUser, string password)
         {
-            newUser.DepartmentId = newUser.DepartmentId == "" ? null : newUser.DepartmentId;
-            var result = await _userManager.CreateAsync(newUser, password);
             CreateUserRes response = new CreateUserRes();
-            if (result.Succeeded)
+            try
             {
-                response.UserId = newUser.Id;
-                response.Message = "Tài khoản mới đã được tạo";
+                newUser.DepartmentId = newUser.DepartmentId == "" ? null : newUser.DepartmentId;
+                var result = await _userManager.CreateAsync(newUser, password);
+                if (result.Succeeded)
+                {
+                    response.UserId = newUser.Id;
+                    response.Message = "Tài khoản mới đã được tạo";
+                }
+                else response.Message = "Có lỗi đã xảy ra, xin mời liên lạc Quản trị hệ thống";
+                return response;
             }
-            else response.Message = "Có lỗi đã xảy ra, xin mời liên lạc Quản trị hệ thống";
-            return response;
+            catch (Exception ex)
+            {
+                response.Message = "Có lỗi đã xảy ra, xin mời liên lạc Quản trị hệ thống";
+                return response;
+            }
         }
 
         public List<UserViewModel> GetAllUser()
@@ -70,6 +78,17 @@ namespace MedicalExamination.DAL.Implement
         public AppIdentityUser GetUserByUsernameAndRefreshToken(string username, string refreshToken)
         {
             return _userManager.Users.FirstOrDefault(u => u.UserName == username && u.RefreshToken == refreshToken);
+        }
+
+        public async Task<AppIdentityUser> GetUserInfo(string userName)
+        {
+            var user = await _userManager.FindByNameAsync(userName);
+            if(user != null)
+            {
+                return user;
+            }
+
+            return null;
         }
 
         public Task<UpdateUserRes> UpdateUserInfo(AppIdentityUser user)

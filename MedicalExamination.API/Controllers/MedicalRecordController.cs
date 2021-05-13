@@ -70,5 +70,16 @@ namespace MedicalExamination.API.Controllers
         {
             return Ok(await _medicalRecordService.GetMedicalRecordByNameOrIdActiveNotFinishedExamination());
         }
+
+        /// <summary>
+        /// Get medical records of customer
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns>list medical records</returns>
+        [HttpGet("customer/{customerId}")]
+        public async Task<IActionResult> GetMedicalRecordsByCustomerId(string customerId)
+        {
+            return Ok(await _medicalRecordService.GetMedicalRecordByCustomerId(customerId));
+        }
     }
 }
