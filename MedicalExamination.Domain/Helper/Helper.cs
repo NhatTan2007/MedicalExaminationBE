@@ -23,6 +23,7 @@ namespace MedicalExamination.Domain.Helper
             {
                 cfg.CreateMap<TSource, TDestination>();
                 cfg.CreateMap<AppIdentityUser, UserDetailsModel>().ForMember(u => u.UserId, act => act.MapFrom(src => src.Id));
+                cfg.CreateMap<AppIdentityUser, UserInfoRes>().ForMember(u => u.UserId, act => act.MapFrom(src => src.Id));
                 cfg.CreateMap<CreateUserReq, AppIdentityUser>()
                                     .ForMember(appUser => appUser.UserName,
                                                 act => act.MapFrom(src => Helper.FormatUsername(src.UserName)));

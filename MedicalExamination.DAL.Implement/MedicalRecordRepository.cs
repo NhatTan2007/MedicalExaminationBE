@@ -34,6 +34,7 @@ namespace MedicalExamination.DAL.Implement
             parameters.Add(name: "@IsPaid", medicalRecord.IsPaid);
             parameters.Add(name: "@MedicalHistory", medicalRecord.MedicalHistory);
             parameters.Add(name: "@ReasonToExamination", medicalRecord.ReasonToExamination);
+            parameters.Add(name: "@ServicesRegisted", medicalRecord.ServicesRegisted);
             parameters.Add(name: "@WasFinishedExamination", medicalRecord.WasFinishedExamination);
             using (var result = SqlMapper.QueryFirstOrDefaultAsync<CreateMedicalRecordRes>(
                 cnn: connection,
@@ -119,23 +120,21 @@ namespace MedicalExamination.DAL.Implement
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@MedicalRecordId", medicalRecord.MedicalRecordId);
             parameters.Add(name: "@Details", medicalRecord.Details);
-            parameters.Add(name: "@CreateDate", medicalRecord.CreateDate);
             parameters.Add(name: "@IsGroup", medicalRecord.IsGroup);
             parameters.Add(name: "@IsActive", medicalRecord.IsActive);
-            parameters.Add(name: "@CustomerId", medicalRecord.CustomerId);
             parameters.Add(name: "@TotalAmount", medicalRecord.TotalAmount);
-            parameters.Add(name: "@CustomerFirstName", medicalRecord.CustomerFirstName);
-            parameters.Add(name: "@CustomerLastName", medicalRecord.CustomerLastName);
             parameters.Add(name: "@OrganizationId", medicalRecord.OrganizationId);
             parameters.Add(name: "@GMExaminationId", medicalRecord.GMExaminationId);
             parameters.Add(name: "@DateCompleted", medicalRecord.DateCompleted);
             parameters.Add(name: "@IsPaid", medicalRecord.IsPaid);
             parameters.Add(name: "@WasFinishedExamination", medicalRecord.WasFinishedExamination);
             parameters.Add(name: "@MedicalHistory", medicalRecord.MedicalHistory);
+            parameters.Add(name: "@ReasonCancel", medicalRecord.ReasonCancel);
+            parameters.Add(name: "@ServiceUsed", medicalRecord.ServiceUsed);
             parameters.Add(name: "@ReasonToExamination", medicalRecord.ReasonToExamination);
             using (var result = SqlMapper.QueryFirstOrDefaultAsync<UpdateMedicalRecordRes>(
                 cnn: connection,
-                sql: "sp_CreateMedicalRecord",
+                sql: "sp_UpdateMedicalRecord",
                 param: parameters,
                 commandType: System.Data.CommandType.StoredProcedure))
             {
