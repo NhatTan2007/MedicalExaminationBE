@@ -33,7 +33,7 @@ namespace MedicalExamination.BAL.Implement
             if (request.IsEmployee)
             {
                 int employeesCount = _userRepository.CountEmployees();
-                _employeeCodePattern = _employeeCodePattern.Substring(0, _employeeCodePattern.Length - employeesCount.ToString().Length);
+                _employeeCodePattern = _employeeCodePattern.Substring(0, _employeeCodePattern.Length - ( employeesCount + 1).ToString().Length);
                 newUser.EmployeeCode = $"{_employeeCodePattern}{employeesCount+1}";
             }
 
