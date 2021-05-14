@@ -1,5 +1,6 @@
 ﻿using MedicalExamination.Domain.Entities;
 using MedicalExamination.Domain.Models.MedicalRecord;
+using MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms;
 using MedicalExamination.Domain.Requests.MedicalRecord;
 using MedicalExamination.Domain.Responses.MedicalRecord;
 using System;
@@ -18,5 +19,8 @@ namespace MedicalExamination.BAL.Interface
         Task<UpdateMedicalRecordRes> PaidMedicalRecord(string medicalRecordId);
         Task<UpdateMedicalRecordRes> ActiveMedicalRecord(string medicalRecordId);
         Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByCustomerId(string customerId);
+
+        //Update result
+        Task<UpdateMedicalRecordRes> UpdateDermatologyExamination(DermatologyExamination result, string mRecordId);
     }
 }
