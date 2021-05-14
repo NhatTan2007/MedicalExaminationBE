@@ -55,7 +55,7 @@ namespace MedicalExamination.API.Controllers
                 Response.Cookies.Delete("X-Access-Token", cookieOptions);
                 Response.Cookies.Delete("X-Username", cookieOptions);
                 Response.Cookies.Delete("X-Refresh-Token", cookieOptions);
-                return Unauthorized("Invalid username or password, please try again");
+                return Unauthorized("Sai tên đăng nhập hoặc mật khẩu, xin mời kiểm tra lại thông tin");
             }
             return BadRequest(ModelState);
         }
@@ -96,6 +96,24 @@ namespace MedicalExamination.API.Controllers
             Response.Cookies.Append("X-Username", user.UserName, cookieOptions);
             Response.Cookies.Append("X-Refresh-Token", user.RefreshToken, cookieOptions);
             return Ok();
+        }
+        [Authorize]
+        [HttpGet("userInfo")]
+        public async Task<IActionResult> GetUserInfo()
+        {
+            string userName = String.Empty;
+
+            if (!Request.Cookies.TryGetValue("X-Username", out userName))
+            {
+                return BadRequest();
+            }
+
+            var userInfo = await _userService.GetUserInfo(userName);
+            if(userInfo != null)
+            {
+                return Ok(userInfo);
+            }
+            return BadRequest();
         }
     }
 }

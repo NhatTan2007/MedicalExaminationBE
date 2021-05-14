@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
+using MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms;
 
 namespace MedicalExamination.BAL.Implement
 {
@@ -37,10 +38,10 @@ namespace MedicalExamination.BAL.Implement
         public async Task<CreateMedicalRecordRes> CreateMedicalRecord(CreateMedicalRecordReq request)
         {
             MedicalRecord newMedicalRecord = Helper.AutoDTO<CreateMedicalRecordReq, MedicalRecord>(request);
-            DateTime utc = DateTime.UtcNow;
-            DateTime timeAtTimeZone = Helper.ConvertUTCToTimeZone(utc, Helper.idTimeZoneUtc7);
-            newMedicalRecord.CreateDate = Helper.ConvertToTimeStamp(timeAtTimeZone);
-            newMedicalRecord.MedicalRecordId = $"{newMedicalRecord.CreateDate}";
+            //DateTime utc = DateTime.UtcNow;
+            //DateTime timeAtTimeZone = Helper.ConvertUTCToTimeZone(utc, Helper.idTimeZoneUtc7);
+            //newMedicalRecord.CreateDate = Helper.ConvertToTimeStamp(timeAtTimeZone);
+            //newMedicalRecord.MedicalRecordId = $"{newMedicalRecord.CreateDate}";
             return await _medicalRecordRepository.CreateMedicalRecord(newMedicalRecord);
         }
 
@@ -69,6 +70,25 @@ namespace MedicalExamination.BAL.Implement
         public async Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByNameOrIdActiveNotFinishedExamination()
         {
             return await _medicalRecordRepository.GetMedicalRecordByNameOrIdActiveNotFinishedExamination();
+        }
+
+        public async Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByCustomerId(string customerId)
+        {
+            return await _medicalRecordRepository.GetMedicalRecordByCustomerId(customerId);
+        }
+
+        public async Task<UpdateMedicalRecordRes> UpdateDermatologyExamination(DermatologyExamination result, string mRecordId)
+        {
+            var medicalRecordRaw = await _medicalRecordRepository.GetMedicalRecordById(mRecordId);
+            if(medicalRecordRaw != null)
+            {
+                var medicalRecord = Helper.AutoDTO<MedicalRecord, MedicalRecordModel>(medicalRecordRaw);
+                if (String.IsNullOrEmpty(medicalRecord.Details.DermatologyExamination.DoctorId)) medicalRecordRaw.ServiceUsed++;
+                medicalRecord.Details.DermatologyExamination = result;
+                medicalRecordRaw.Details = Helper.AutoDTO<MedicalRecordDetails, string>(medicalRecord.Details);
+                return await _medicalRecordRepository.UpdateMedicalRecord(medicalRecordRaw);
+            }
+            return null;
         }
     }
 }

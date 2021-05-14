@@ -1,4 +1,5 @@
 ﻿using MedicalExamination.BAL.Interface;
+using MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms;
 using MedicalExamination.Domain.Requests.MedicalRecord;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -69,6 +70,31 @@ namespace MedicalExamination.API.Controllers
         public async Task<IActionResult> GetMedicalRecordsByNameOrIdActiveNotFinishedExamination()
         {
             return Ok(await _medicalRecordService.GetMedicalRecordByNameOrIdActiveNotFinishedExamination());
+        }
+
+        /// <summary>
+        /// Get medical records of customer
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns>list medical records</returns>
+        [HttpGet("customer/{customerId}")]
+        public async Task<IActionResult> GetMedicalRecordsByCustomerId(string customerId)
+        {
+            return Ok(await _medicalRecordService.GetMedicalRecordByCustomerId(customerId));
+        }
+
+        /// <summary>
+        /// Get medical records of customer
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="mRecordId"></param>
+        /// <returns>list medical records</returns>
+        [HttpPut("{mRecordId}/dermatologyExamination")]
+        public async Task<IActionResult> UpdateDermatologyExamination([FromBody] DermatologyExamination result, string mRecordId)
+        {
+            var response = await _medicalRecordService.UpdateDermatologyExamination(result, mRecordId);
+            if (response != null) return Ok(response);
+            return BadRequest();
         }
     }
 }

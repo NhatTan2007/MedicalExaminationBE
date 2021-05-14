@@ -25,16 +25,15 @@ namespace MedicalExamination.BAL.Implement
         public async Task<CreateUserRes> CreateNewUser(CreateUserReq request)
         {
             AppIdentityUser newUser = Helper.AutoDTO<CreateUserReq, AppIdentityUser>(request);
-
-
+            newUser.UserName = newUser.UserName.ToLower();
             //Add user id and employeeCode
             newUser.Id = Guid.NewGuid().ToString();
             //Make employee code
             if (request.IsEmployee)
             {
                 int employeesCount = _userRepository.CountEmployees();
-                _employeeCodePattern = _employeeCodePattern.Substring(0, _employeeCodePattern.Length - ( employeesCount + 1).ToString().Length);
-                newUser.EmployeeCode = $"{_employeeCodePattern}{employeesCount+1}";
+                _employeeCodePattern = _employeeCodePattern.Substring(0, _employeeCodePattern.Length - (employeesCount + 1).ToString().Length);
+                newUser.EmployeeCode = $"{_employeeCodePattern}{employeesCount + 1}";
             }
 
             return await _userRepository.CreateNewUser(newUser, request.Password);
@@ -53,6 +52,16 @@ namespace MedicalExamination.BAL.Implement
         public AppIdentityUser GetUserByUsernameAndRefreshToken(string username, string refreshToken)
         {
             return _userRepository.GetUserByUsernameAndRefreshToken(username, refreshToken);
+        }
+
+        public async Task<UserInfoRes> GetUserInfo(string userName)
+        {
+            var user = await _userRepository.GetUserInfo(userName);
+            if (user != null)
+            {
+                return Helper.AutoDTO<AppIdentityUser, UserInfoRes>(user);
+            }
+            return null;
         }
     }
 }

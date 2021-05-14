@@ -162,7 +162,7 @@ namespace MedicalExamination.API
             app.UseStaticFiles();
 
             app.UseRouting();
-          
+
             app.UseHttpsRedirection();
 
 
