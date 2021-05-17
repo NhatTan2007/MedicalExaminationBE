@@ -6,6 +6,7 @@ namespace MedicalExamination.Domain.Responses.User
 {
     public class UserInfoRes
     {
+        private string _userId;
         private string _firstName;
         private string _lastName;
         private string _departmentId;
@@ -20,5 +21,6 @@ namespace MedicalExamination.Domain.Responses.User
         public string Titles { get => _titles; set => _titles = value; }
         public string Avatar { get => _avatar; set => _avatar = value; }
         public string FullName => $"{_lastName} {_firstName}";
+        public string UserId { get => _userId; set => _userId = value; }
     }
 }
