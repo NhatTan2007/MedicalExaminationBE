@@ -17,6 +17,7 @@ namespace MedicalExamination.BAL.Interface
         Task<CreateCustomerRes> CreateCustomer(CreateCustomerReq request);
         Task<UpdateCustomerRes> UpdateCustomer(UpdateCustomerReq request);
         Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyword);
+        Task<QuerryCustomerRes> SearchByNameOrIdentityNumberPagination(string keyword, int currentPage, int pageSize);
 
 
     }

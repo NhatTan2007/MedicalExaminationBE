@@ -85,6 +85,19 @@ namespace MedicalExamination.API.Controllers
         {
             return Ok(await _customerServices.SearchByNameOrIdentityNumberAscByFirstName(keyword));
         }
+
+        /// <summary>
+        /// SearchByNameOrIdentityNumberPagination
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [HttpGet("search/{keyword}/currentPage/{currentPage}/pageSize/{pageSize}")]
+        public async Task<IActionResult> SearchByNameOrIdentityNumberPagination(string keyword, int currentPage, int pageSize)
+        {
+            return Ok(await _customerServices.SearchByNameOrIdentityNumberPagination(keyword, currentPage, pageSize));
+        }
         /// <summary>
         /// Get a customer by Identity Number
         /// </summary>

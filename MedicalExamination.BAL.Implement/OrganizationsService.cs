@@ -55,5 +55,10 @@ namespace MedicalExamination.BAL.Implement
         {
             return await _organizationsRepository.GetOrganizationBypagination(currentPage, pageSize);
         }
+
+        public async Task<QuerryOrganizationRes> SearchByOrganizationPagination(string keyword, int currentPage, int pageSize)
+        {
+            return await _organizationsRepository.SearchByOrganizationPagination(keyword, currentPage, pageSize);
+        }
     }
 }

@@ -21,5 +21,7 @@ namespace MedicalExamination.BAL.Interface
         
         Task<IEnumerable<Organization>> SearchOrganizationsByNameASCByName(string search);
         Task<IEnumerable<Organization>> SearchOrganizationsByNameDESCByName(string search);
+        Task<QuerryOrganizationRes> SearchByOrganizationPagination(string keyword, int currentPage, int pageSize);
+
     }
 }

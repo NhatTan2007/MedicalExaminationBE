@@ -77,6 +77,19 @@ namespace MedicalExamination.API.Controllers
         }
 
         /// <summary>
+        /// SearchByOrganizationPagination
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [HttpGet("search/{keyword}/currentPage/{currentPage}/pageSize/{pageSize}")]
+        public async Task<IActionResult> SearchByOrganizationPagination(string keyword, int currentPage, int pageSize)
+        {
+            return Ok(await _organizationsServices.SearchByOrganizationPagination(keyword, currentPage, pageSize));
+        }
+
+        /// <summary>
         /// Create new Organization
         /// </summary>
         /// <param name="request"></param>
