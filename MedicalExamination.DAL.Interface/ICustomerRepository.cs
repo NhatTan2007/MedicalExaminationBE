@@ -11,10 +11,13 @@ namespace MedicalExamination.DAL.Interface
     public interface ICustomerRepository
     {
         Task<IEnumerable<Customer>> GetAllCustomer();
+        Task<QuerryCustomerRes> GetCustomerBypagination(int currentPage,int pageSize);
         Task<Customer> GetCustomerById(string customerId);
         Task<Customer> GetCustomerByIdentityNumber(string identityNumber);
         Task<CreateCustomerRes> CreateCustomer(CreateCustomerReq request);
         Task<UpdateCustomerRes> UpdateCustomer(UpdateCustomerReq request);
         Task<IEnumerable<Customer>> SearchByNameOrIdentityNumberAscByFirstName(string keyword);
+        Task<QuerryCustomerRes> SearchByNameOrIdentityNumberPagination(string keyword, int currentPage,int pageSize);
+
     }
 }

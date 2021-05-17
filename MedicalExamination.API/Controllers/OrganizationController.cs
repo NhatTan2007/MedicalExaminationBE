@@ -43,6 +43,18 @@ namespace MedicalExamination.API.Controllers
         }
 
         /// <summary>
+        /// GetOrganizationBypagination
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [HttpGet("currentPage/{currentPage}/pageSize/{pageSize}")]
+        public async Task<IActionResult> GetOrganizationBypagination(int currentPage, int pageSize)
+        {
+            return Ok(await _organizationsServices.GetOrganizationBypagination(currentPage, pageSize));
+        }
+
+        /// <summary>
         /// Get Organizations by name Order by Name ASC
         /// </summary>
         /// <param name="search"></param>
@@ -62,6 +74,19 @@ namespace MedicalExamination.API.Controllers
         public async Task<IActionResult> GetOrangizationsByNameDESCByName(string search)
         {
             return Ok(await _organizationsServices.SearchOrganizationsByNameDESCByName(search));
+        }
+
+        /// <summary>
+        /// SearchByOrganizationPagination
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [HttpGet("search/{keyword}/currentPage/{currentPage}/pageSize/{pageSize}")]
+        public async Task<IActionResult> SearchByOrganizationPagination(string keyword, int currentPage, int pageSize)
+        {
+            return Ok(await _organizationsServices.SearchByOrganizationPagination(keyword, currentPage, pageSize));
         }
 
         /// <summary>

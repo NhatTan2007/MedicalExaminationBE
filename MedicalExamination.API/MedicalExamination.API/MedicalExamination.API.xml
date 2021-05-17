@@ -10,6 +10,14 @@
             </summary>
             <returns>List of all customers</returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.CustomerController.GetCustomerBypagination(System.Int32,System.Int32)">
+            <summary>
+            GetCustomerBypagination
+            </summary>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.CustomerController.GetCustomertById(System.String)">
             <summary>
             Get customer by customerId
@@ -37,6 +45,15 @@
             </summary>
             <param name="keyword"></param>
             <returns>List or a customer</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.CustomerController.SearchByNameOrIdentityNumberPagination(System.String,System.Int32,System.Int32)">
+            <summary>
+            SearchByNameOrIdentityNumberPagination
+            </summary>
+            <param name="keyword"></param>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.CustomerController.GetCustomerByIdentityNumber(System.String)">
             <summary>
@@ -303,11 +320,27 @@
             </summary>
             <returns>List medical services </returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.GetMedicalServicesBypagination(System.Int32,System.Int32)">
+            <summary>
+            GetMedicalServicesBypagination
+            </summary>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.GetActiveMedicalServices">
             <summary>
             Get active medical services
             </summary>
             <returns>List medical services </returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.GetActiveMedicalServicesBypagination(System.Int32,System.Int32)">
+            <summary>
+            GetActiveMedicalServicesBypagination
+            </summary>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.CreateMedicalService(MedicalExamination.Domain.Requests.MedicalService.CreateMedicalServiceReq)">
             <summary>
@@ -337,6 +370,15 @@
             <param name="departmentId"></param>
             <returns>A list of medical service</returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.SearchByNameMServicePagination(System.String,System.Int32,System.Int32)">
+            <summary>
+            SearchByNameMServicePagination
+            </summary>
+            <param name="keyword"></param>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.OrganizationController.GetAllOrganizations">
             <summary>
             Get all Organizations 
@@ -349,6 +391,14 @@
             </summary>
             <param name="organizationId"></param>
             <returns>Specific organization has id want to find</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.OrganizationController.GetOrganizationBypagination(System.Int32,System.Int32)">
+            <summary>
+            GetOrganizationBypagination
+            </summary>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.OrganizationController.SearchOrangizationsByNameASCByName(System.String)">
             <summary>
@@ -363,6 +413,15 @@
             </summary>
             <param name="search"></param>
             <returns>List of organization has name likely with search key</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.OrganizationController.SearchByOrganizationPagination(System.String,System.Int32,System.Int32)">
+            <summary>
+            SearchByOrganizationPagination
+            </summary>
+            <param name="keyword"></param>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.OrganizationController.CreateOrganization(MedicalExamination.Domain.Requests.CreateOrganizationReq)">
             <summary>

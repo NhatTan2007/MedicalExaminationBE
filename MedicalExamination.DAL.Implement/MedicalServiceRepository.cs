@@ -57,6 +57,30 @@ namespace MedicalExamination.DAL.Implement
             }
         }
 
+        public async Task<QuerryMSerciceRes> GetActiveMedicalServicesBypagination(int currentPage, int pageSize)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add(name: "@CurrentPage", currentPage);
+            parameters.Add(name: "@PageSize", pageSize);
+            parameters.Add(name: "@TotalMedicalSevices", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+            using (var result = SqlMapper.QueryAsync<MedicalService>(
+                                              cnn: connection,
+                                              sql: "sp_GetActiveMedicalServicesByPagination",
+                                              param: parameters,
+                                              commandType: CommandType.StoredProcedure))
+                try
+                {
+                    QuerryMSerciceRes querryResult = new QuerryMSerciceRes();
+                    querryResult.MedicalService = await result;
+                    querryResult.TotalMedicalSevices = parameters.Get<int>("@TotalMedicalSevices");
+                    return querryResult;
+                }
+                catch (Exception ex)
+                {
+                    return new QuerryMSerciceRes();
+                }
+        }
+
         public async Task<IEnumerable<MedicalService>> GetMedicalServiceByDepartmentId(string departmentId)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -111,6 +135,56 @@ namespace MedicalExamination.DAL.Implement
             {
                     return await result;
             }
+        }
+
+        public async Task<QuerryMSerciceRes> GetMedicalServicesBypagination(int currentPage, int pageSize)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add(name: "@CurrentPage", currentPage);
+            parameters.Add(name: "@PageSize", pageSize);
+            parameters.Add(name: "@TotalMedicalSevices", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+            using (var result = SqlMapper.QueryAsync<MedicalService>(
+                                              cnn: connection,
+                                              sql: "sp_PaginationByMedicalSevices",
+                                              param: parameters,
+                                              commandType: CommandType.StoredProcedure))
+                try
+                {
+                    QuerryMSerciceRes querryResult = new QuerryMSerciceRes();
+                    querryResult.MedicalService = await result;
+                    querryResult.TotalMedicalSevices = parameters.Get<int>("@TotalMedicalSevices");
+                    return querryResult;
+                }
+                catch (Exception ex)
+                {
+                    return new QuerryMSerciceRes();
+                }
+        }
+
+        public async Task<QuerryMSerciceRes> SearchByNameMServicePagination(string keyword, int currentPage, int pageSize)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add(name: "@SearchKey", keyword);
+            parameters.Add(name: "@CurrentPage", currentPage);
+            parameters.Add(name: "@PageSize", pageSize);
+            parameters.Add(name: "@TotalMedicalSevices", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            using (var result = SqlMapper.QueryAsync<MedicalService>(
+                                              cnn: connection,
+                                              sql: "sp_SearchByMedicalSevicesPagination",
+                                              param: parameters,
+                                              commandType: CommandType.StoredProcedure))
+                try
+                {
+                    QuerryMSerciceRes querryResult = new QuerryMSerciceRes();
+                    querryResult.MedicalService = await result;
+                    querryResult.TotalMedicalSevices = parameters.Get<int>("@TotalMedicalSevices");
+                    return querryResult;
+                }
+                catch (Exception)
+                {
+                    return new QuerryMSerciceRes();
+                }
         }
 
         public async Task<UpdateMedicalServiceRes> UpdateMedicalService(UpdateMedicalServiceReq request)
