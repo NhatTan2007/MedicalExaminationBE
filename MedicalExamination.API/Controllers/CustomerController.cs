@@ -30,6 +30,18 @@ namespace MedicalExamination.API.Controllers
         }
 
         /// <summary>
+        /// GetCustomerBypagination
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [HttpGet("currentPage/{currentPage}/pageSize/{pageSize}")]
+        public async Task<IActionResult> GetCustomerBypagination(int currentPage, int pageSize)
+        {
+            return Ok(await _customerServices.GetCustomerBypagination(currentPage, pageSize));
+        }
+
+        /// <summary>
         /// Get customer by customerId
         /// </summary>
         /// <param name="customerId"></param>
@@ -72,6 +84,19 @@ namespace MedicalExamination.API.Controllers
         public async Task<IActionResult> SearchByNameOrIdentityNumberAscByFirstName(string keyword)
         {
             return Ok(await _customerServices.SearchByNameOrIdentityNumberAscByFirstName(keyword));
+        }
+
+        /// <summary>
+        /// SearchByNameOrIdentityNumberPagination
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [HttpGet("search/{keyword}/currentPage/{currentPage}/pageSize/{pageSize}")]
+        public async Task<IActionResult> SearchByNameOrIdentityNumberPagination(string keyword, int currentPage, int pageSize)
+        {
+            return Ok(await _customerServices.SearchByNameOrIdentityNumberPagination(keyword, currentPage, pageSize));
         }
         /// <summary>
         /// Get a customer by Identity Number
