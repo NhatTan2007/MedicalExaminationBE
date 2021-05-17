@@ -55,7 +55,7 @@ namespace MedicalExamination.API.Controllers
                 Response.Cookies.Delete("X-Access-Token", cookieOptions);
                 Response.Cookies.Delete("X-Username", cookieOptions);
                 Response.Cookies.Delete("X-Refresh-Token", cookieOptions);
-                return Unauthorized("Invalid username or password, please try again");
+                return Unauthorized("Sai tên đăng nhập hoặc mật khẩu, xin mời kiểm tra lại thông tin");
             }
             return BadRequest(ModelState);
         }

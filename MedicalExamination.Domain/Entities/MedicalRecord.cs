@@ -23,6 +23,9 @@ namespace MedicalExamination.Domain.Entities
         private decimal _totalAmount;
         private bool _wasFinishedExamination;
         private string _customerId;
+        private int _servicesRegisted;
+        private int _serviceUsed;
+        private string _reasonCancel;
 
         public string MedicalRecordId { get => _medicalRecordId; set => _medicalRecordId = value; }
         public string Details { get => _details; set => _details = value; }
@@ -41,5 +44,8 @@ namespace MedicalExamination.Domain.Entities
         public string CustomerId { get => _customerId; set => _customerId = value; }
         public string MedicalHistory { get => _medicalHistory; set => _medicalHistory = value; }
         public string ReasonToExamination { get => _reasonToExamination; set => _reasonToExamination = value; }
+        public int ServicesRegisted { get => _servicesRegisted; set => _servicesRegisted = value; }
+        public int ServiceUsed { get => _serviceUsed; set => _serviceUsed = value; }
+        public string ReasonCancel { get => _reasonCancel; set => _reasonCancel = value; }
     }
 }
