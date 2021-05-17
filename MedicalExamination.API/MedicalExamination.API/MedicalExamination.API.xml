@@ -177,6 +177,14 @@
             <param name="customerId"></param>
             <returns>list medical records</returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateDermatologyExamination(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.DermatologyExamination,System.String)">
+            <summary>
+            Get medical records of customer
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>list medical records</returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.GetMedicalServices">
             <summary>
             Get all medical services

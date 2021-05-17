@@ -21,6 +21,7 @@ namespace MedicalExamination.Domain.Requests.MedicalRecord
         private decimal _totalAmount;
         private bool _wasFinishedExamination;
         private string _customerId;
+        private int _servicesRegisted;
 
         public MedicalHistoryForm MedicalHistory { get => _medicalHistory; set => _medicalHistory = value; }
         public MedicalRecordDetails Details { get => _details; set => _details = value; }
@@ -36,5 +37,6 @@ namespace MedicalExamination.Domain.Requests.MedicalRecord
         public bool WasFinishedExamination { get => _wasFinishedExamination; set => _wasFinishedExamination = value; }
         public string CustomerId { get => _customerId; set => _customerId = value; }
         public string ReasonToExamination { get => _reasonToExamination; set => _reasonToExamination = value; }
+        public int ServicesRegisted { get => _servicesRegisted; set => _servicesRegisted = value; }
     }
 }
