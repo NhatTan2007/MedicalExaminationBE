@@ -115,6 +115,19 @@ namespace MedicalExamination.DAL.Implement
             }
         }
 
+        public async Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByNameOrIdActiveFinishedExamination()
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            using (var result = SqlMapper.QueryAsync<MedicalRecordViewRes>(
+                cnn: connection,
+                sql: "sp_GetMedicalRecordByNameOrIdActiveFinishedExamination",
+                param: parameters,
+                commandType: System.Data.CommandType.StoredProcedure))
+            {
+                return await result;
+            }
+        }
+
         public async Task<UpdateMedicalRecordRes> UpdateMedicalRecord(MedicalRecord medicalRecord)
         {
             DynamicParameters parameters = new DynamicParameters();

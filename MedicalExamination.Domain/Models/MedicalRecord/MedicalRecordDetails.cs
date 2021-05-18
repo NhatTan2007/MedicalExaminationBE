@@ -7,6 +7,7 @@ namespace MedicalExamination.Domain.Models.MedicalRecord
 {
     public class MedicalRecordDetails
     {
+        public FinalExaminationResult FinalExaminationResult { get; set;}
         public AbdominalUltrasound AbdominalUltrasound { get; set; }
         public BloodTests BloodTests { get; set; }
         public BreastUltrasound BreastUltrasound { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -12,6 +13,7 @@ namespace MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms
         [Column(TypeName = "decimal(18, 2)")]
         public decimal BMIIndex { get; set; }
         public ushort HeartBeat { get; set; }
+        public string BloodPressure { get; set; }
         public byte PhysicalLevel { get; set; }
     }
 }
