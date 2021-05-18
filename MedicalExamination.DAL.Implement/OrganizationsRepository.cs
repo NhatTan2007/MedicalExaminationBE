@@ -159,7 +159,9 @@ namespace MedicalExamination.DAL.Implement
             parameters.Add(name: "@CurrentPage", currentPage);
             parameters.Add(name: "@PageSize", pageSize);
             parameters.Add(name: "@TotalOrganization", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
             using (var result = SqlMapper.QueryAsync<Organization>(
+
                                               cnn: connection,
                                               sql: "sp_PaginationByOrganization",
                                               param: parameters,
@@ -176,6 +178,7 @@ namespace MedicalExamination.DAL.Implement
                     return new QuerryOrganizationRes();
                 }
         }
+
 
         public async Task<QuerryOrganizationRes> SearchByOrganizationPagination(string keyword, int currentPage, int pageSize)
         {
@@ -202,5 +205,9 @@ namespace MedicalExamination.DAL.Implement
                     return new QuerryOrganizationRes();
                 }
         }
+<<<<<<< HEAD
     }
+=======
+
+>>>>>>> dev
 }

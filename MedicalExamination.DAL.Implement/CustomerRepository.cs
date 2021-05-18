@@ -188,6 +188,10 @@ namespace MedicalExamination.DAL.Implement
                 }
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         public async Task<QuerryCustomerRes> SearchByNameOrIdentityNumberPagination(string keyword, int currentPage, int pageSize)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -213,6 +217,10 @@ namespace MedicalExamination.DAL.Implement
                     return new QuerryCustomerRes();
                 }
         }
+<<<<<<< HEAD
     }
+=======
+
+>>>>>>> dev
 }
 
