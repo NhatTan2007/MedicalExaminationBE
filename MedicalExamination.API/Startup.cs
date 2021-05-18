@@ -137,6 +137,8 @@ namespace MedicalExamination.API
             services.AddScoped<IUserService, UserServices>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IRoleService, RoleService>();
         }
 
 

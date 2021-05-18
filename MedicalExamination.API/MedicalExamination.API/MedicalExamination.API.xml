@@ -258,6 +258,20 @@
             <param name="request"></param>
             <returns>Response when update data of a organization</returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.RoleController.CreateNewRole(MedicalExamination.Domain.Requests.Role.CreateRoleReq)">
+            <summary>
+            Create new Role
+            </summary>
+            <param name="request"></param>
+            <returns>Response about create new Role</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.RoleController.UpdateRole(MedicalExamination.Domain.Requests.Role.UpdateRoleReq)">
+            <summary>
+            Create new Role
+            </summary>
+            <param name="request"></param>
+            <returns>Response about create new Role</returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.UserController.GetAllUser">
             <summary>
             Get all Users
