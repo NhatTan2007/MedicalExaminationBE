@@ -8,7 +8,7 @@ namespace MedicalExamination.Domain.Responses.OrganizationRes
    public class UpdateOrganizationRes
     {
 
-        public Organization Organization { get; set; }
+        public MedicalExamination.Domain.Entities.Organization Organization { get; set; }
         public string Message { get; set; }
         public bool Success => Organization != null;
 

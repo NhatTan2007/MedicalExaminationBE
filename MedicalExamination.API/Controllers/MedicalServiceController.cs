@@ -26,6 +26,18 @@ namespace MedicalExamination.API.Controllers
         {
             return Ok(await _medicalServiceService.GetMedicalServices());
         }
+        /// <summary>
+        /// GetMedicalServicesBypagination
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [HttpGet("currentPage/{currentPage}/pageSize/{pageSize}")]
+
+        public async Task<IActionResult> GetMedicalServicesBypagination(int currentPage, int pageSize)
+        {
+            return Ok(await _medicalServiceService.GetMedicalServicesBypagination(currentPage, pageSize));
+        }
 
         /// <summary>
         /// Get active medical services
@@ -35,6 +47,19 @@ namespace MedicalExamination.API.Controllers
         public async Task<IActionResult> GetActiveMedicalServices()
         {
             return Ok(await _medicalServiceService.GetActiveMedicalServices());
+        }
+
+        /// <summary>
+        /// GetActiveMedicalServicesBypagination
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [HttpGet("active/currentPage/{currentPage}/pageSize/{pageSize}")]
+
+        public async Task<IActionResult> GetActiveMedicalServicesBypagination(int currentPage, int pageSize)
+        {
+            return Ok(await _medicalServiceService.GetActiveMedicalServicesBypagination(currentPage, pageSize));
         }
 
         /// <summary>
@@ -80,6 +105,19 @@ namespace MedicalExamination.API.Controllers
         public async Task<IActionResult> GetMedicalServiceByDepartmentId(string departmentId)
         {
             return Ok(await _medicalServiceService.GetMedicalServiceByDepartmentId(departmentId));
+        }
+
+        /// <summary>
+        /// SearchByNameMServicePagination
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [HttpGet("search/{keyword}/currentPage/{currentPage}/pageSize/{pageSize}")]
+        public async Task<IActionResult> SearchByNameMServicePagination(string keyword, int currentPage, int pageSize)
+        {
+            return Ok(await _medicalServiceService.SearchByNameMServicePagination(keyword, currentPage, pageSize));
         }
     }
 }

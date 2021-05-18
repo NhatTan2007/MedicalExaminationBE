@@ -10,6 +10,14 @@
             </summary>
             <returns>List of all customers</returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.CustomerController.GetCustomerBypagination(System.Int32,System.Int32)">
+            <summary>
+            GetCustomerBypagination
+            </summary>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.CustomerController.GetCustomertById(System.String)">
             <summary>
             Get customer by customerId
@@ -37,6 +45,15 @@
             </summary>
             <param name="keyword"></param>
             <returns>List or a customer</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.CustomerController.SearchByNameOrIdentityNumberPagination(System.String,System.Int32,System.Int32)">
+            <summary>
+            SearchByNameOrIdentityNumberPagination
+            </summary>
+            <param name="keyword"></param>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.CustomerController.GetCustomerByIdentityNumber(System.String)">
             <summary>
@@ -162,6 +179,12 @@
             </summary>
             <returns>list medical record</returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.GetMedicalRecordsByNameOrIdActiveFinishedExamination">
+            <summary>
+            Get medical record is active but finished examination
+            </summary>
+            <returns>list medical record</returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.GetMedicalRecordsByCustomerId(System.String)">
             <summary>
             Get medical records of customer
@@ -171,11 +194,139 @@
         </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateDermatologyExamination(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.DermatologyExamination,System.String)">
             <summary>
-            Get medical records of customer
+            Update DermatologyExamination result for specific medical record
             </summary>
             <param name="result"></param>
             <param name="mRecordId"></param>
-            <returns>list medical records</returns>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateNeurologyExamination(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.NeurologyExamination,System.String)">
+            <summary>
+            Update NeurologyExamination result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateInternalMedicineExamination(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.InternalMedicineExamination,System.String)">
+            <summary>
+            Update InternalMedicineExamination result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateObstetricsAndGynecologyExamination(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.ObstetricsAndGynecologyExamination,System.String)">
+            <summary>
+            Update ObstetricsAndGynecologyExamination result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateOphthalmologyExamination(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.OphthalmologyExamination,System.String)">
+            <summary>
+            Update OphthalmologyExamination result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateOralAndMaxillofacialExamination(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.OralAndMaxillofacialExamination,System.String)">
+            <summary>
+            Update OralAndMaxillofacialExamination result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateOtorhinolaryngologyExamination(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.OtorhinolaryngologyExamination,System.String)">
+            <summary>
+            Update OtorhinolaryngologyExamination result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdatePhysicalExamination(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.PhysicalExamination,System.String)">
+            <summary>
+            Update PhysicalExamination result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateSurgeryExamination(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.SurgeryExamination,System.String)">
+            <summary>
+            Update SurgeryExamination result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateBloodTests(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.BloodTests,System.String)">
+            <summary>
+            Update BloodTests result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateClinicalUrineTests(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.ClinicalUrineTests,System.String)">
+            <summary>
+            Update ClinicalUrineTests result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateAbdominalUltrasound(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.AbdominalUltrasound,System.String)">
+            <summary>
+            Update AbdominalUltrasound result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateBreastUltrasound(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.BreastUltrasound,System.String)">
+            <summary>
+            Update BreastUltrasound result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateCardiacUltrasoundProbes(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.CardiacUltrasoundProbes,System.String)">
+            <summary>
+            Update CardiacUltrasoundProbes result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateThyroidUltrasound(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.ThyroidUltrasound,System.String)">
+            <summary>
+            Update ThyroidUltrasound result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateChestXray(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.ChestXray,System.String)">
+            <summary>
+            Update ChestXray result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateFinalExaminationResult(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.FinalExaminationResult,System.String)">
+            <summary>
+            Update FinalExaminationResult result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.GetMedicalServices">
             <summary>
@@ -183,11 +334,27 @@
             </summary>
             <returns>List medical services </returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.GetMedicalServicesBypagination(System.Int32,System.Int32)">
+            <summary>
+            GetMedicalServicesBypagination
+            </summary>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.GetActiveMedicalServices">
             <summary>
             Get active medical services
             </summary>
             <returns>List medical services </returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.GetActiveMedicalServicesBypagination(System.Int32,System.Int32)">
+            <summary>
+            GetActiveMedicalServicesBypagination
+            </summary>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.CreateMedicalService(MedicalExamination.Domain.Requests.MedicalService.CreateMedicalServiceReq)">
             <summary>
@@ -217,6 +384,15 @@
             <param name="departmentId"></param>
             <returns>A list of medical service</returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalServiceController.SearchByNameMServicePagination(System.String,System.Int32,System.Int32)">
+            <summary>
+            SearchByNameMServicePagination
+            </summary>
+            <param name="keyword"></param>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.OrganizationController.GetAllOrganizations">
             <summary>
             Get all Organizations 
@@ -229,6 +405,14 @@
             </summary>
             <param name="organizationId"></param>
             <returns>Specific organization has id want to find</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.OrganizationController.GetOrganizationBypagination(System.Int32,System.Int32)">
+            <summary>
+            GetOrganizationBypagination
+            </summary>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.OrganizationController.SearchOrangizationsByNameASCByName(System.String)">
             <summary>
@@ -243,6 +427,15 @@
             </summary>
             <param name="search"></param>
             <returns>List of organization has name likely with search key</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.OrganizationController.SearchByOrganizationPagination(System.String,System.Int32,System.Int32)">
+            <summary>
+            SearchByOrganizationPagination
+            </summary>
+            <param name="keyword"></param>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.OrganizationController.CreateOrganization(MedicalExamination.Domain.Requests.CreateOrganizationReq)">
             <summary>
