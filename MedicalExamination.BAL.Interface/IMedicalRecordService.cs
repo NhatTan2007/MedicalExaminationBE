@@ -15,6 +15,7 @@ namespace MedicalExamination.BAL.Interface
         Task<CreateMedicalRecordRes> CreateMedicalRecord(CreateMedicalRecordReq request);
         Task<MedicalRecordModel> GetMedicalRecordById(string medicalRecordId);
         Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByNameOrIdActiveNotFinishedExamination();
+        Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByNameOrIdActiveFinishedExamination();
         Task<IEnumerable<MedicalRecordViewRes>> GetAllInactiveMedicalRecords();
         Task<UpdateMedicalRecordRes> PaidMedicalRecord(string medicalRecordId);
         Task<UpdateMedicalRecordRes> ActiveMedicalRecord(string medicalRecordId);
@@ -37,6 +38,6 @@ namespace MedicalExamination.BAL.Interface
         Task<UpdateMedicalRecordRes> UpdateCardiacUltrasoundProbes(CardiacUltrasoundProbes result, string mRecordId);
         Task<UpdateMedicalRecordRes> UpdateThyroidUltrasound(ThyroidUltrasound result, string mRecordId);
         Task<UpdateMedicalRecordRes> UpdateChestXray(ChestXray result, string mRecordId);
-
+        Task<UpdateMedicalRecordRes> UpdateFinalExaminationResult(FinalExaminationResult result, string mRecordId);
     }
 }

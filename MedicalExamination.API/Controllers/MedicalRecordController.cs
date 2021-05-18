@@ -73,6 +73,16 @@ namespace MedicalExamination.API.Controllers
         }
 
         /// <summary>
+        /// Get medical record is active but finished examination
+        /// </summary>
+        /// <returns>list medical record</returns>
+        [HttpGet("getActive/finished")]
+        public async Task<IActionResult> GetMedicalRecordsByNameOrIdActiveFinishedExamination()
+        {
+            return Ok(await _medicalRecordService.GetMedicalRecordByNameOrIdActiveFinishedExamination());
+        }
+
+        /// <summary>
         /// Get medical records of customer
         /// </summary>
         /// <param name="customerId"></param>
@@ -329,6 +339,23 @@ namespace MedicalExamination.API.Controllers
             if (ModelState.IsValid)
             {
                 var response = await _medicalRecordService.UpdateChestXray(result, mRecordId);
+                if (response != null) return Ok(response);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        /// Update FinalExaminationResult result for specific medical record
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="mRecordId"></param>
+        /// <returns>response result update</returns>
+        [HttpPut("{mRecordId}/finalExaminationResult")]
+        public async Task<IActionResult> UpdateFinalExaminationResult([FromBody] FinalExaminationResult result, string mRecordId)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _medicalRecordService.UpdateFinalExaminationResult(result, mRecordId);
                 if (response != null) return Ok(response);
             }
             return BadRequest();

@@ -179,6 +179,12 @@
             </summary>
             <returns>list medical record</returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.GetMedicalRecordsByNameOrIdActiveFinishedExamination">
+            <summary>
+            Get medical record is active but finished examination
+            </summary>
+            <returns>list medical record</returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.GetMedicalRecordsByCustomerId(System.String)">
             <summary>
             Get medical records of customer
@@ -309,6 +315,14 @@
         <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateChestXray(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.ChestXray,System.String)">
             <summary>
             Update ChestXray result for specific medical record
+            </summary>
+            <param name="result"></param>
+            <param name="mRecordId"></param>
+            <returns>response result update</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.UpdateFinalExaminationResult(MedicalExamination.Domain.Models.MedicalRecord.ExaminationRooms.FinalExaminationResult,System.String)">
+            <summary>
+            Update FinalExaminationResult result for specific medical record
             </summary>
             <param name="result"></param>
             <param name="mRecordId"></param>
