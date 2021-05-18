@@ -8,6 +8,7 @@ namespace MedicalExamination.Domain.Models.MedicalRecord
     public class MedicalRecordModel
     {
         private string _medicalRecordId;
+        private string _reasonToExamination;
         private MedicalHistoryForm _medicalHistory;
         private MedicalRecordDetails _details;
         private double _createDate;
@@ -45,5 +46,6 @@ namespace MedicalExamination.Domain.Models.MedicalRecord
         public int ServicesRegisted { get => _servicesRegisted; set => _servicesRegisted = value; }
         public int ServiceUsed { get => _serviceUsed; set => _serviceUsed = value; }
         public string ReasonCancel { get => _reasonCancel; set => _reasonCancel = value; }
+        public string ReasonToExamination { get => _reasonToExamination; set => _reasonToExamination = value; }
     }
 }

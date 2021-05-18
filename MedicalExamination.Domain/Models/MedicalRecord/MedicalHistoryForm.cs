@@ -8,6 +8,6 @@ namespace MedicalExamination.Domain.Models.MedicalRecord
     {
         public MedicalHistory MedicalHistoryCustomer { get; set; }
         public MedicalHistory MedicalHistoryFamily { get; set; }
-        public AnotherQuetions AnotherQuetions { get; set; }
+        public AnotherQuestions AnotherQuestions { get; set; }
     }
 }

@@ -41,8 +41,6 @@ namespace MedicalExamination.BAL.Implement
                 var loginResult = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
                 if (loginResult.Succeeded)
                 {
-                    response.UserId = user.Id;
-                    response.DepartmentId = user.DepartmentId;
                     response.FullName = $"{user.LastName} {user.FirstName}";
                     return new AccountLoginResult()
                     {
