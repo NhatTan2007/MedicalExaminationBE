@@ -5,6 +5,7 @@ using MedicalExamination.Domain.Responses.MedicalRecord;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -154,6 +155,47 @@ namespace MedicalExamination.DAL.Implement
                 return await result;
 
             };
+        }
+
+        public async Task<QueryMedicalRecordsRes> GetMedicalRecordsWithPagination(int currentPage, int pageSize)
+        {
+            var medicalRecords = new QueryMedicalRecordsRes();
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add(name: "@CurrentPage", currentPage);
+            parameters.Add(name: "@PageSize", pageSize);
+            parameters.Add(name: "@TotalMedicalRecords", 0, dbType: DbType.Int32,
+                direction: ParameterDirection.Output);
+            using (var result = SqlMapper.QueryAsync<MedicalRecordViewRes>(
+                cnn: connection,
+                sql: "sp_PaginationAllMedicalRecords",
+                param: parameters,
+                commandType: System.Data.CommandType.StoredProcedure))
+            {
+                medicalRecords.MedicalRecords = await result;
+                medicalRecords.TotalMedicalRecords = parameters.Get<int>("@TotalMedicalRecords");
+                return medicalRecords;
+            }
+        }
+
+        public async Task<QueryMedicalRecordsRes> SearchMedicalRecordsWithPagination(string searchKey, int currentPage, int pageSize)
+        {
+            var medicalRecords = new QueryMedicalRecordsRes();
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add(name: "@CurrentPage", currentPage);
+            parameters.Add(name: "@SearchKey", searchKey);
+            parameters.Add(name: "@PageSize", pageSize);
+            parameters.Add(name: "@TotalMedicalRecords", 0, dbType: DbType.Int32,
+                direction: ParameterDirection.Output);
+            using (var result = SqlMapper.QueryAsync<MedicalRecordViewRes>(
+                cnn: connection,
+                sql: "sp_SearchMedicalRecordsWithPagination",
+                param: parameters,
+                commandType: System.Data.CommandType.StoredProcedure))
+            {
+                medicalRecords.MedicalRecords = await result;
+                medicalRecords.TotalMedicalRecords = parameters.Get<int>("@TotalMedicalRecords");
+                return medicalRecords;
+            }
         }
     }
 }

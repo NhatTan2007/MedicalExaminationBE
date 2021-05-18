@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MedicalExamination.Domain.Responses.Organization
 {
-    public class QuerryOrganizationRes
+    public class QueryOrganizationRes
     {
         public IEnumerable<MedicalExamination.Domain.Entities.Organization> Organization { get; set; }
         public int TotalOrganization { get; set; }

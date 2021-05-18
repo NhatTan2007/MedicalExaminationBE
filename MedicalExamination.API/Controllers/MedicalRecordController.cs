@@ -83,6 +83,31 @@ namespace MedicalExamination.API.Controllers
         }
 
         /// <summary>
+        /// Get medical records with pagination
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns>list medical records</returns>
+        [HttpGet("currentPage/{currentPage}/pageSize/{pageSize}")]
+        public async Task<IActionResult> GetMedicalRecordsWithPagniation(int currentPage, int pageSize)
+        {
+            return Ok(await _medicalRecordService.GetMedicalRecordsWithPagination(currentPage, pageSize));
+        }
+
+        /// <summary>
+        /// Get medical records with pagination
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="searchKey"></param>
+        /// <param name="pageSize"></param>
+        /// <returns>list medical records</returns>
+        [HttpGet("search/{searchKey}currentPage/{currentPage}/pageSize/{pageSize}")]
+        public async Task<IActionResult> SearchMedicalRecordsWithPagination(string searchKey, int currentPage, int pageSize)
+        {
+            return Ok(await _medicalRecordService.SearchMedicalRecordsWithPagination(searchKey, currentPage, pageSize));
+        }
+
+        /// <summary>
         /// Get medical records of customer
         /// </summary>
         /// <param name="customerId"></param>

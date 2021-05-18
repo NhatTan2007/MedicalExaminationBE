@@ -81,6 +81,15 @@ namespace MedicalExamination.BAL.Implement
             return await _medicalRecordRepository.GetMedicalRecordByCustomerId(customerId);
         }
 
+        public async Task<QueryMedicalRecordsRes> GetMedicalRecordsWithPagination(int currentPage, int pageSize)
+        {
+            return await _medicalRecordRepository.GetMedicalRecordsWithPagination(currentPage, pageSize);
+        }
+        public async Task<QueryMedicalRecordsRes> SearchMedicalRecordsWithPagination(string searchKey, int currentPage, int pageSize)
+        {
+            return await _medicalRecordRepository.SearchMedicalRecordsWithPagination(searchKey, currentPage, pageSize);
+        }
+
         public async Task<UpdateMedicalRecordRes> UpdateDermatologyExamination(DermatologyExamination result, string mRecordId)
         {
             try

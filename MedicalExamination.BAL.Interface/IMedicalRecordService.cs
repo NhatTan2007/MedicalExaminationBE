@@ -20,6 +20,8 @@ namespace MedicalExamination.BAL.Interface
         Task<UpdateMedicalRecordRes> PaidMedicalRecord(string medicalRecordId);
         Task<UpdateMedicalRecordRes> ActiveMedicalRecord(string medicalRecordId);
         Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByCustomerId(string customerId);
+        Task<QueryMedicalRecordsRes> GetMedicalRecordsWithPagination(int currentPage, int pageSize);
+        Task<QueryMedicalRecordsRes> SearchMedicalRecordsWithPagination(string searchKey, int currentPage, int pageSize);
 
         //Update result
         Task<UpdateMedicalRecordRes> UpdateDermatologyExamination(DermatologyExamination result, string mRecordId);

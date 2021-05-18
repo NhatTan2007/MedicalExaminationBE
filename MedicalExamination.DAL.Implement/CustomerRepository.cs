@@ -163,7 +163,7 @@ namespace MedicalExamination.DAL.Implement
             }
         }
 
-        public async Task<QuerryCustomerRes> GetCustomerBypagination(int currentPage, int pageSize)
+        public async Task<QueryCustomerRes> GetCustomerBypagination(int currentPage, int pageSize)
         {
             
             DynamicParameters parameters = new DynamicParameters();
@@ -177,18 +177,18 @@ namespace MedicalExamination.DAL.Implement
                                               commandType: CommandType.StoredProcedure))
                 try
                 {
-                    QuerryCustomerRes querryResult = new QuerryCustomerRes();
+                    QueryCustomerRes querryResult = new QueryCustomerRes();
                     querryResult.Customers = await result;
                     querryResult.TotalCustomer = parameters.Get<int>("@TotalCustomer");
                     return querryResult;
                 }
                 catch (Exception ex)
                 {
-                    return new QuerryCustomerRes();
+                    return new QueryCustomerRes();
                 }
         }
 
-        public async Task<QuerryCustomerRes> SearchByNameOrIdentityNumberPagination(string keyword, int currentPage, int pageSize)
+        public async Task<QueryCustomerRes> SearchByNameOrIdentityNumberPagination(string keyword, int currentPage, int pageSize)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@SearchKey", keyword);
@@ -203,14 +203,14 @@ namespace MedicalExamination.DAL.Implement
                                               commandType: CommandType.StoredProcedure))
                 try
                 {
-                    QuerryCustomerRes querryResult = new QuerryCustomerRes();
+                    QueryCustomerRes querryResult = new QueryCustomerRes();
                     querryResult.Customers = await result;
                     querryResult.TotalCustomer = parameters.Get<int>("@TotalCustomer");
                     return querryResult;
                 }
                 catch (Exception)
                 {
-                    return new QuerryCustomerRes();
+                    return new QueryCustomerRes();
                 }
         }
     }
