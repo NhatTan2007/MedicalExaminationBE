@@ -1,0 +1,169 @@
+﻿@model MedicalExamination.Domain.Models.MedicalRecord.MedicalRecordModel
+ 
+@{
+    ViewBag.Title = "In bệnh án của bệnh nhân";
+
+}
+<div class="container">
+    <div class="row">
+        <table class="table table-bordered table-hover table-striped ">
+            <thead class="thead-light text-center ">
+                <tr>
+                    <th style="width:950px">Nội dung khám</t>
+                    <th>Họ tên, chữ ký của bác sỹ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div>
+                            <p><b>1. Nội khoa</b></p>
+                            <p class="ml-3">a) Tuần hoàn</p>
+                            <p class="ml-3">@Model.Details.InternalMedicineExamination.Circulatory</p>
+                            <p class="ml-5">Phân loại</p>
+                            <p class="ml-5">@Model.Details.InternalMedicineExamination.CirculatoryLevel</p>
+                            <p class="ml-3">b) Hô hấp</p>
+                            <p class="ml-3">@Model.Details.InternalMedicineExamination.Respiratory</p>
+                            <p class="ml-5">Phân loại</p>
+                            <p class="ml-5">@Model.Details.InternalMedicineExamination.RespiratoryLevel</p>
+                            <p class="ml-3">c) Tiêu hóa</p>
+                            <p class="ml-3">@Model.Details.InternalMedicineExamination.Alimentary</p>
+                            <p class="ml-5">Phân loại</p>
+                            <p class="ml-5">@Model.Details.InternalMedicineExamination.AlimentaryLevel</p>
+                            <p class="ml-3">d) Thận - Tiết niệu</p>
+                            <p class="ml-3">@Model.Details.InternalMedicineExamination.NephroUrology</p>
+                            <p class="ml-5">Phân loại</p>
+                            <p class="ml-5">@Model.Details.InternalMedicineExamination.NephroUrologyLevel</p>
+                            <p class="ml-3">đ) Cơ - Xương - Khớp</p>
+                            <p class="ml-3">@Model.Details.InternalMedicineExamination.Musculoskeletal</p>
+                            <p class="ml-5">Phân loại</p>
+                            <p class="ml-5">@Model.Details.InternalMedicineExamination.MusculoskeletalLevel</p>
+
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <p class="ml-3">e) Thần Kinh:</p>
+                            <p class="ml-3">@Model.Details.NeurologyExamination.Neurosurgery</p>
+                            <p class="ml-5">Phân loại</p>
+                            <p class="ml-5">@Model.Details.NeurologyExamination.NeurosurgeryLevel</p>
+                            <p class="ml-3">g) Tâm thần:</p>
+                            <p class="ml-3">@Model.Details.NeurologyExamination.Psychiatry</p>
+                            <p class="ml-5">Phân loại</p>
+                            <p class="ml-5">@Model.Details.NeurologyExamination.PsychiatryLevel</p>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <p><b>2. Ngoại khoa:</b></p>
+                            <p>@Model.Details.SurgeryExamination.Surgery</p>
+                            <p class="ml-5">Phân loại</p>
+                            <p>@Model.Details.SurgeryExamination.SurgeryLevel</p>
+                            <p><b>3. Da liễu:</b></p>
+                            <p>@Model.Details.DermatologyExamination.Dermatology</p>
+                            <p class="ml-5">Phân loại</p>
+                            <p>@Model.Details.DermatologyExamination.DermatologyLevel</p>
+                            <p><b>4. Mắt:</b></p>
+                            <p class="ml-3">- Kết quả khám thị lực:</p>
+                            <p class="ml-5">Có kính: Mắt phải:...@Model.Details.OphthalmologyExamination.RightEyeSightWithGlass.... Mắt trái...@Model.Details.OphthalmologyExamination.LeftEyeSightWithGlass.....</p>
+                            <p class="ml-5">Không kính: Mắt phải:...@Model.Details.OphthalmologyExamination.RightEyeSightWithoutGlass.... Mắt trái...@Model.Details.OphthalmologyExamination.LeftEyeSightWithoutGlass..</p>
+                            <p class="ml-5">Các bệnh về mắt(nếu có):..@Model.Details.OphthalmologyExamination.EyeDiseases</p>
+                            <p class="ml-5">Phân loại:</p>
+                            <p class="ml-5">@Model.Details.OphthalmologyExamination.OphthalmologyLevel</p>
+                        </div>
+
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <p><b>5. Tai - Mũi - Họng</b></p>
+                            <p class="ml-3">- Kêt quả khám thính lực:</p>
+                            <p class="ml-5">+ Tai trái: Nói thường:..@Model.Details.OtorhinolaryngologyExamination.LeftEarNormal...m;  Nói thầm:..@Model.Details.OtorhinolaryngologyExamination.LeftEarWhisper..m</p>
+                            <p class="ml-5">+ Tai phải: Nói thường:...@Model.Details.OtorhinolaryngologyExamination.RightEarNormal...m;  Nói thầm:..@Model.Details.OtorhinolaryngologyExamination.RightEarWhisper...m</p>
+
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <p><b>6. Răng - Hàm - mặt</b></p>
+                            <p class="ml-3">- Kết quả khám:</p>
+                            <p class="ml-5">+ Hàm trên: @Model.Details.OralAndMaxillofacialExamination.UpperJaw..</p>
+                            <p class="ml-5">+ Hàm dưới: @Model.Details.OralAndMaxillofacialExamination.LowerJaw</p>
+                            <p class="ml-3">- Các bệnh về Răng - Hàm - Mặt( nếu có): @Model.Details.OralAndMaxillofacialExamination.OralAndMaxillofacialDiseases</p>
+                            <p class="ml-3">- Phân loại: @Model.Details.OralAndMaxillofacialExamination.OralAndMaxillofacialLevel</p>
+                            <p><b>7. Phụ khoa:</b></p>
+                            <p>@Model.Details.ObstetricsAndGynecologyExamination.ObstetricsAndGynecology</p>
+                            <p class="ml-3">- Phân loại: @Model.Details.ObstetricsAndGynecologyExamination.ObstetricsAndGynecologyLevel</p>  
+
+                        </div>
+
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>III. KHÁM CẬN LÂM SÀNG</h3>
+        <table  class="table table-bordered table-hover table-striped ">
+            <thead class="thead-light text-center ">
+                <tr>
+                    <th style="width:950px">Nội dung khám</t>
+                    <th>Họ tên, chữ ký của bác sỹ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div>
+                            <p><b>1. Xét nghiệm máu:</b></p>
+                            <p class="ml-3">a) Công thức máu:</p>
+                            <p class="ml-5">Số lượng HC: @Model.Details.BloodTests.HCAmount</p>
+                            <p class="ml-5">Số lượng Bạch cầu: @Model.Details.BloodTests.LeukocytesAmount</p>
+                            <p class="ml-5">Số lượng Tiểu cầu: @Model.Details.BloodTests.PlateletsAmount</p>
+                            <p class="ml-3">b) Sinh hóa máu:</p>
+                            <p class="ml-5">Đường máu: @Model.Details.BloodTests.BloodSugar</p>
+                            <p class="ml-5">* Urê: @Model.Details.BloodTests.Ure Creatinin: @Model.Details.BloodTests.Creatinin</p>
+                            <p class="ml-5">* ASAT(GOT): @Model.Details.BloodTests.ASATGOT  ALAT(GPT): @Model.Details.BloodTests.ALATGPT</p>
+                            <p class="ml-3">c) Khác( nếu có):</p>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <p><b>2. Xét nghiệm nước tiểu:</b></p>
+                            <p class="ml-3">a) Đường: @Model.Details.ClinicalUrineTests.Sugar</p>
+                            <p class="ml-3">b) Protein: @Model.Details.ClinicalUrineTests.Protein</p>
+                            <p class="ml-3">c) Khác ( nếu có): @Model.Details.ClinicalUrineTests.Other</p>
+                            <p><b>3. Chuẩn đoán hình ảnh:</b></p>
+                            @*siêu âm bụng*@
+                            <p class="ml-3"> @Model.Details.AbdominalUltrasound.AbdominalUltrasoundResult</p>
+                            @*siêu âm tuyến vú*@
+                            <p class="ml-3"> @Model.Details.BreastUltrasound.BreastUltrasoundResult</p>
+                            @*Thăm dò tim mạch*@
+                            <p class="ml-3"> @Model.Details.CardiacUltrasoundProbes.CardiacUltrasoundProbesResult</p>
+                            @*Xquang ngực*@
+                            <p class="ml-3"> @Model.Details.ChestXray.ChestXrayResult</p>
+                            @*Siêu âm tuyến giáp*@
+                            <p class="ml-3"> @Model.Details.ThyroidUltrasound.ThyroidUltrasoundResult</p>
+                            @*Chuẩn đoán hình ảnh y tế*@
+                            <p class="ml-3"> @Model.Details.MedicalImagingDiagnostics.Result</p>
+                        </div>
+                        </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

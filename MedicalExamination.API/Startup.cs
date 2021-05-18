@@ -27,6 +27,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wkhtmltopdf.NetCore;
 
 namespace MedicalExamination.API
 {
@@ -53,6 +54,7 @@ namespace MedicalExamination.API
             corsBuilder.AllowAnyMethod();
             corsBuilder.WithOrigins(Helper.domain, "http://khamskdinhky.tech:4200");
             corsBuilder.AllowCredentials();
+            services.AddWkhtmltopdf("Wkhtmltopdf");
 
             services.AddCors(opts => {
                 opts.AddPolicy(_corsPolicy, corsBuilder.Build());
@@ -158,7 +160,9 @@ namespace MedicalExamination.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Print}/{action=Index}/{MRecordId?}");
             });
         }
     }
