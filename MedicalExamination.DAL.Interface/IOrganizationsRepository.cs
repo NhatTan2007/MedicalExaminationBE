@@ -18,6 +18,7 @@ namespace MedicalExamination.DAL.Interface
         Task<UpdateOrganizationRes> UpdateOrganization(UpdateOrganizationReq request);
         Task<IEnumerable<Organization>> SearchOrganizationsByNameASCByName(string search);
         Task<IEnumerable<Organization>> SearchOrganizationsByNameDESCByName(string search);
-        
+        Task<QuerryOrganizationRes> SearchByOrganizationPagination(string keyword, int currentPage, int pageSize);
+
     }
 }

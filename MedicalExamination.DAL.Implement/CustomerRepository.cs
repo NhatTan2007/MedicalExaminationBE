@@ -187,6 +187,33 @@ namespace MedicalExamination.DAL.Implement
                     return new QuerryCustomerRes();
                 }
         }
-    }
+
+
+        public async Task<QuerryCustomerRes> SearchByNameOrIdentityNumberPagination(string keyword, int currentPage, int pageSize)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add(name: "@SearchKey", keyword);
+            parameters.Add(name: "@CurrentPage", currentPage);
+            parameters.Add(name: "@PageSize", pageSize);
+            parameters.Add(name: "@TotalCustomer", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            using (var result = SqlMapper.QueryAsync<Customer>(
+                                              cnn: connection,
+                                              sql: "sp_SearchByNameOrIdentityNumberPagination",
+                                              param: parameters,
+                                              commandType: CommandType.StoredProcedure))
+                try
+                {
+                    QuerryCustomerRes querryResult = new QuerryCustomerRes();
+                    querryResult.Customers = await result;
+                    querryResult.TotalCustomer = parameters.Get<int>("@TotalCustomer");
+                    return querryResult;
+                }
+                catch (Exception)
+                {
+                    return new QuerryCustomerRes();
+                }
+        }
+
 }
 

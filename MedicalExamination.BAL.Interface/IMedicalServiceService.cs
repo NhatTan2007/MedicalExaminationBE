@@ -15,6 +15,11 @@ namespace MedicalExamination.BAL.Interface
         Task<IEnumerable<MedicalService>> GetMedicalServiceByDepartmentId(string departmentId);
         Task<MedicalService> GetMedicalServiceByMedicalServiceId(string medicalServiceId);
         Task<IEnumerable<MedicalService>> GetMedicalServices();
+        Task<QuerryMSerciceRes> GetMedicalServicesBypagination(int currentPage, int pageSize);
         Task<IEnumerable<MedicalService>> GetActiveMedicalServices();
+        Task<QuerryMSerciceRes> GetActiveMedicalServicesBypagination(int currentPage, int pageSize);
+
+        Task<QuerryMSerciceRes> SearchByNameMServicePagination(string keyword, int currentPage, int pageSize);
+
     }
 }

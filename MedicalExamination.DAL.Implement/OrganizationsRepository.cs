@@ -159,7 +159,9 @@ namespace MedicalExamination.DAL.Implement
             parameters.Add(name: "@CurrentPage", currentPage);
             parameters.Add(name: "@PageSize", pageSize);
             parameters.Add(name: "@TotalOrganization", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
-            using (var result = SqlMapper.QueryAsync<Customer>(
+
+            using (var result = SqlMapper.QueryAsync<Organization>(
+
                                               cnn: connection,
                                               sql: "sp_PaginationByOrganization",
                                               param: parameters,
@@ -176,5 +178,32 @@ namespace MedicalExamination.DAL.Implement
                     return new QuerryOrganizationRes();
                 }
         }
-    }
+
+
+        public async Task<QuerryOrganizationRes> SearchByOrganizationPagination(string keyword, int currentPage, int pageSize)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add(name: "@SearchKey", keyword);
+            parameters.Add(name: "@CurrentPage", currentPage);
+            parameters.Add(name: "@PageSize", pageSize);
+            parameters.Add(name: "@TotalOrganization", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            using (var result = SqlMapper.QueryAsync<Organization>(
+                                              cnn: connection,
+                                              sql: "sp_SearchByOrganizationPagination",
+                                              param: parameters,
+                                              commandType: CommandType.StoredProcedure))
+                try
+                {
+                    QuerryOrganizationRes querryResult = new QuerryOrganizationRes();
+                    querryResult.Organization = await result;
+                    querryResult.TotalOrganization = parameters.Get<int>("@TotalOrganization");
+                    return querryResult;
+                }
+                catch (Exception)
+                {
+                    return new QuerryOrganizationRes();
+                }
+        }
+
 }
