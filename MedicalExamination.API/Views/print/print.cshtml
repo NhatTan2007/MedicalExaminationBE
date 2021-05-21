@@ -1,169 +1,955 @@
-﻿@model MedicalExamination.Domain.Models.MedicalRecord.MedicalRecordModel
- 
-@{
-    ViewBag.Title = "In bệnh án của bệnh nhân";
+﻿@model MedicalRecordModel
 
-}
-<div class="container">
-    <div class="row">
-        <table class="table table-bordered table-hover table-striped ">
-            <thead class="thead-light text-center ">
-                <tr>
-                    <th style="width:950px">Nội dung khám</t>
-                    <th>Họ tên, chữ ký của bác sỹ</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div>
-                            <p><b>1. Nội khoa</b></p>
-                            <p class="ml-3">a) Tuần hoàn</p>
-                            <p class="ml-3">@Model.Details.InternalMedicineExamination.Circulatory</p>
-                            <p class="ml-5">Phân loại</p>
-                            <p class="ml-5">@Model.Details.InternalMedicineExamination.CirculatoryLevel</p>
-                            <p class="ml-3">b) Hô hấp</p>
-                            <p class="ml-3">@Model.Details.InternalMedicineExamination.Respiratory</p>
-                            <p class="ml-5">Phân loại</p>
-                            <p class="ml-5">@Model.Details.InternalMedicineExamination.RespiratoryLevel</p>
-                            <p class="ml-3">c) Tiêu hóa</p>
-                            <p class="ml-3">@Model.Details.InternalMedicineExamination.Alimentary</p>
-                            <p class="ml-5">Phân loại</p>
-                            <p class="ml-5">@Model.Details.InternalMedicineExamination.AlimentaryLevel</p>
-                            <p class="ml-3">d) Thận - Tiết niệu</p>
-                            <p class="ml-3">@Model.Details.InternalMedicineExamination.NephroUrology</p>
-                            <p class="ml-5">Phân loại</p>
-                            <p class="ml-5">@Model.Details.InternalMedicineExamination.NephroUrologyLevel</p>
-                            <p class="ml-3">đ) Cơ - Xương - Khớp</p>
-                            <p class="ml-3">@Model.Details.InternalMedicineExamination.Musculoskeletal</p>
-                            <p class="ml-5">Phân loại</p>
-                            <p class="ml-5">@Model.Details.InternalMedicineExamination.MusculoskeletalLevel</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="~/css/print.css" rel="stylesheet" />
+    <style type="text/css">
 
-                        </div>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>
-                            <p class="ml-3">e) Thần Kinh:</p>
-                            <p class="ml-3">@Model.Details.NeurologyExamination.Neurosurgery</p>
-                            <p class="ml-5">Phân loại</p>
-                            <p class="ml-5">@Model.Details.NeurologyExamination.NeurosurgeryLevel</p>
-                            <p class="ml-3">g) Tâm thần:</p>
-                            <p class="ml-3">@Model.Details.NeurologyExamination.Psychiatry</p>
-                            <p class="ml-5">Phân loại</p>
-                            <p class="ml-5">@Model.Details.NeurologyExamination.PsychiatryLevel</p>
-                        </div>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>
-                            <p><b>2. Ngoại khoa:</b></p>
-                            <p>@Model.Details.SurgeryExamination.Surgery</p>
-                            <p class="ml-5">Phân loại</p>
-                            <p>@Model.Details.SurgeryExamination.SurgeryLevel</p>
-                            <p><b>3. Da liễu:</b></p>
-                            <p>@Model.Details.DermatologyExamination.Dermatology</p>
-                            <p class="ml-5">Phân loại</p>
-                            <p>@Model.Details.DermatologyExamination.DermatologyLevel</p>
-                            <p><b>4. Mắt:</b></p>
-                            <p class="ml-3">- Kết quả khám thị lực:</p>
-                            <p class="ml-5">Có kính: Mắt phải:...@Model.Details.OphthalmologyExamination.RightEyeSightWithGlass.... Mắt trái...@Model.Details.OphthalmologyExamination.LeftEyeSightWithGlass.....</p>
-                            <p class="ml-5">Không kính: Mắt phải:...@Model.Details.OphthalmologyExamination.RightEyeSightWithoutGlass.... Mắt trái...@Model.Details.OphthalmologyExamination.LeftEyeSightWithoutGlass..</p>
-                            <p class="ml-5">Các bệnh về mắt(nếu có):..@Model.Details.OphthalmologyExamination.EyeDiseases</p>
-                            <p class="ml-5">Phân loại:</p>
-                            <p class="ml-5">@Model.Details.OphthalmologyExamination.OphthalmologyLevel</p>
-                        </div>
+        @@media print {
+            * {
+                color: #000;
+                background-color: #fff;
+                @@include box-shadow(none);
+                @@include text-shadow(none);
+            }
+        @@page {
+                size: a4
+            }
 
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>
-                            <p><b>5. Tai - Mũi - Họng</b></p>
-                            <p class="ml-3">- Kêt quả khám thính lực:</p>
-                            <p class="ml-5">+ Tai trái: Nói thường:..@Model.Details.OtorhinolaryngologyExamination.LeftEarNormal...m;  Nói thầm:..@Model.Details.OtorhinolaryngologyExamination.LeftEarWhisper..m</p>
-                            <p class="ml-5">+ Tai phải: Nói thường:...@Model.Details.OtorhinolaryngologyExamination.RightEarNormal...m;  Nói thầm:..@Model.Details.OtorhinolaryngologyExamination.RightEarWhisper...m</p>
+        }
 
-                        </div>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>
-                            <p><b>6. Răng - Hàm - mặt</b></p>
-                            <p class="ml-3">- Kết quả khám:</p>
-                            <p class="ml-5">+ Hàm trên: @Model.Details.OralAndMaxillofacialExamination.UpperJaw..</p>
-                            <p class="ml-5">+ Hàm dưới: @Model.Details.OralAndMaxillofacialExamination.LowerJaw</p>
-                            <p class="ml-3">- Các bệnh về Răng - Hàm - Mặt( nếu có): @Model.Details.OralAndMaxillofacialExamination.OralAndMaxillofacialDiseases</p>
-                            <p class="ml-3">- Phân loại: @Model.Details.OralAndMaxillofacialExamination.OralAndMaxillofacialLevel</p>
-                            <p><b>7. Phụ khoa:</b></p>
-                            <p>@Model.Details.ObstetricsAndGynecologyExamination.ObstetricsAndGynecology</p>
-                            <p class="ml-3">- Phân loại: @Model.Details.ObstetricsAndGynecologyExamination.ObstetricsAndGynecologyLevel</p>  
+        @@media screen {
+            * {
+                color: #000;
+                background-color: #fff;
+                @@include box-shadow(none);
+                @@include text-shadow(none);
+            }
 
-                        </div>
+            @@page {
+                size: a4
+            }
 
-                    </td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-        <h3>III. KHÁM CẬN LÂM SÀNG</h3>
-        <table  class="table table-bordered table-hover table-striped ">
-            <thead class="thead-light text-center ">
-                <tr>
-                    <th style="width:950px">Nội dung khám</t>
-                    <th>Họ tên, chữ ký của bác sỹ</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div>
-                            <p><b>1. Xét nghiệm máu:</b></p>
-                            <p class="ml-3">a) Công thức máu:</p>
-                            <p class="ml-5">Số lượng HC: @Model.Details.BloodTests.HCAmount</p>
-                            <p class="ml-5">Số lượng Bạch cầu: @Model.Details.BloodTests.LeukocytesAmount</p>
-                            <p class="ml-5">Số lượng Tiểu cầu: @Model.Details.BloodTests.PlateletsAmount</p>
-                            <p class="ml-3">b) Sinh hóa máu:</p>
-                            <p class="ml-5">Đường máu: @Model.Details.BloodTests.BloodSugar</p>
-                            <p class="ml-5">* Urê: @Model.Details.BloodTests.Ure Creatinin: @Model.Details.BloodTests.Creatinin</p>
-                            <p class="ml-5">* ASAT(GOT): @Model.Details.BloodTests.ASATGOT  ALAT(GPT): @Model.Details.BloodTests.ALATGPT</p>
-                            <p class="ml-3">c) Khác( nếu có):</p>
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h5>I. KHÁM THỂ LỰC</h5>
+            @{
+                if (Model.Details.PhysicalExamination.IsRegistered)
+                {
+                    <div class="d-flex justify-content-between">
+                        <div class="mr-3"><span class="mr-2">Chiều cao:</span>@Model.Details.PhysicalExamination.Height cm</div>
+                        <div class="mr-3"><span class="mr-2">Cân nặng:</span>@Model.Details.PhysicalExamination.Height kg</div>
+                        <div class="mr-3"><span class="mr-2">Chỉ số BMI:</span>@Model.Details.PhysicalExamination.Height kg</div>
+                    </div>
+                    <div class="d-flex justify-content-between w-50">
+                        <div class="mr-3">
+                            <span class="mr-2">Mạch:</span>@Model.Details.PhysicalExamination.HeartBeat lần/phút
                         </div>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>
-                            <p><b>2. Xét nghiệm nước tiểu:</b></p>
-                            <p class="ml-3">a) Đường: @Model.Details.ClinicalUrineTests.Sugar</p>
-                            <p class="ml-3">b) Protein: @Model.Details.ClinicalUrineTests.Protein</p>
-                            <p class="ml-3">c) Khác ( nếu có): @Model.Details.ClinicalUrineTests.Other</p>
-                            <p><b>3. Chuẩn đoán hình ảnh:</b></p>
-                            @*siêu âm bụng*@
-                            <p class="ml-3"> @Model.Details.AbdominalUltrasound.AbdominalUltrasoundResult</p>
-                            @*siêu âm tuyến vú*@
-                            <p class="ml-3"> @Model.Details.BreastUltrasound.BreastUltrasoundResult</p>
-                            @*Thăm dò tim mạch*@
-                            <p class="ml-3"> @Model.Details.CardiacUltrasoundProbes.CardiacUltrasoundProbesResult</p>
-                            @*Xquang ngực*@
-                            <p class="ml-3"> @Model.Details.ChestXray.ChestXrayResult</p>
-                            @*Siêu âm tuyến giáp*@
-                            <p class="ml-3"> @Model.Details.ThyroidUltrasound.ThyroidUltrasoundResult</p>
-                            @*Chuẩn đoán hình ảnh y tế*@
-                            <p class="ml-3"> @Model.Details.MedicalImagingDiagnostics.Result</p>
+                        <div class="mr-3">
+                            <span class="mr-2">Huyết áp:</span>@Model.Details.PhysicalExamination.BloodPressure mmHg
                         </div>
+                    </div>
+                    <div>
+                        <span class="mr-2">Phân loại thể lực:</span>@Model.Details.PhysicalExamination.PhysicalLevel
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex justify-content-between">
+                        <div class="mr-3"><span class="mr-2">Chiều cao:</span>....................... cm</div>
+                        <div class="mr-3"><span class="mr-2">Cân nặng:</span>........................ kg</div>
+                        <div class="mr-3"><span class="mr-2">Chỉ số BMI:</span>...................... kg</div>
+                    </div>
+                    <div class="d-flex justify-content-between w-50">
+                        <div class="mr-3">
+                            <span class="mr-2">Mạch:</span>...................... lần/phút
+                        </div>
+                        <div class="mr-3">
+                            <span class="mr-2">Huyết áp:</span>............................ mmHg
+                        </div>
+                    </div>
+                    <div>
+                        <span class="mr-2">Phân loại thể lực:</span>........................
+                    </div>
+                }
+            }
+        </div>
+        <h5 class="pt-2">II. KHÁM LÂM SÀNG</h5>
+        <div class="row">
+            <table class="table table-bordered">
+                <thead class="text-center">
+                    <tr>
+                        <th class="align-middle" style="width:950px">Nội dung khám</th>
+                        <th class="align-middle" style="width: 200px">Họ tên, chữ ký của bác sỹ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="align-middle">
+                            <div class="pr-2 pl-2">
+                                @{
+                                    if (Model.Details.InternalMedicineExamination.IsRegistered)
+                                    {
+
+                                        <div><b>1. Nội khoa</b></div>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">a) Tuần hoàn:</span>
+                                            <div class="w-100 result text-justify pl-4">@Model.Details.InternalMedicineExamination.Circulatory</div>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-2">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <span>@Model.Details.InternalMedicineExamination.CirculatoryLevel</span>
+                                        </div>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">b) Hô hấp:</span>
+                                            <div class="w-100 result text-justify pl-4">@Model.Details.InternalMedicineExamination.Respiratory</div>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-2">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <span>@Model.Details.InternalMedicineExamination.RespiratoryLevel</span>
+                                        </div>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">c) Tiêu hóa:</span>
+                                            <div class="w-100 result text-justify pl-4">@Model.Details.InternalMedicineExamination.Alimentary</div>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-2">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <span>@Model.Details.InternalMedicineExamination.AlimentaryLevel</span>
+                                        </div>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">d) Thận - Tiết niệu:</span>
+                                            <div class="w-100 result text-justify pl-4">@Model.Details.InternalMedicineExamination.NephroUrology</div>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-2">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <span>@Model.Details.InternalMedicineExamination.NephroUrologyLevel</span>
+                                        </div>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">đ) Cơ - Xương - Khớp:</span>
+                                            <div class="w-100 result text-justify pl-4">@Model.Details.InternalMedicineExamination.Musculoskeletal</div>
+                                        </div>
+                                        <div class="ml-4 d-flex">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <span>@Model.Details.InternalMedicineExamination.MusculoskeletalLevel</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div><b>1. Nội khoa</b></div>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">a) Tuần hoàn:</span>
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">b) Hô hấp:</span>
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">c) Tiêu hóa:</span>
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">d) Thận - Tiết niệu:</span>
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">đ) Cơ - Xương - Khớp:</span>
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                    }
+                                }
+                            </div>
                         </td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+                        <td class="align-middle">
+                            <p class="text-center d-flex align-items-end justify-content-center" style="height: 150px">
+                                @if (Model.Details.InternalMedicineExamination.IsRegistered)
+                                {
+                                    @Model.Details.InternalMedicineExamination.DoctorName;
+                                }
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <div class="pr-2 pl-2">
+                                @{
+                                    if (Model.Details.NeurologyExamination.IsRegistered)
+                                    {
+                                        <div class="ml-3 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">e) Thần Kinh:</span>
+                                            <div class="w-100 result text-justify">@Model.Details.NeurologyExamination.Neurosurgery</div>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-2">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <span>@Model.Details.NeurologyExamination.Neurosurgery</span>
+                                        </div>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <span class="mr-2 text-nowrap">g) Tâm thần:</span>
+                                            <div class="w-100 result text-justify">@Model.Details.NeurologyExamination.Psychiatry</div>
+                                        </div>
+                                        <div class="ml-4 d-flex">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <span>@Model.Details.NeurologyExamination.PsychiatryLevel</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="ml-3 d-flex">
+                                            <span class="mr-2 text-nowrap">e) Thần Kinh:</span>
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                        <div class="ml-3 d-flex">
+                                            <span class="mr-2 text-nowrap">g) Tâm thần:</span>
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <p class="text-center d-flex align-items-end justify-content-center" style="height: 100px">
+                                @if (Model.Details.NeurologyExamination.IsRegistered)
+                                {
+                                    @Model.Details.NeurologyExamination.DoctorName
+                                }
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            @{
+                                if (Model.Details.SurgeryExamination.IsRegistered)
+                                {
+                                    <div class="pr-2 pl-2 d-flex">
+                                        <span class="mr-2 text-nowrap"><strong>2. Ngoại khoa</strong></span>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <div class="w-100 result text-justify">@Model.Details.SurgeryExamination.Surgery</div>
+                                        </div>
+                                    </div>
+                                    <div class="pl-4 pr-2 d-flex">
+                                        <span class="mr-2 text-nowrap">Phân loại:</span>
+                                        <span>@Model.Details.SurgeryExamination.SurgeryLevel</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="pr-2 pl-2 d-flex">
+                                        <span class="mr-2 text-nowrap"><strong>2. Ngoại khoa</strong></span>
+                                        <div class="ml-3 d-flex mb-1 w-100">
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="pl-4 pr-2 d-flex">
+                                        <span class="mr-2 text-nowrap">Phân loại:</span>
+                                        <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                    </div>
+                                }
+                            }
+                        </td>
+                        <td class="align-middle">
+                            <p class="text-center d-flex align-items-end justify-content-center" style="height: 70px">
+                                @if (Model.Details.SurgeryExamination.IsRegistered)
+                                {
+                                    @Model.Details.SurgeryExamination.DoctorName
+                                }
+
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            @{
+                                if (Model.Details.DermatologyExamination.IsRegistered)
+                                {
+                                    <div class="pr-2 pl-2 d-flex">
+                                        <span class="mr-2 text-nowrap"><strong>3. Da liễu</strong></span>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <div class="w-100 result text-justify">@Model.Details.DermatologyExamination.Dermatology</div>
+                                        </div>
+                                    </div>
+                                    <div class="pl-4 pr-2 d-flex">
+                                        <span class="mr-2 text-nowrap">Phân loại:</span>
+                                        <span>@Model.Details.DermatologyExamination.DermatologyLevel</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="pr-2 pl-2 d-flex">
+                                        <span class="mr-2 text-nowrap"><strong>3. Da liễu</strong></span>
+                                        <div class="ml-3 d-flex mb-1 w-100">
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="pl-4 pr-2 d-flex">
+                                        <span class="mr-2 text-nowrap">Phân loại:</span>
+                                        <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                    </div>
+                                }
+                            }
+                        </td>
+                        <td class="align-middle">
+                            <p class="text-center d-flex align-items-end justify-content-center" style="height: 70px">
+                                @if (Model.Details.DermatologyExamination.IsRegistered)
+                                {
+                                    @Model.Details.DermatologyExamination.DoctorName
+                                }
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            <span class="mr-2"><strong>4. Mắt</strong></span>
+                            @{
+                                if (Model.Details.OphthalmologyExamination.IsRegistered)
+                                {
+                                    <table class="table-borderless w-100" style="border: none">
+                                        <tr>
+                                            <td rowspan="2">- Kết quả khám thị lực:</td>
+                                            <td>
+                                                <div class="d-block">
+                                                    <span class="mr-2">Không kính:</span>
+                                                    <span class="mr-2">Mắt phải:</span>
+                                                    <span class="mr-2">@Model.Details.OphthalmologyExamination.RightEyeSightWithoutGlass</span>
+                                                    <span class="mr-2">Mắt trái:</span>
+                                                    <span class="mr-2">@Model.Details.OphthalmologyExamination.LeftEyeSightWithoutGlass</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-block">
+                                                    <span class="mr-2">Có kính:</span>
+                                                    <span class="mr-2">Mắt phải:</span>
+                                                    <span class="mr-2">@Model.Details.OphthalmologyExamination.RightEyeSightWithGlass</span>
+                                                    <span class="mr-2">Mắt trái:</span>
+                                                    <span class="mr-2">@Model.Details.OphthalmologyExamination.LeftEyeSightWithGlass</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>- Các bệnh về mắt (nếu có):</td>
+                                            <td>@Model.Details.OphthalmologyExamination.EyeDiseases</td>
+                                        </tr>
+                                    </table>
+                                    <div class="ml-4 d-flex mb-2">
+                                        <span class="mr-2 text-nowrap">Phân loại:</span>
+                                        <span>@Model.Details.OphthalmologyExamination.OphthalmologyLevel</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <table class="table table-borderless w-100 table-responsive" style="border: none">
+                                        <tr>
+                                            <td rowspan="2">- Kết quả khám thị lực:</td>
+                                            <td>
+                                                <div class="d-block">
+                                                    <span class="mr-2">Không kính:</span>
+                                                    <span class="mr-2">Mắt phải:</span>
+                                                    <span class="mr-2">.......................</span>
+                                                    <span class="mr-2">Mắt trái:</span>
+                                                    <span class="mr-2">.......................</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-block">
+                                                    <span class="mr-2">Có kính:</span>
+                                                    <span class="mr-2">Mắt phải:</span>
+                                                    <span class="mr-2">.......................</span>
+                                                    <span class="mr-2">Mắt trái:</span>
+                                                    <span class="mr-2">.......................</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="mr-2 text-nowrap text-justify">- Các bệnh về mắt (nếu có):</td>
+                                            <td class="w-100"><input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled></td>
+                                        </tr>
+                                    </table>
+                                    <div class="ml-4 d-flex mb-2">
+                                        <span class="mr-2 text-nowrap">Phân loại:</span>
+                                        <span class="w-100 pr-2"><input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled></span>
+                                    </div>
+                                }
+                            }
+                        </td>
+                        <td class="align-middle">
+                            <p class="text-center d-flex align-items-end justify-content-center" style="height: 100px">
+                                @if (Model.Details.OphthalmologyExamination.IsRegistered)
+                                {
+                                    @Model.Details.OphthalmologyExamination.DoctorName
+                                }
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="mr-2"><strong>5. Tai - Mũi - Họng</strong></span>
+                            @{
+                                if (Model.Details.OtorhinolaryngologyExamination.IsRegistered)
+                                {
+                                    <table class="table-borderless w-100 table-responsive" style="border:none;">
+                                        <tr>
+                                            <td rowspan="2">- Kết quả khám thính lực:</td>
+                                            <td>
+                                                <div class="d-block">
+                                                    <span class="mr-2">Tai trái:</span>
+                                                    <span class="mr-2">Nói thường:</span>
+                                                    <span class="mr-2">@Model.Details.OtorhinolaryngologyExamination.LeftEarNormal</span>
+                                                    <span class="mr-2">Nói thầm:</span>
+                                                    <span class="mr-2">@Model.Details.OtorhinolaryngologyExamination.LeftEarWhisper</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-block">
+                                                    <span class="mr-2">Tai trái:</span>
+                                                    <span class="mr-2">Nói thường:</span>
+                                                    <span class="mr-2">@Model.Details.OtorhinolaryngologyExamination.RightEarNormal</span>
+                                                    <span class="mr-2">Nói thầm:</span>
+                                                    <span class="mr-2">@Model.Details.OtorhinolaryngologyExamination.RightEarWhisper</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="d-flex w-100">
+                                                <span class="mr-2 text-nowrap text-justify">- Các bệnh về tai mũi họng (nếu có):</span>
+                                            </td>
+                                            <td>@Model.Details.OtorhinolaryngologyExamination.OtorhinolaryngologyDiseases</td>
+                                        </tr>
+                                    </table>
+                                    <div class="ml-4 d-flex mb-2">
+                                        <span class="mr-2 text-nowrap">Phân loại:</span>
+                                        <span class="w-100 pr-2">@Model.Details.OtorhinolaryngologyExamination.OtorhinolaryngologyLevel</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <table class="table-borderless w-100 table-responsive">
+                                        <tr>
+                                            <td rowspan="2">- Kết quả khám thính lực:</td>
+                                            <td>
+                                                <div class="d-block">
+                                                    <span class="mr-2">Tai trái:</span>
+                                                    <span class="mr-2">Nói thường:</span>
+                                                    <span class="mr-2">.......................</span>
+                                                    <span class="mr-2">Nói thầm:</span>
+                                                    <span class="mr-2">.......................</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-block">
+                                                    <span class="mr-2">Tai phải:</span>
+                                                    <span class="mr-2">Nói thường:</span>
+                                                    <span class="mr-2">.......................</span>
+                                                    <span class="mr-2">Nói thầm:</span>
+                                                    <span class="mr-2">.......................</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="d-flex w-100">
+                                                <span class="mr-2 text-nowrap">- Các bệnh về tai mũi họng (nếu có):</span>
+                                            </td>
+                                            <td class="w-100"><input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled></td>
+                                        </tr>
+                                    </table>
+                                    <div class="ml-4 d-flex mb-2">
+                                        <span class="mr-2 text-nowrap">Phân loại:</span>
+                                        <span class="w-100 pr-2"><input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled></span>
+                                    </div>
+                                }
+                            }
+                        </td>
+                        <td class="align-middle">
+                            <p class="text-center d-flex align-items-end justify-content-center" style="height: 100px">
+                                @if (Model.Details.OtorhinolaryngologyExamination.IsRegistered)
+                                {
+                                    @Model.Details.OtorhinolaryngologyExamination.DoctorName
+                                }
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                                <span class="mr-2"><strong>6. Răng - Hàm - Mặt</strong></span>
+                                @{
+                                    if (Model.Details.OralAndMaxillofacialExamination.IsRegistered)
+                                    {
+                                        <table class="table-borderless w-100 table-responsive" style="border:none;">
+                                            <tr>
+                                                <td rowspan="2">- Kết quả khám:</td>
+                                                <td>
+                                                    <div class="d-block">
+                                                        <span class="mr-2">Hàm trên:</span>
+                                                        <span class="mr-2">@Model.Details.OralAndMaxillofacialExamination.UpperJaw</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-block">
+                                                        <span class="mr-2">Hàm dưới:</span>
+                                                        <span class="mr-2">@Model.Details.OralAndMaxillofacialExamination.LowerJaw</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="d-flex w-100">
+                                                    <span class="mr-2 text-nowrap text-justify">- Các bệnh về Răng - Hàm - Mặt (nếu có):</span>
+                                                </td>
+                                                <td>@Model.Details.OralAndMaxillofacialExamination.OralAndMaxillofacialDiseases</td>
+                                            </tr>
+                                        </table>
+                                        <div class="ml-4 d-flex mb-2">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <span class="w-100 pr-2">@Model.Details.OralAndMaxillofacialExamination.OralAndMaxillofacialLevel</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <table class="table-borderless w-100 table-responsive">
+                                            <tr>
+                                                <td rowspan="2">- Kết quả khám:</td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <span class="mr-2 text-nowrap">Hàm trên:</span>
+                                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <span class="mr-2 text-nowrap">Hàm dưới:</span>
+                                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="d-flex w-100">
+                                                    <span class="mr-2 text-nowrap">- Các bệnh về Răng - Hàm - Mặt (nếu có):</span>
+                                                </td>
+                                                <td class="w-100"><input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled></td>
+                                            </tr>
+                                        </table>
+                                        <div class="ml-4 d-flex mb-2">
+                                            <span class="mr-2 text-nowrap">Phân loại:</span>
+                                            <span class="w-100 pr-2"><input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled></span>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <p class="text-center d-flex align-items-end justify-content-center" style="height: 100px">
+                                @if (Model.Details.OralAndMaxillofacialExamination.IsRegistered)
+                                {
+                                    @Model.Details.OralAndMaxillofacialExamination.DoctorName
+                                }
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">
+                            @{
+                                if (Model.Details.ObstetricsAndGynecologyExamination.IsRegistered)
+                                {
+                                    <div class="pr-2 pl-2 d-flex">
+                                        <span class="mr-2 text-nowrap"><strong>7. Sản phụ khoa</strong></span>
+                                        <div class="ml-3 d-flex mb-1">
+                                            <div class="w-100 result text-justify">@Model.Details.ObstetricsAndGynecologyExamination.ObstetricsAndGynecology</div>
+                                        </div>
+                                    </div>
+                                    <div class="pl-4 pr-2 d-flex">
+                                        <span class="mr-2 text-nowrap">Phân loại:</span>
+                                        <span>@Model.Details.ObstetricsAndGynecologyExamination.ObstetricsAndGynecologyLevel</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="pr-2 pl-2 d-flex">
+                                        <span class="mr-2 text-nowrap"><strong>7. Sản phụ khoa</strong></span>
+                                        <div class="ml-3 d-flex mb-1 w-100">
+                                            <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="pl-4 pr-2 d-flex">
+                                        <span class="mr-2 text-nowrap">Phân loại:</span>
+                                        <input class="w-100" style="border:none; border-bottom: 1px dotted black" disabled>
+                                    </div>
+                                }
+                            }
+                        </td>
+                        <td class="align-middle">
+                            <p class="text-center d-flex align-items-end justify-content-center" style="height: 70px">
+                                @if (Model.Details.ObstetricsAndGynecologyExamination.IsRegistered)
+                                {
+                                    @Model.Details.ObstetricsAndGynecologyExamination.DoctorName
+                                }
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="page-break-after:auto"></p>
+        <h5>III. KHÁM CẬN LÂM SÀNG</h5>
+        <div class="row">
+            <table class="table table-bordered ">
+                <thead class="text-center ">
+                    <tr>
+                        <th class="align-middle" style="width:950px">Nội dung khám</th>
+                        <th class="align-middle" style="width: 200px">Họ tên, chữ ký của bác sỹ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div>
+                                <span class="mr-2"><strong>1. Xét nghiệm máu</strong></span>
+                                @{
+                                    if (Model.Details.BloodTests.IsRegistered)
+                                    {
+                                        <table class="table-borderless w-100 table-responsive" style="border:none">
+                                            <tr>
+                                                <td rowspan="3">a) Công thức máu:</td>
+                                                <td>
+                                                    <div class="d-block">
+                                                        <span class="mr-2">Số lượng HC:</span>
+                                                        <span class="mr-2">@Model.Details.BloodTests.HCAmount 10<sup>12</sup>/l</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-block">
+                                                        <span class="mr-2">Số lượng Bạch cầu:</span>
+                                                        <span class="mr-2">@Model.Details.BloodTests.LeukocytesAmount 10<sup>9</sup>/l</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-block">
+                                                        <span class="mr-2">Số lượng Tiểu cầu:</span>
+                                                        <span class="mr-2">@Model.Details.BloodTests.PlateletsAmount 10<sup>9</sup>/l</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>b) Sinh hóa máu:</td>
+                                                <td>
+                                                    <div class="d-block">
+                                                        <span class="mr-2">Đường máu:</span>
+                                                        <span class="mr-2">@Model.Details.BloodTests.BloodSugar mmol/l</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span class="mr-2">Urê</span>@Model.Details.BloodTests.Ure mmol/l
+                                                </td>
+                                                <td>
+                                                    <span class="mr-2">Creatinin</span>@Model.Details.BloodTests.Creatinin mmol/l
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span class="mr-2">ASAT(GOT)</span>@Model.Details.BloodTests.ASATGOT u/l
+                                                </td>
+                                                <td>
+                                                    <span class="mr-2">ALAT(GPT)</span>@Model.Details.BloodTests.ALATGPT u/l
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    }
+                                    else
+                                    {
+                                        <table class="table-borderless w-100 table-responsive">
+                                            <tr>
+                                                <td rowspan="3">a) Công thức máu:</td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <span class="mr-2 text-nowrap">Số lượng HC:</span>
+                                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <span class="mr-2 text-nowrap">Số lượng Bạch cầu:</span>
+                                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <span class="mr-2 text-nowrap">Số lượng Tiểu cầu:</span>
+                                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>b) Sinh hóa máu:</td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <span class="mr-2 text-nowrap">Đường máu:</span>
+                                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <span class="mr-2 text-nowrap">Urê</span>
+                                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <span class="mr-2 text-nowrap">Creatinin</span>
+                                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <span class="mr-2 text-nowrap">ASAT(GOT)</span>
+                                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <span class="mr-2 text-nowrap">ALAT(GPT)</span>
+                                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    }
+                                }
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <p class="text-center d-flex align-items-end justify-content-center" style="height: 70px">
+                                @if (Model.Details.BloodTests.IsRegistered)
+                                {
+                                    @Model.Details.BloodTests.DoctorName
+                                }
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                                <span class="mr-2"><strong>2. Xét nghiệm nước tiểu</strong></span>
+                                @{
+                                    if (Model.Details.ClinicalUrineTests.IsRegistered)
+                                    {
+                                        <div class="ml-4 d-flex mb-2">
+                                            <span class="mr-2 text-nowrap">a) Đường:</span>
+                                            <span class="w-100 pr-2">
+                                                @if (!Model.Details.ClinicalUrineTests.Sugar)
+                                                {
+                                                    <span>Âm tính</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>Dương tính</span>
+                                                };
+                                            </span>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-2">
+                                            <span class="mr-2 text-nowrap">b) Protein:</span>
+                                            <span class="w-100 pr-2">
+                                                @if (!Model.Details.ClinicalUrineTests.Protein)
+                                                {
+                                                    <span>Âm tính</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>Dương tính</span>
+                                                };
+                                            </span>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-2">
+                                            <span class="mr-2 text-nowrap">c) Khác (nếu có):</span>
+                                            <span class="w-100 pr-2">
+                                                @Model.Details.ClinicalUrineTests.Other
+                                            </span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="ml-4 d-flex mb-2">
+                                            <span class="mr-2 text-nowrap">a) Đường:</span>
+                                            <span class="w-100 pr-2">
+                                                <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                            </span>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-2">
+                                            <span class="mr-2 text-nowrap">b) Protein:</span>
+                                            <span class="w-100 pr-2">
+                                                <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                            </span>
+                                        </div>
+                                        <div class="ml-4 d-flex mb-2">
+                                            <span class="mr-2 text-nowrap">c) Khác (nếu có):</span>
+                                            <span class="w-100 pr-2">
+                                                <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                            </span>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <p class="text-center d-flex align-items-end justify-content-center" style="height: 100px">
+                                @if (Model.Details.ClinicalUrineTests.IsRegistered)
+                                {
+                                    @Model.Details.ClinicalUrineTests.DoctorName
+                                }
+                            </p>
+                        </td>
+                    </tr>
+                    <tr style="min-height: 500px">
+                        <td>
+                            <div>
+                                <p><b>3. Chẩn đoán hình ảnh:</b></p>
+                                @{
+                                    if (Model.Details.AbdominalUltrasound.IsRegistered)
+                                    {
+                                        <p>Siêu âm bụng</p>
+                                        <p class="ml-3"> @Model.Details.AbdominalUltrasound.AbdominalUltrasoundResult</p>
+                                    }
+
+                                    if (Model.Details.BreastUltrasound.IsRegistered)
+                                    {
+                                        <p>Siêu âm tuyến vú</p>
+                                        <p class="ml-3"> @Model.Details.BreastUltrasound.BreastUltrasoundResult</p>
+                                    }
+
+                                    if (Model.Details.CardiacUltrasoundProbes.IsRegistered)
+                                    {
+                                        <p>Thăm dò tim mạch</p>
+                                        <p class="ml-3"> @Model.Details.CardiacUltrasoundProbes.CardiacUltrasoundProbesResult</p>
+                                    }
+
+                                    if (Model.Details.ChestXray.IsRegistered)
+                                    {
+                                        <p>Xquang ngực</p>
+                                        <p class="ml-3"> @Model.Details.ChestXray.ChestXrayResult</p>
+                                    }
+
+                                    if (Model.Details.ThyroidUltrasound.IsRegistered)
+                                    {
+                                        <p>Siêu âm tuyến giáp</p>
+                                        <p class="ml-3"> @Model.Details.ThyroidUltrasound.ThyroidUltrasoundResult</p>
+                                    }
+
+                                    if (!Model.Details.AbdominalUltrasound.IsRegistered && !Model.Details.BreastUltrasound.IsRegistered
+                                        && !Model.Details.CardiacUltrasoundProbes.IsRegistered && !Model.Details.ChestXray.IsRegistered
+                                        && !Model.Details.ThyroidUltrasound.IsRegistered)
+                                    {
+                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                        <input class="w-100 pr-2" style="border:none; border-bottom: 1px dotted black" disabled>
+                                    }
+                                }
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @{
+                                    if (Model.Details.AbdominalUltrasound.IsRegistered)
+                                    {
+                                        <p class="text-center">Siêu âm bụng</p>
+                                        <p class="text-center d-flex align-items-end justify-content-center" style="height: 70px">
+                                            @Model.Details.AbdominalUltrasound.DoctorName
+                                        </p>
+                                    }
+
+                                    if (Model.Details.BreastUltrasound.IsRegistered)
+                                    {
+                                        <p class="text-center">Siêu âm tuyến vú</p>
+                                        <p class="text-center d-flex align-items-end justify-content-center" style="height: 70px">
+                                            @Model.Details.BreastUltrasound.DoctorName
+                                        </p>
+                                    }
+
+                                    if (Model.Details.CardiacUltrasoundProbes.IsRegistered)
+                                    {
+                                        <p class="text-center">Thăm dò tim mạch</p>
+                                        <p class="text-center d-flex align-items-end justify-content-center" style="height: 70px">
+                                            @Model.Details.CardiacUltrasoundProbes.DoctorName
+                                        </p>
+                                    }
+
+                                    if (Model.Details.ChestXray.IsRegistered)
+                                    {
+                                        <p class="text-center">Xquang ngực</p>
+                                        <p class="text-center d-flex align-items-end justify-content-center" style="height: 70px">
+                                            @Model.Details.ChestXray.DoctorName
+                                        </p>
+                                    }
+
+                                    if (Model.Details.ThyroidUltrasound.IsRegistered)
+                                    {
+                                        <p class="text-center">Siêu âm tuyến giáp</p>
+                                        <p class="text-center d-flex align-items-end justify-content-center" style="height: 70px">
+                                            @Model.Details.ThyroidUltrasound.DoctorName
+                                        </p>
+                                    }
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
+</body>
+</html>

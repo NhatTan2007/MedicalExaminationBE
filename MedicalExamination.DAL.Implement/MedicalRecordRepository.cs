@@ -145,6 +145,7 @@ namespace MedicalExamination.DAL.Implement
             parameters.Add(name: "@MedicalHistory", medicalRecord.MedicalHistory);
             parameters.Add(name: "@ReasonCancel", medicalRecord.ReasonCancel);
             parameters.Add(name: "@ServiceUsed", medicalRecord.ServiceUsed);
+            parameters.Add(name: "@WasPrinted", medicalRecord.WasPrinted);
             parameters.Add(name: "@ReasonToExamination", medicalRecord.ReasonToExamination);
             using (var result = SqlMapper.QueryFirstOrDefaultAsync<UpdateMedicalRecordRes>(
                 cnn: connection,

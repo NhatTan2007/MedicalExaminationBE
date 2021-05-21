@@ -23,13 +23,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Rotativa.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wkhtmltopdf.NetCore;
 
 namespace MedicalExamination.API
 {
@@ -56,7 +56,6 @@ namespace MedicalExamination.API
             corsBuilder.AllowAnyMethod();
             corsBuilder.WithOrigins(Helper.domain, "http://khamskdinhky.tech:4200");
             corsBuilder.AllowCredentials();
-            services.AddWkhtmltopdf("Wkhtmltopdf");
 
             services.AddCors(opts => {
                 opts.AddPolicy(_corsPolicy, corsBuilder.Build());
@@ -96,15 +95,8 @@ namespace MedicalExamination.API
                         }
                     };
                 });
-            services.AddControllers().AddNewtonsoftJson();
 
-            // chan multi-part
-            services.Configure<FormOptions>(o =>
-            {
-                o.ValueLengthLimit = int.MaxValue;
-                o.MultipartBodyLengthLimit = int.MaxValue;
-                o.MemoryBufferThreshold = int.MaxValue;
-            });
+            services.AddControllersWithViews().AddNewtonsoftJson();
 
             services.AddSwaggerGen(c =>
                 {
@@ -119,7 +111,6 @@ namespace MedicalExamination.API
                     var filePath = Path.Combine(System.AppContext.BaseDirectory, "MedicalExamination.API.xml");
                     c.IncludeXmlComments(filePath);
                 });
-
 
             services.AddScoped<IOrganizationsRepository, OrganizationsRepository>();
             services.AddScoped<IOrganizationsService, OrganizationsService>();
@@ -141,6 +132,7 @@ namespace MedicalExamination.API
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IViewRenderService, ViewRenderService>();
         }
 
 
@@ -169,7 +161,6 @@ namespace MedicalExamination.API
 
             app.UseHttpsRedirection();
 
-
             app.UseAuthentication();
 
             app.UseAuthorization();
@@ -178,8 +169,12 @@ namespace MedicalExamination.API
             {
                 endpoints.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Print}/{action=Index}/{MRecordId?}");
+                pattern: "{controller=PdfCreator}/{action=Index}/{MRecordId?}");
             });
+
+            var hostingEnvironment = app.ApplicationServices.GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
+            RotativaConfiguration.Setup(hostingEnvironment, "Rotavia");
+
         }
     }
 }

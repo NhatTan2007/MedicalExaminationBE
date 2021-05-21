@@ -468,6 +468,13 @@
             <param name="request"></param>
             <returns>Response when update data of a organization</returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.PdfCreatorController.Index(System.String)">
+            <summary>
+            Generate Examination Result in pdf
+            </summary>
+            <param name="MRecordId"></param>
+            <returns></returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.RoleController.CreateNewRole(MedicalExamination.Domain.Requests.Role.CreateRoleReq)">
             <summary>
             Create new Role

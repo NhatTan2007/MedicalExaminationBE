@@ -59,7 +59,7 @@ namespace MedicalExamination.API.Controllers
             }
             return BadRequest(ModelState);
         }
-        [AllowAnonymous]
+
         [HttpGet("logout")]
         public IActionResult Logout()
         {
@@ -97,7 +97,7 @@ namespace MedicalExamination.API.Controllers
             Response.Cookies.Append("X-Refresh-Token", user.RefreshToken, cookieOptions);
             return Ok();
         }
-        [Authorize]
+
         [HttpGet("userInfo")]
         public async Task<IActionResult> GetUserInfo()
         {
