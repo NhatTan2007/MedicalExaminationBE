@@ -36,7 +36,7 @@ namespace MedicalExamination.API.Controllers
 
         public async Task<IActionResult> GetMedicalServicesBypagination(int currentPage, int pageSize)
         {
-            return Ok(await _medicalServiceService.GetMedicalServicesBypagination(currentPage, pageSize));
+            return Ok(await _medicalServiceService.GetMedicalServicesByPagination(currentPage, pageSize));
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace MedicalExamination.API.Controllers
 
         public async Task<IActionResult> GetActiveMedicalServicesBypagination(int currentPage, int pageSize)
         {
-            return Ok(await _medicalServiceService.GetActiveMedicalServicesBypagination(currentPage, pageSize));
+            return Ok(await _medicalServiceService.GetActiveMedicalServicesByPagination(currentPage, pageSize));
         }
 
         /// <summary>

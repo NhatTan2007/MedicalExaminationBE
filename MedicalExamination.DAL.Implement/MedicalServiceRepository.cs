@@ -57,7 +57,7 @@ namespace MedicalExamination.DAL.Implement
             }
         }
 
-        public async Task<QuerryMSerciceRes> GetActiveMedicalServicesBypagination(int currentPage, int pageSize)
+        public async Task<QueryMServiceRes> GetActiveMedicalServicesByPagination(int currentPage, int pageSize)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@CurrentPage", currentPage);
@@ -70,14 +70,14 @@ namespace MedicalExamination.DAL.Implement
                                               commandType: CommandType.StoredProcedure))
                 try
                 {
-                    QuerryMSerciceRes querryResult = new QuerryMSerciceRes();
+                    QueryMServiceRes querryResult = new QueryMServiceRes();
                     querryResult.MedicalService = await result;
                     querryResult.TotalMedicalSevices = parameters.Get<int>("@TotalMedicalSevices");
                     return querryResult;
                 }
                 catch (Exception ex)
                 {
-                    return new QuerryMSerciceRes();
+                    return new QueryMServiceRes();
                 }
         }
 
@@ -137,7 +137,7 @@ namespace MedicalExamination.DAL.Implement
             }
         }
 
-        public async Task<QuerryMSerciceRes> GetMedicalServicesBypagination(int currentPage, int pageSize)
+        public async Task<QueryMServiceRes> GetMedicalServicesByPagination(int currentPage, int pageSize)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@CurrentPage", currentPage);
@@ -150,18 +150,18 @@ namespace MedicalExamination.DAL.Implement
                                               commandType: CommandType.StoredProcedure))
                 try
                 {
-                    QuerryMSerciceRes querryResult = new QuerryMSerciceRes();
+                    QueryMServiceRes querryResult = new QueryMServiceRes();
                     querryResult.MedicalService = await result;
                     querryResult.TotalMedicalSevices = parameters.Get<int>("@TotalMedicalSevices");
                     return querryResult;
                 }
                 catch (Exception ex)
                 {
-                    return new QuerryMSerciceRes();
+                    return new QueryMServiceRes();
                 }
         }
 
-        public async Task<QuerryMSerciceRes> SearchByNameMServicePagination(string keyword, int currentPage, int pageSize)
+        public async Task<QueryMServiceRes> SearchByNameMServicePagination(string keyword, int currentPage, int pageSize)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@SearchKey", keyword);
@@ -176,14 +176,14 @@ namespace MedicalExamination.DAL.Implement
                                               commandType: CommandType.StoredProcedure))
                 try
                 {
-                    QuerryMSerciceRes querryResult = new QuerryMSerciceRes();
+                    QueryMServiceRes querryResult = new QueryMServiceRes();
                     querryResult.MedicalService = await result;
                     querryResult.TotalMedicalSevices = parameters.Get<int>("@TotalMedicalSevices");
                     return querryResult;
                 }
                 catch (Exception)
                 {
-                    return new QuerryMSerciceRes();
+                    return new QueryMServiceRes();
                 }
         }
 

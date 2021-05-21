@@ -10,9 +10,11 @@ namespace MedicalExamination.Domain.Responses.MedicalRecord
         private string _customerFirstName;
         private string _customerLastName;
         private double _createDate;
+        private double _dateCompleted;
         private bool _isActive;
         private bool _isPaid;
         private string _reasonCancel;
+        private bool _wasPrinted;
 
         public string MedicalRecordId { get => _medicalRecordId; set => _medicalRecordId = value; }
         public string CustomerFirstName { get => _customerFirstName; set => _customerFirstName = value; }
@@ -22,5 +24,7 @@ namespace MedicalExamination.Domain.Responses.MedicalRecord
         public bool IsPaid { get => _isPaid; set => _isPaid = value; }
         public double CreateDate { get => _createDate; set => _createDate = value; }
         public string ReasonCancel { get => _reasonCancel; set => _reasonCancel = value; }
+        public bool WasPrinted { get => _wasPrinted; set => _wasPrinted = value; }
+        public double DateCompleted { get => _dateCompleted; set => _dateCompleted = value; }
     }
 }

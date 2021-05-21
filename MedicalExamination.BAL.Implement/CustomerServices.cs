@@ -50,13 +50,13 @@ namespace MedicalExamination.BAL.Implement
             return await _customerRepository.GetCustomerByIdentityNumber(identityNumber);
         }
 
-        public async Task<QuerryCustomerRes> GetCustomerBypagination(int currentPage, int pageSize)
+        public async Task<QueryCustomerRes> GetCustomerBypagination(int currentPage, int pageSize)
         {
             return await _customerRepository.GetCustomerBypagination(currentPage, pageSize);
 
         }
 
-        public async Task<QuerryCustomerRes> SearchByNameOrIdentityNumberPagination(string keyword, int currentPage, int pageSize)
+        public async Task<QueryCustomerRes> SearchByNameOrIdentityNumberPagination(string keyword, int currentPage, int pageSize)
         {
             return await _customerRepository.SearchByNameOrIdentityNumberPagination(keyword, currentPage, pageSize);
         }

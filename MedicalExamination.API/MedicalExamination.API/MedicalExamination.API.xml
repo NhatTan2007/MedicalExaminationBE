@@ -185,6 +185,23 @@
             </summary>
             <returns>list medical record</returns>
         </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.GetMedicalRecordsWithPagniation(System.Int32,System.Int32)">
+            <summary>
+            Get medical records with pagination
+            </summary>
+            <param name="currentPage"></param>
+            <param name="pageSize"></param>
+            <returns>list medical records</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.SearchMedicalRecordsWithPagination(System.String,System.Int32,System.Int32)">
+            <summary>
+            Get medical records with pagination
+            </summary>
+            <param name="currentPage"></param>
+            <param name="searchKey"></param>
+            <param name="pageSize"></param>
+            <returns>list medical records</returns>
+        </member>
         <member name="M:MedicalExamination.API.Controllers.MedicalRecordController.GetMedicalRecordsByCustomerId(System.String)">
             <summary>
             Get medical records of customer
@@ -450,6 +467,13 @@
             </summary>
             <param name="request"></param>
             <returns>Response when update data of a organization</returns>
+        </member>
+        <member name="M:MedicalExamination.API.Controllers.PdfCreatorController.Index(System.String)">
+            <summary>
+            Generate Examination Result in pdf
+            </summary>
+            <param name="MRecordId"></param>
+            <returns></returns>
         </member>
         <member name="M:MedicalExamination.API.Controllers.RoleController.CreateNewRole(MedicalExamination.Domain.Requests.Role.CreateRoleReq)">
             <summary>

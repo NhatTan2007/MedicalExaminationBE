@@ -153,7 +153,7 @@ namespace MedicalExamination.DAL.Implement
 
         }
 
-        public async Task<QuerryOrganizationRes> GetOrganizationBypagination(int currentPage, int pageSize)
+        public async Task<QueryOrganizationRes> GetOrganizationBypagination(int currentPage, int pageSize)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@CurrentPage", currentPage);
@@ -168,19 +168,18 @@ namespace MedicalExamination.DAL.Implement
                                               commandType: CommandType.StoredProcedure))
                 try
                 {
-                    QuerryOrganizationRes querryResult = new QuerryOrganizationRes();
+                    QueryOrganizationRes querryResult = new QueryOrganizationRes();
                     querryResult.Organization = (IEnumerable<Organization>)await result;
                     querryResult.TotalOrganization = parameters.Get<int>("@TotalOrganization");
                     return querryResult;
                 }
                 catch (Exception ex)
                 {
-                    return new QuerryOrganizationRes();
+                    return new QueryOrganizationRes();
                 }
         }
 
-
-        public async Task<QuerryOrganizationRes> SearchByOrganizationPagination(string keyword, int currentPage, int pageSize)
+        public async Task<QueryOrganizationRes> SearchByOrganizationPagination(string keyword, int currentPage, int pageSize)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add(name: "@SearchKey", keyword);
@@ -195,19 +194,15 @@ namespace MedicalExamination.DAL.Implement
                                               commandType: CommandType.StoredProcedure))
                 try
                 {
-                    QuerryOrganizationRes querryResult = new QuerryOrganizationRes();
+                    QueryOrganizationRes querryResult = new QueryOrganizationRes();
                     querryResult.Organization = await result;
                     querryResult.TotalOrganization = parameters.Get<int>("@TotalOrganization");
                     return querryResult;
                 }
                 catch (Exception)
                 {
-                    return new QuerryOrganizationRes();
+                    return new QueryOrganizationRes();
                 }
         }
-<<<<<<< HEAD
     }
-=======
-
->>>>>>> dev
 }

@@ -16,5 +16,7 @@ namespace MedicalExamination.DAL.Interface
         Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByNameOrIdActiveFinishedExamination();
         Task<IEnumerable<MedicalRecordViewRes>> GetAllInactiveMedicalRecords();
         Task<IEnumerable<MedicalRecordViewRes>> GetMedicalRecordByCustomerId(string customerId);
+        Task<QueryMedicalRecordsRes> GetMedicalRecordsWithPagination(int currentPage, int pageSize);
+        Task<QueryMedicalRecordsRes> SearchMedicalRecordsWithPagination(string searchKey, int currentPage, int pageSize);
     }
 }

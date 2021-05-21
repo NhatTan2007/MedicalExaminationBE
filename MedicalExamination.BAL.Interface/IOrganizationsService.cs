@@ -13,7 +13,7 @@ namespace MedicalExamination.BAL.Interface
     {
         Task<IEnumerable<Organization>> GetAllOrganizations();
 
-        Task<QuerryOrganizationRes> GetOrganizationBypagination(int currentPage, int pageSize);
+        Task<QueryOrganizationRes> GetOrganizationBypagination(int currentPage, int pageSize);
 
         Task<Organization> GetOrganizationById(string orangizationId);
         Task<CreateOrganizationRes> CreateOrganization(CreateOrganizationReq request);
@@ -21,7 +21,7 @@ namespace MedicalExamination.BAL.Interface
         
         Task<IEnumerable<Organization>> SearchOrganizationsByNameASCByName(string search);
         Task<IEnumerable<Organization>> SearchOrganizationsByNameDESCByName(string search);
-        Task<QuerryOrganizationRes> SearchByOrganizationPagination(string keyword, int currentPage, int pageSize);
+        Task<QueryOrganizationRes> SearchByOrganizationPagination(string keyword, int currentPage, int pageSize);
 
     }
 }

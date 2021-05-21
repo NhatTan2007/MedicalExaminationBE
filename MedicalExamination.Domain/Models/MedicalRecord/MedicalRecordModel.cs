@@ -26,6 +26,7 @@ namespace MedicalExamination.Domain.Models.MedicalRecord
         private int _servicesRegisted;
         private int _serviceUsed;
         private string _reasonCancel;
+        private bool _wasPrinted;
 
         public string MedicalRecordId { get => _medicalRecordId; set => _medicalRecordId = value; }
         public MedicalHistoryForm MedicalHistory { get => _medicalHistory; set => _medicalHistory = value; }
@@ -47,5 +48,6 @@ namespace MedicalExamination.Domain.Models.MedicalRecord
         public int ServiceUsed { get => _serviceUsed; set => _serviceUsed = value; }
         public string ReasonCancel { get => _reasonCancel; set => _reasonCancel = value; }
         public string ReasonToExamination { get => _reasonToExamination; set => _reasonToExamination = value; }
+        public bool WasPrinted { get => _wasPrinted; set => _wasPrinted = value; }
     }
 }

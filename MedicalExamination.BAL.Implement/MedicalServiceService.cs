@@ -28,9 +28,9 @@ namespace MedicalExamination.BAL.Implement
             return await _medicalServiceRepository.GetActiveMedicalServices();
         }
 
-        public async Task<QuerryMSerciceRes> GetActiveMedicalServicesBypagination(int currentPage, int pageSize)
+        public async Task<QueryMServiceRes> GetMedicalServicesByPagination(int currentPage, int pageSize)
         {
-            return await _medicalServiceRepository.GetActiveMedicalServicesBypagination(currentPage, pageSize);
+            return await _medicalServiceRepository.GetMedicalServicesByPagination(currentPage, pageSize);
         }
 
         public async Task<IEnumerable<MedicalService>> GetMedicalServiceByDepartmentId(string departmentId)
@@ -47,12 +47,12 @@ namespace MedicalExamination.BAL.Implement
         {
             return await _medicalServiceRepository.GetMedicalServices();
         }
-        public async Task<QuerryMSerciceRes> GetMedicalServicesBypagination(int currentPage, int pageSize)
+        public async Task<QueryMServiceRes> GetActiveMedicalServicesByPagination(int currentPage, int pageSize)
         {
-            return await _medicalServiceRepository.GetMedicalServicesBypagination(currentPage, pageSize);
+            return await _medicalServiceRepository.GetActiveMedicalServicesByPagination(currentPage, pageSize);
         }
 
-        public async Task<QuerryMSerciceRes> SearchByNameMServicePagination(string keyword, int currentPage, int pageSize)
+        public async Task<QueryMServiceRes> SearchByNameMServicePagination(string keyword, int currentPage, int pageSize)
         {
             return await _medicalServiceRepository.SearchByNameMServicePagination(keyword, currentPage, pageSize);
         }
