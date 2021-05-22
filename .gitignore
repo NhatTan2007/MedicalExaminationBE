@@ -55,6 +55,8 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
+MedicalExamination.API/appsettings.json
+MedicalExamination.API/appsettings.Development.json
 
 # StyleCop
 StyleCopReport.xml

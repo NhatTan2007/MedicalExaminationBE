@@ -1,0 +1,22 @@
+﻿*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+p{
+    margin: 0;
+}
+
+td, th{
+    padding-bottom: 0.25rem !important;
+    padding-top: .25rem !important;
+}
+
+input[disabled]{
+    background-color: transparent;
+}
+
+.result{
+    text-decoration: underline dotted black;
+}

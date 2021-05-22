@@ -1,25 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>dcda3403-8949-4236-bfbb-f0ef1bbfa2fd</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\LEARNING\MODULE 5\BIGPROJECT\MedicalExamination\MedicalExamination.API\MedicalExamination.API.xml</DocumentationFile>
-    <NoWarn>1701;1702;1591</NoWarn>
+    <DocumentationFile>MedicalExamination.API\MedicalExamination.API.xml</DocumentationFile>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>MedicalExamination.API\MedicalExamination.API.xml</DocumentationFile>
+    <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.14" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.2.0-beta" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
+    <PackageReference Include="Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Windows" Version="19.1.0.63" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +34,55 @@
     <ProjectReference Include="..\MedicalExamination.DAL.Implement\MedicalExamination.DAL.Implement.csproj" />
     <ProjectReference Include="..\MedicalExamination.DAL.Interface\MedicalExamination.DAL.Interface.csproj" />
     <ProjectReference Include="..\MedicalExamination.Domain\MedicalExamination.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Rotavia\" />
+    <Folder Include="wwwroot\upload\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Rotavia\wkhtmltoimage.exe" />
+    <None Include="wwwroot\Rotavia\wkhtmltopdf.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="BlinkBinariesWindows\77.0.3865.90.manifest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BlinkBinariesWindows\chrome.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BlinkBinariesWindows\chrome.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BlinkBinariesWindows\chrome_100_percent.pak">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BlinkBinariesWindows\chrome_200_percent.pak">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BlinkBinariesWindows\chrome_child.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BlinkBinariesWindows\chrome_elf.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BlinkBinariesWindows\icudtl.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BlinkBinariesWindows\locales\en-US.pak">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BlinkBinariesWindows\natives_blob.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BlinkBinariesWindows\resources.pak">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BlinkBinariesWindows\v8_context_snapshot.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 
