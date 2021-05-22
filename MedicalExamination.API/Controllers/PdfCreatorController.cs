@@ -87,7 +87,5 @@ namespace MedicalExamination.API.Controllers
         //    }
         //    return BadRequest();
         //}
-
-
     }
 }
